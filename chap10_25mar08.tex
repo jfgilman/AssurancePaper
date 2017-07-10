@@ -1,0 +1,1802 @@
+\documentclass {book}
+\usepackage{amsmath, amssymb, fullpage, natbib}
+\usepackage{array}
+
+\begin{document}
+
+
+\chapter{Assurance Testing}\label{ch10}
+\chaptermark{Assurance Testing}
+
+\begin{quote}
+\textit{Planning for Bayesian assurance testing involves
+determining a test plan that guarantees that a reliability-related
+quantity of interest meets or exceeds a specified requirement at a
+desired level of confidence. Within a Bayesian hierarchical
+framework, this chapter determines test plans for binomial, Poisson, and
+Weibull testing. Also, we develop Weibull assurance test plans
+using available data from an associated accelerated life testing
+program.}
+\end{quote} \index[sub]{assurance testing}\index[sub]{test!assurance}
+
+\section{Introduction}\label{ch10:sec1}
+This chapter focuses on developing a test plan \index[sub]{test
+plan} for assuring (or demonstrating) that, at a desired level of
+confidence, a reliability-related quantity of interest meets or
+exceeds a specified requirement. For binomial testing, we test $n$
+devices either as a demand for successful operation or for a
+specified length of time and observe the total number of devices
+failing the test $x$. For example, a tester may try an emergency
+diesel generator (EDG) to see if it will start on demand, or a
+tester may place a sample of a particular nonwoven material under
+stress for a given length of time to see if it survives the test.
+The reliability-related quantity of interest for both examples is
+the probability $\pi$ that an item survives the test, and the
+required binomial test plan\index[sub]{binomial!test plan}
+consists of the total number of devices tested $n$ as well as the
+maximum allowed number of failures $c$.
+
+Although practitioners often use ``assuring'' and
+``demonstrating'' synonymously, \citet{ME04}  distinguishes
+between reliability demonstration and reliability assurance
+testing. A traditional \emph{reliability demonstration
+test}\index[sub]{reliability!demonstration test} is essentially a
+\emph{classical} (i.e., frequency based) hypothesis test, which
+uses only the data from the test to assess whether the
+reliability-related quantity of interest meets or exceeds the
+requirement. Consider how many modern systems, such as
+communication devices and transportation systems, are highly
+reliable. For these systems, reliability demonstration tests often
+require an impractical amount of testing. In response to this
+dilemma, \citet{ME04} defines an alternative \emph{reliability
+assurance test}\index[sub]{reliability!assurance test}
+\index[sub]{reliability!testing} as one that uses additional
+supplementary data and information to reduce the required amount
+of testing. The additional data and information may include
+appropriate reliability models, earlier test results on the same
+or similar devices, expert judgment regarding performance,
+knowledge of the environmental conditions under which the devices
+are used, benchmark design information on similar devices, prior
+knowledge of possible failure modes, etc. Because all of the
+Bayesian test plans considered in this chapter use such
+supplementary data and information, we refer to them as
+reliability assurance tests.\index[aut]{Meeker,
+W.}\index[aut]{Escobar, L.}\index[aut]{Meeker,
+W.}\index[aut]{Escobar, L.}
+
+Life testing \index[sub]{test!life} has many aspects in common
+with assurance testing. However, the primary goal in designing a
+life test tends to be quite different than assuring conformance to
+a specified reliability requirement. In designing such life tests,
+we often have as our primary goal improving the estimation
+precision of certain reliability-related quantities of interest.
+However, such differences notwithstanding, the basic ideas
+underlying life and assurance testing are similar, namely, to
+address such questions as ``How many devices do I need to test?'',
+``How long do I need to test each device?'', or ``What is the
+maximum number of failures permitted for a successful test?''
+
+Because data from an assumed sampling distribution provide the
+basis for deciding whether the population of products being tested
+meets the specified requirement, there are two kinds of errors to
+make. A population of unreliable products (one that does not meet
+the requirement) may, in fact, pass the test, whereas a reliable
+population may fail it. This important acknowledgment makes us
+think about the (probabilistic) \emph{risks} that we incur in
+conducting the test. The precise form of the risks is an important
+consideration in classical assurance tests and is an important
+consideration in developing Bayesian assurance tests as well. The
+\emph{test criteria}\index[sub]{test criteria} are precise
+probabilistic statements regarding the risks we are willing to
+incur when developing a test plan. The following sections discuss
+several of the more popular criteria.
+
+To begin our discussion of test criteria, suppose that $\pi$
+denotes some reliability-related quantity of interest such that
+large values of $\pi$ are more desirable than small values. Note
+that reliability is one such quantity, while the mean and
+quantiles of a specified failure time distribution are others. It
+is common to base both classical and Bayesian test plans on two
+specified levels of $\pi$: $\pi_0$, an \emph{acceptable
+reliability level}\index[sub]{acceptable reliability
+level}\index[sub]{ARL} (ARL), and $\pi_1$, a \emph{rejectable
+reliability level}\index[sub]{rejectable reliability
+level}\index[sub]{RRL} (RRL), where $\pi_1 \leq  \pi_0$. The
+literature sometimes refers to the region $\pi_1 \leq \pi \leq
+\pi_0$ as the \emph{indifference region}\index[sub]{indifference
+region}. Although the precise definition of ARL and RRL differ
+between the classical and Bayesian test criteria, we use them in
+an equivalent way.
+
+\subsection{Classical Risk Criteria}\label{ch10:sec1:ss1}
+It is quite common to use two criteria in determining classical
+test plans. The \emph{producer's risk}
+\index[sub]{risk!producer's} is the probability of failing the
+test when $\pi = \pi_0$, whereas the \emph{consumer's risk}
+\index[sub]{risk!consumer's} is the probability of passing the
+test when $\pi = \pi_1$.
+\index[sub]{risk!producer's}\index[sub]{risk!consumer's} Suppose
+that we specify a maximum value, $\alpha$, of the producer's risk
+and a maximum value, $\beta$, of the consumer's risk. For binomial
+testing, these criteria become
+\begin{eqnarray}\label{ch10:eqn1}
+Producer's\mbox{ }Risk & = & \PP (Test\mbox{ }Is\mbox{ }Failed
+\con \pi_{0})\\
+& = & \PP (y>c \con\pi_0)\nonumber\\
+& = &
+\sum_{y=c+1}^{n}\left(_y^n\right)(1-\pi_{0})^{y}\pi_{0}^{n-y} \leq
+\alpha \, , \nonumber
+\end{eqnarray}
+and
+\begin{eqnarray}\label{ch10:eqn2}
+Consumer's\mbox{ }Risk & = & \PP( Test\mbox{ }Is\mbox{
+}Passed \con \pi_1)\\
+& = & \PP(y \leq c \con\pi_1) \nonumber\\
+& = & \sum_{y=0}^{c} \left(_y^n\right)(1-\pi_{1})^
+{y}\pi_{1}^{n-y} \leq \beta \, , \nonumber
+\end{eqnarray}
+where $\pi_1 \leq \pi_0$, $n$ is the number of test units, and $c$
+is the maximum number of failures allowed.
+
+To choose a test plan for specified values of $(\alpha, \pi_0,
+\beta, \pi_1)$, we find the required binomial test plan $(n,c)$ by
+simultaneously solving Eqs.~\ref{ch10:eqn1} and \ref{ch10:eqn2}.
+Numerous textbooks provide additional details of this purely
+classical approach, for example, see \citet{TT95}.
+\index[aut]{Tobias, P.}\index[aut]{Trindade, D.}
+
+\subsection{Average Risk
+Criteria}\label{ch10:sec1:ss2}\index[sub]{risk!average}
+\citet{E70} first proposed using average operating characteristics
+and corresponding risk criteria. These risk criteria are similar
+to the classical criteria in Sect.~\ref{ch10:sec1:ss1}, except
+that now we condition on the events $\pi\geq\pi_0$ and
+$\pi\leq\pi_1$, respectively. To do this requires a suitable prior
+distribution for $\pi$,  as specified by $p(\pi)$. The
+\emph{average producer's risk}\index[sub]{risk!average producer's}
+is the probability of failing the test when $\pi\geq\pi_0$.
+Choosing a maximum allowable average producer's risk $\alpha$, the
+binomial test plan $(n,c)$ is \index[aut]{Easterling, R.}
+\begin{eqnarray}\label{ch10:eqn3}
+Average\mbox{ }Producer's\mbox{ }Risk & = &
+\PP(Test\mbox{ }Is\mbox{ }Failed \con\pi \geq \pi_0)\\
+& = & \frac {\PP(y>c,\pi \geq \pi_{0})}{\PP(\pi \geq \pi_{0})}\nonumber\\
+& = & \frac{\int^{1}_{\pi_{0}} \left[ \sum^{n}_{y=c+1}
+ \left(_y^n\right)(1-\pi)^{y}\pi^{n-y}\right]
+p(\pi) \D \pi}{\int^{1}_{\pi_{0}}p(\pi) \D \pi}\nonumber\\
+& = & \frac{\int^{1}_{\pi_{0}} \left[1 -\sum^{c}_{y=0}
+\left(_y^n\right)(1-\pi)^{y}\pi^{n-y}\right]p(\pi) \D \pi}{
+\int^{1}_{\pi_{0}}p(\pi)\D \pi} \leq \alpha \, .\nonumber
+\end{eqnarray}
+Likewise, the corresponding \emph{average consumer's
+risk}\index[sub]{risk!average consumer's} is the probability of
+passing the test when $\pi\leq\pi_1$. Choosing a maximum allowable
+average consumer's risk $\beta$, the binomial test plan $(n,c)$ is
+\begin{eqnarray}\label{ch10:eqn4}
+Average\mbox{ }Consumer's\mbox{ }Risk & = &
+\PP(Test\mbox{ }Is\mbox{ }Passed \con \pi \leq \pi_{1})\\
+& = & \frac{\PP(y \leq c,\pi \leq \pi_{1})}{\PP(\pi \leq
+\pi_1)}\nonumber\\
+& = & \frac{\int^{\pi_1}_{0} \left[\sum^{c}_{y=0}
+\left(_y^n\right)(1-\pi)^{y}\pi^{n-y}\right] p(\pi) \D
+\pi}{\int^{\pi_1}_{0}p(\pi) \D \pi} \leq \beta \, .\nonumber
+\end{eqnarray}
+\citet{MW82} discusses the use of these risks and recommends
+taking care in applying these criteria. For example, the average
+consumer's risk may be a poor indication of what is likely really
+desired; namely, a maximum probability $\beta$ that $\pi\leq\pi_1$
+for a test that passes. The average consumer's risk given in
+Eq.~\ref{ch10:eqn4} may be substantially larger than this desired
+maximum conditional probability $\beta$. The prior probability
+that $\pi \leq \pi_1$ may be quite small; however, if indeed $\pi
+\leq \pi_1$, the probability of passing the test may be large. In
+such a situation, using the average consumer's risk may be
+inappropriate, and therefore misleading. \index[aut]{Martz, H.}
+\index[aut]{Waller, R.}
+
+\subsection{Posterior Risk
+Criteria}\label{ch10:sec1:ss3}\index[sub]{risk!posterior} We now
+consider fully Bayesian posterior risks that convey a completely
+different outlook from the corresponding classical or average
+risks. While the classical or average
+risks\index[sub]{risk!average} provide assurance that satisfactory
+devices will pass the test and that unsatisfactory devices will
+fail it, posterior risks provide precisely the assurance that
+practitioners often desire: if the test is passed, then the
+consumer desires a maximum probability $\beta$ that $\pi \leq
+\pi_1$. On the other hand, if the test is failed, then the
+producer desires a maximum probability $\alpha$ that $\pi \geq
+\pi_0$. Unlike the average risks, these posterior risks are fully
+Bayesian in the sense that they are subjective probability
+statements about $\pi$.
+
+For a test that fails, the \emph{posterior producer's
+risk}\index[sub]{risk!posterior producer's} is the probability
+that $\pi\geq\pi_{0}$, or $\PP(\pi \ge \pi_0 \con Test\mbox{
+}Is\mbox{ }Failed)$. Notice that this is simply the posterior
+probability that $\pi \ge \pi_0$ given that we have observed more
+than $c$ failures. Using Bayes' Theorem, and assuming a maximum
+allowable posterior producer's risk $\alpha$, an expression for
+the posterior producer's risk\index[sub]{risk!posterior
+producer's} for the binomial test plan $(n,c)$\index[sub]{test
+plan!binomial} is
+\begin{eqnarray}\label{ch10:eqn5}
+Posterior\mbox{ }Producer's\mbox{ }Risk & = &
+\PP(\pi \geq \pi_{0}\con Test\mbox{ }Is\mbox{ }Failed)\\
+\mbox{} & = & \int_{\pi_0}^{1} p(\pi \con y > c) \D \pi \nonumber\\
+\mbox{} & = & \int_{\pi_0}^{1} \frac{f(y > c \con \pi)
+p(\pi)}{\int_{0}^{1} f(y > c \con \pi) p(\pi) \D \pi} \,\, \D \pi \nonumber\\
+\mbox{} & = & \frac{\int_{\pi_0}^{1} \left[
+\sum^{n}_{y=c+1}(_y^n)(1-\pi)^{y}\pi^{n-y} \right] p(\pi) \D
+\pi}{\int_{0}^{1} \left[
+\sum^{n}_{y=c+1}(_y^n)(1-\pi)^{y}\pi^{n-y} \right] p(\pi) \D
+\pi}\nonumber\\ \mbox{} & = & \frac{\int_{\pi_0}^{1} \left[
+1-\sum^{c}_{y=0}(_y^n)(1-\pi)^{y}\pi^{n-y} \right] p(\pi) \D
+\pi}{1-\int_{0}^{1} \left[\sum^{c}_{y=0}(_y^n)(1-\pi)^{y}\pi^{n-y}
+\right] p(\pi) \D \pi} \leq \alpha.\nonumber
+\end{eqnarray}
+
+Similarly, given that the test is passed, the \emph{posterior
+consumer's risk}\index[sub]{risk!posterior consumer's} is the
+probability that $\pi \leq \pi_1$, or $\PP(\pi \leq \pi_1 \con
+Test\mbox{ }Is\mbox{ }Passed)$. Notice that this is simply the
+posterior probability that $\pi \leq \pi_1$ given that we have
+observed no more than $c$ failures. Using Bayes' Theorem, and
+assuming a maximum allowable posterior consumer's risk $\beta$, an
+expression for the posterior consumer's
+risk\index[sub]{risk!posterior consumer's} for the binomial test
+plan\index[sub]{test plan!binomial} $(n,c)$ is
+\begin{eqnarray}\label{ch10:eqn6}
+Posterior\mbox{ }Consumer's\mbox{ }Risk & = &
+\PP(\pi \leq \pi_{1}\con Test\mbox{ }Is\mbox{ }Passed)\\
+\mbox{} & = & \int_{0}^{\pi_1} p(\pi \con y \leq c) \D \pi \nonumber\\
+\mbox{} & = & \int_{0}^{\pi_1} \frac{f(y \leq c \con \pi)
+p(\pi)}{\int_{0}^{1} f(y \leq c \con \pi) p(\pi) \D \pi} \,\, \D \pi \nonumber\\
+\mbox{} & = & \frac{\int_{0}^{\pi_1} \left[
+\sum^{c}_{y=0}(_y^n)(1-\pi)^{y}\pi^{n-y} \right] p(\pi) \D
+\pi}{\int_{0}^{1} \left[ \sum^{c}_{y=0}(_y^n)(1-\pi)^{y}\pi^{n-y}
+\right] p(\pi) \D \pi}\leq \beta.\nonumber
+\end{eqnarray}
+
+\begin{sidebar}\label{ch10:ex1} {\bf Binomial test plan for new modems.}
+Consider finding a binomial test plan \index[sub]{test
+plan!binomial} using the posterior consumer's risk criterion.
+\citet{H90} develops a reliability assurance test for a new modem,
+denoted by \emph{B}, that is similar to an earlier modem, denoted
+by \emph{A}. Modem $A$ is currently in production and is very
+reliable. The major difference between the two modems is that $B$
+operates at a different frequency than $A$. Also, the same
+production line that builds $A$ will produce $B$ and both modems
+use most of the same components. Further, \citet{H90} reports that
+a binomial assurance test for modem $A$ on 150 units yielded 6
+failures.\index[aut]{Hart, L.}
+
+One of the test objectives is to show that, after successful
+testing, the 0.1 quantile of the posterior reliability
+distribution for $B$ is at least 0.938, the 0.1 quantile of $A$'s
+posterior reliability distribution. Similar to \citet{H90}, we use
+a $Beta[86.4, 3.6]=Beta[(0.6 \times 150)(144/150), (0.6 \times
+150)(6/150)]$ prior distribution for $\pi$. This prior
+distribution arises from treating an $A$ test as ``worth'' 60\% of
+a $B$ test or $90=0.6 \times 150$ total tests. Note that the 0.1
+quantile of this prior distribution is 0.932, which is only
+slightly smaller than the requirement. Therefore, we anticipate
+that the test plan will require only a small sample of $B$ modems.
+\index[aut]{Hart, L.}
+
+
+A \emph{minimum sample size} (or \emph{zero-failure}) test plan is
+one in which we test $n$ modems and state that the test is passed
+if there are no failures, that is, $c = 0$. Given our
+$Beta(86.4,3.6)$ prior distribution, $\pi_1 = 0.938$, $\beta =
+0.10$, and $c = 0$, we find the desired Bayesian zero-failure test
+plan by solving Eq.~\ref{ch10:eqn6} for sample size or number of
+tests $n$. Using Eq.~\ref{ch10:eqn6} yields the expression
+\index[sub]{test plan!minimum sample size}\index[sub]{test
+plan!zero-failure}
+\begin{eqnarray}\label{ch10:eqn7}
+\lefteqn{\PP(\pi \leq 0.938 \con Test\mbox{ }Is\mbox{ }Passed)}\hspace{0.5in}\\
+& & = \frac
+{\int^{0.938}_{0}\left(_0^n\right)(1-\pi)^{0}\pi^{n}p(\pi) \D
+\pi}{\int^{1}_{0} \left(_0^n\right)(1-\pi)^{0}\pi^{n}
+p(\pi) \D \pi}\nonumber\\
+& & = \frac {\int^{0.938}_{0}
+\pi^{n}\frac{\Gamma(86.4+3.6)}{\Gamma(86.4)\Gamma(3.6)}
+\pi^{86.4-1}(1-\pi)^{3.6-1} \D \pi}{\int^{1}_{0}
+\pi^{n}\frac{\Gamma(86.4 + 3.6)}{\Gamma(86.4)\Gamma(3.6)}
+\pi^{86.4-1}(1-\pi)^{3.6-1} \D \pi} \nonumber \\
+& & = I(0.938;86.4 + n, 3.6) \leq 0.10 \, ,\nonumber
+\end{eqnarray}
+where $I(z; \alpha, \beta)$ denotes the \emph{incomplete beta
+function ratio}\index[sub]{beta function!incomplete ratio}. Upon
+evaluating the incomplete beta function ratio in
+Eq.~\ref{ch10:eqn7} for increasing values of $n$, we find that $n
+= 9$ is the smallest integer that satisfies the inequality.
+Consequently, the plan consists of testing 9 $B$ modems. If none
+fail, we can then claim that $\PP(\pi \leq 0.938 \con No\mbox{
+}Failures\mbox{ }in\mbox{ }9\mbox{ }Tests) = 0.097 < 0.10$, as
+required. In this case, given no failures in the 9 $B$ modem
+tests, the 0.1 quantile of the posterior distribution of $\pi$ is
+0.9384. Finally, the unconditional probability of passing the test
+is simply
+\begin{eqnarray*}
+\PP[ Test\mbox{ }Is\mbox{ }Passed] & = & {\int^{1}_{0}
+\left(_0^n\right)(1-\pi)^{0}\pi^{n}
+p(\pi) \D \pi}\\
+& =  & \frac{\Gamma(86.4+n)\Gamma(3.6)}{\Gamma(86.4+3.6+n)}
+\frac{\Gamma(86.4+3.6)}{\Gamma(86.4)\Gamma(3.6)}\\
+& = & \frac{\Gamma(95.4)\Gamma(90)}{\Gamma(99)\Gamma(86.4)} = 0.70. \\
+\end{eqnarray*}
+\end{sidebar}
+
+\section{Binomial Testing}\label{ch10:sec2}\index[sub]{test
+plan!binomial}\index[sub]{assurance
+testing}\index[sub]{test!assurance} Now consider both the
+average\index[sub]{risk!average} and posterior
+risks\index[sub]{risk!posterior} for the binomial sampling
+\index[sub]{sampling!binomial distribution} distribution within a
+hierarchical framework. Suppose that we have failure count data
+from $m > 1$ situations, such as $m$ different plants. Let $x_{i}$
+denote the observed number of failures in a sample of size $n_{i}$
+for $i = 1, \ldots, m$, and let $\vec{x}$ represent all the
+observed failure count data. Then, conditional on the success
+probability $\pi_{i}$, assume that the $X_i$ are conditionally
+independent and that $X_{i} \con \pi_{i} \sim Binomial(n_{i}, 1 -
+\pi_{i})$. Also assume that the $\pi_i$ can be modeled
+hierarchically --- specifically, that given $\delta$ and $\gamma$
+they are independent and identically distributed (i.i.d.)\ with a
+common $Beta(\delta, \gamma)$ distribution. Finally, we specify a
+prior distribution for the hyperparameters $(\delta, \gamma)$,
+denoted by $p(\delta, \gamma)$, which is a proper (but usually
+diffuse) joint distribution.
+
+
+\subsection{Binomial Posterior Consumer's and Producer's
+Risks}\label{ch10:sec2:ss1} Given that there are observed data
+$X_i \sim Binomial(n_i, 1 - \pi_i)$, suppose that we are
+interested in developing a binomial test plan $(n,c)$ using the
+posterior risk\index[sub]{risk!posterior} criteria as our test
+criteria. Our test plan is for a situation ``similar'' to those
+previously observed, where we describe similarity by assuming that
+for the new situation, an item has probability $\pi$ of surviving
+the test, where given $\delta$ and $\gamma$, $\pi$ and the $\pi_i$
+are i.i.d.\ $Beta(\delta, \gamma)$.
+
+Recall that both the posterior producer's
+risk\index[sub]{risk!posterior producer's} and posterior
+consumer's risk\index[sub]{risk!posterior consumer's} specify
+criteria on the posterior distribution for the binomial
+probability of success $\pi$. Since there are now observed data
+$\vec{x}$, we condition on that data and now use $p(\pi \con
+\vec{x})$ in place of $p(\pi)$ in Eqs.~\ref{ch10:eqn5} and
+\ref{ch10:eqn6}. In particular, for a binomial test plan $(n,c)$,
+an expression for the posterior producer's risk is
+\begin{eqnarray}\label{ch10:eqn8}
+\PP(\pi \geq \pi_{0} & \con & Test\mbox{ }Is\mbox{ }Failed,\vec{x})\\
+& =& \frac{\int_{\pi_0}^{1} \left[
+1-\sum^{c}_{y=0}(_y^{n})(1-\pi)^{y}\pi^{n-y} \right] p(\pi \con
+\vec{x}) \D \pi}{1-\int_{0}^{1}
+\left[\sum^{c}_{y=0}(_y^{n})(1-\pi)^{y}\pi^{n-y} \right] p(\pi
+\con \vec{x}) \D \pi}\, .\nonumber
+\end{eqnarray}
+Similarly, the posterior consumer's risk is
+\begin{eqnarray}\label{ch10:eqn9}
+\PP(\pi \leq \pi_{0} & \con & Test\mbox{ }Is\mbox{ }Passed,\vec{x})\\
+& =& \frac{\int_{0}^{\pi_1} \left[
+\sum^{c}_{y=0}(_y^{n})(1-\pi)^{y}\pi^{n-y} \right] p(\pi \con
+\vec{x}) \D \pi}{\int_{0}^{1}
+\left[\sum^{c}_{y=0}(_y^{n})(1-\pi)^{y}\pi^{n-y} \right] p(\pi
+\con \vec{x}) \D \pi} \, .\nonumber
+\end{eqnarray}
+
+Now we must determine how to evaluate these criteria. There are
+two equivalent ways to approach the problem. First, notice that
+both of the posterior risk criteria are probability statements
+about the posterior distribution of $\pi$ given different data.
+For a given choice of $(n,c)$, the posterior producer's risk can
+be calculated by using Markov chain Monte Carlo (MCMC) to find the
+posterior distribution of $\pi$ given $\vec{x}$ and $y > c$ and
+then calculating the proportion of posterior draws with $\pi \geq
+\pi_0$. Similarly, for a given choice of $(n,c)$, the posterior
+consumer's risk can be calculated by using MCMC to find the
+posterior distribution of $\pi$ given $\vec{x}$ and $y \leq c$ and
+then calculating the proportion of posterior draws with $\pi \leq
+\pi_1$. Notice, however, that for each choice of $(n,c)$, this
+requires using MCMC to calculate two posterior distributions for
+$\pi$.
+
+Suppose instead that we condition only the data $X_i \sim
+Binomial(n_i, 1-\pi_i)$ with $\pi_i \sim Beta(\delta,\gamma)$ and
+use MCMC to obtain the posterior predictive distribution $p(\pi
+\con \vec{x})$. We can obtain draws from the posterior predictive
+distribution $p(\pi \con \vec{x})$ using the $N$ posterior draws
+for $(\delta, \gamma)$ by drawing $\pi^{(j)} \sim
+Beta(\delta^{(j)}, \gamma^{(j)})$, and then use these samples to
+evaluate Eqs.~\ref{ch10:eqn8} and \ref{ch10:eqn9} using Monte
+Carlo integration. In general, to evaluate $\rE[g(x)] = \int g(x)
+p(x) dx$, obtain a random sample $x_1, \ldots, x_N$ from $p(x)$
+and approximate the expectation as $\frac{1}{N} \sum_{i=1}^{N}
+g(x_i)$.
+
+We evaluate the posterior producer's risk as
+\begin{eqnarray*}
+\lefteqn{\PP[\pi \geq \pi_{1}\con Test\mbox{ }Is\mbox{ }Failed,
+\vec{x} ] \approx} \\
+ & & \frac{\frac{1}{N} \sum^{N}_{j=1} \left[1-
+\sum^{c}_{y=0}(_y^{n})(1-\pi^{(j)})^{y}(\pi^{(j)})^{n-y} \right]
+I(\pi^{(j)} \geq \pi_0)}{1- \frac{1}{N}
+\sum^{N}_{j=1}\left[\sum^{c}_{y=0}(_y^{n})(1-\pi^{(j)})^{y}(\pi^{(j)})^{n-y}
+\right]} \, ,
+\end{eqnarray*}
+and the posterior consumer's risk as
+\begin{eqnarray*}
+\lefteqn{\PP[\pi \leq \pi_{1} \con Test\mbox{ }Is\mbox{ }Passed, \vec{x} ] \approx} \\
+& & \frac{\sum^{N}_{j=1} \left[
+\sum^{c}_{y=0}(_y^{n})(1-\pi^{(j)})^{y}(\pi^{(j)})^{n-y} \right]
+I(\pi^{(j)} \leq \pi_1)}{\sum^{N}_{j=1}\left[
+\sum^{c}_{y=0}(_y^{n})(1-\pi^{(j)})^{y}(\pi^{(j)})^{n-y} \right]}
+\, .
+\end{eqnarray*}
+The expression for the unconditional probability of passing the
+test is
+\begin{equation}\label{ch10:eqn9a}
+\PP(Test\mbox{ }Is\mbox{ }Passed \con \vec{x} ) \approx \frac
+{1}{N}\sum^{N}_{j=1}\left[
+\sum^{c}_{y=0}(_y^{n})(1-\pi^{(j)})^{y}(\pi^{(j)})^{n-y} \right]
+\, .
+\end{equation}
+Let
+\begin{displaymath}
+b^{(j)}(y) = \frac{(_y^{n})B(n-y+\delta^{(j)},y+\gamma^{(j)})}
+{B(\delta^{(j)},\gamma^{(j)})} \, ,
+\end{displaymath}
+where $B(\alpha, \beta)$ is the beta function. We can also
+evaluate the posterior producer's risk using the posterior draws
+$\delta^{(j)}, \gamma^{(j)} \con \vec{x}$ as
+\begin{eqnarray*}
+\lefteqn{\PP[\pi \geq \pi_{0}\con Test\mbox{ }Is\mbox{ }Failed,
+\vec{x} ] \approx} \\
+ & & \frac
+{\sum^{N}_{j=1} \left[
+1-I(\pi_{0};\delta^{(j)},\gamma^{(j)})-\sum^{c}_{y=0}
+b^{(j)}(y)[1-I(\pi_{0};n-y+\delta^{(j)}, y+\gamma^{(j)})] \right]}
+{\sum^{N}_{j=1} \left[1-\sum^{c}_{y=0} b^{(j)}(y) \right]} \, ,
+\end{eqnarray*}
+and the posterior consumer's risk as
+\begin{eqnarray*}
+\lefteqn{\PP[\pi \leq \pi_{1} \con Test\mbox{ }Is\mbox{ }Passed, \vec{x} ] \approx} \\
+& & \frac {\sum^{N}_{j=1} \left[\sum^{c}_{y=0} b^{(j)}(y)
+I(\pi_{1};n-y+\delta^{(j)},y+\gamma^{(j)})\right]}{\sum^{N}_{j=1}
+\sum^{c}_{y=0} b^{(j)}(y)} \, ,
+\end{eqnarray*}
+where $I(z; \alpha, \beta)$ is the incomplete beta function ratio.
+An additional expression for the unconditional probability of
+passing the test is
+\begin{eqnarray*}
+\PP(Test\mbox{ }Is\mbox{ }Passed \con \vec{x} ) & \approx &
+\frac{1}{N}\sum^{N}_{j=1} \sum^{c}_{y=0} b^{(j)}(y)\\
+\mbox{} & \approx & \frac
+{1}{N}\sum^{N}_{j=1}\left[\sum^{c}_{y=0}\frac{(_y^{n})B(n-y+\delta^{(j)},y+\gamma^{(j)})}
+{B(\delta^{(j)},\gamma^{(j)})}\right] \, .
+\end{eqnarray*}
+
+To obtain a test plan, simultaneously solve the pair of
+inequalities given by
+\begin{equation}\label{ch10:eqn10}
+\PP[\pi \geq \pi_{0}\con Test\mbox{ }Is\mbox{ }Failed, \vec{x} ]
+\leq \alpha
+\end{equation}
+and
+\begin{equation}\label{ch10:eqn11}
+\PP[\pi \leq \pi_{1}\con Test\mbox{ }Is\mbox{ }Passed, \vec{x}
+]\leq \beta,
+\end{equation}
+for the pair of integers $(n,c)$, where $0 \leq c < n$, and where
+$\alpha$ and $\beta$ are the desired maximum posterior producer's
+and consumer's risks.
+
+We can find such test plans because Eqs.~\ref{ch10:eqn10} and
+\ref{ch10:eqn11} have opposite effects. For fixed $c$, as $n$
+increases, $\PP[\pi \leq \pi_{1} \con Test\mbox{ }Is\mbox{
+}Passed, \vec{x} ]$ decreases, whereas $\PP[\pi \geq \pi_{0}\con
+Test\mbox{ }Is\mbox{ }Failed, \vec{x} ]$ increases. On the other
+hand, for fixed $n$, as $c$ increases, the opposite is true.
+Consequently, we can use the algorithm in Fig.~\ref{ch10:fig1} to
+find the required test plan.
+
+\begin{figure}
+\setlength{\unitlength}{0.095in} \centering
+\begin{picture}(40,40)
+\put(0,36){\framebox(5,4){Begin}} \put(2.5,36){\vector(0,-1){4}}
+\put(0,28){\framebox(5,4){\shortstack{$n=1$ \\ $c=0$}}}
+\put(2.5,28){\vector(0,-1){4}}
+\put(0,20){\framebox(21,4){\shortstack{Posterior Producer's Risk
+\\ $\PP[\pi \ge \pi_0 \con \mbox{Test is Failed}, \vec{x}] \le \alpha$?}}}
+\put(2.5,20){\vector(0,-1){4}}
+\put(0,12){\framebox(21,4){\shortstack{Posterior Consumer's Risk
+\\ $\PP[\pi \le \pi_1 \con \mbox{Test is Passed}, \vec{x}] \le \beta$?}}}
+\put(2.5,12){\vector(0,-1){4}} \put(0,4){\framebox(5,4){End}}
+\put(24,20){\framebox(8,4){$c < n - 1$}}
+\put(21,22){\vector(1,0){3}} \put(36,20){\framebox(8,4){$c = c +
+1$}} \put(24,12){\framebox(8,4){$n = n + 1$}}
+\put(36,12){\framebox(8,4){$n = n + 1$}}
+\put(21,14){\vector(1,0){3}} \put(32,22){\vector(1,0){4}}
+\put(16,18){\vector(0,1){2}} \put(16,18){\line(1,0){12}}
+\put(28,18){\line(0,-1){2}} \put(30,20){\line(0,-1){2}}
+\put(30,18){\line(1,0){10}} \put(40,18){\vector(0,-1){2}}
+\put(40,24){\line(0,1){2}} \put(40,26){\line(-1,0){20}}
+\put(20,26){\vector(0,-1){2}} \put(0,18){Yes} \put(0,10){Yes}
+\put(22,22.5){No} \put(22,14.5){No} \put(33,22.5){Yes}
+\put(33,18.5){No} \put(42,16){\vector(0,1){4}}
+\end{picture}
+\caption{An algorithm for finding Bayesian hierarchical binomial test
+plans.}\label{ch10:fig1}
+\end{figure}
+
+\begin{sidebar}\label{ch10:ex2} {\bf Hierarchical binomial test plan for EDGs.}
+\index[sub]{test plan!binomial} \citet{MKA96} analyzes failure
+count data from EDGs in 63 U.S.\ commercial nuclear power plants
+to assess their reliability of accepting the electrical load and
+run (\emph{load-run}) on demand. See Table~\ref{ch10:tab1}, which
+summarizes the data collected over the four-year period
+1988-1991.\index[aut]{Martz, H.} \index[aut]{Kvam, P.}
+\index[aut]{Abramson, L.}
+
+\begin{table}
+\caption{EDG load-run demand data ($x$ failures out of $n$
+demands) \citep{MKA96}}\label{ch10:tab1} \centering
+\begin{tabular}{crr|crr|ccr}
+\hline \multicolumn{1}{c}{Plant} & \mbox{}  $x$ & \mbox{}  $n$
+\mbox{} & \multicolumn{1}{c}\mbox{}
+Plant & \mbox{}  $x$ & \mbox{}  $n$ \mbox{}&\multicolumn{1}{c}\mbox{}  Plant & $x$ & \mbox{}  $n$\\
+\hline%
+1  \mbox{}&  11 \mbox{} & 854\phantom{*} &\mbox{}  22  \mbox{} &  0  \mbox{} &   238 \mbox{}& \hspace{0.05in}43 &  5  \mbox{} &  216 \\
+2  \mbox{}&  2  \mbox{} & 373\phantom{*} &\mbox{}  23  \mbox{} &  1  \mbox{} &   370 \mbox{}& \hspace{0.05in}44 &  0  \mbox{} &  252 \\
+3  \mbox{}&  5  \mbox{} & 618\phantom{*} &\mbox{}  24  \mbox{} &  2  \mbox{} &   302 \mbox{}& \hspace{0.05in}45 &  1  \mbox{} &  419 \\
+4  \mbox{}&  5  \mbox{} & 157\phantom{*} &\mbox{}  25  \mbox{} &  3  \mbox{} &   152 \mbox{}& \hspace{0.05in}46 &  0  \mbox{} &  136 \\
+5  \mbox{}&  3  \mbox{} & 542\phantom{*} &\mbox{}  26  \mbox{} &  2  \mbox{} &   294 \mbox{}& \hspace{0.05in}47 &  3  \mbox{} &  185 \\
+6  \mbox{}&  2  \mbox{} & 202\phantom{*} &\mbox{}  27  \mbox{} &  0  \mbox{} &   101 \mbox{}& \hspace{0.05in}48 &  7  \mbox{} &  382 \\
+7  \mbox{}&  0  \mbox{} & 65\phantom{*}  &\mbox{}  28  \mbox{} &  0  \mbox{} &   283 \mbox{}& \hspace{0.05in}49 &  6  \mbox{} &  304 \\
+8  \mbox{}&  2  \mbox{} & 166\phantom{*} &\mbox{}  29  \mbox{} &  2  \mbox{} &   117 \mbox{}& \hspace{0.05in}50 &  2  \mbox{} &  130 \\
+9  \mbox{}&  4  \mbox{} & 574\phantom{*} &\mbox{}  30  \mbox{} &  0  \mbox{} &   115 \mbox{}& \hspace{0.05in}51 &  1  \mbox{} &  121 \\
+10 \mbox{}&  2  \mbox{} & 201\phantom{*} &\mbox{}  31  \mbox{} &  1  \mbox{} &   196 \mbox{}& \hspace{0.05in}52 &  2  \mbox{} &  295 \\
+11 \mbox{}&  8  \mbox{} & 388\phantom{*} &\mbox{}  32  \mbox{} &  0  \mbox{} &   310 \mbox{}& \hspace{0.05in}53 &  1  \mbox{} &  289 \\
+12 \mbox{}&  2  \mbox{} & 287\phantom{*} &\mbox{}  33  \mbox{} &  4  \mbox{} &   134 \mbox{}& \hspace{0.05in}54 &  0  \mbox{} &  181 \\
+13 \mbox{}&  3  \mbox{} & 431\phantom{*} &\mbox{}  34  \mbox{} &  2  \mbox{} &   132 \mbox{}& \hspace{0.05in}55 &  2  \mbox{} &  150 \\
+14 \mbox{}&  5  \mbox{} & 358\phantom{*} &\mbox{}  35  \mbox{} &  0  \mbox{} &   242 \mbox{}& \hspace{0.05in}56 &  0  \mbox{} &  334 \\
+15 \mbox{}& 14  \mbox{} & 1120\phantom{*} &\mbox{} 36  \mbox{} &  4  \mbox{} &   132 \mbox{}& \hspace{0.05in}57 &  2  \mbox{} &  263 \\
+16 \mbox{}&  1  \mbox{} & 321\phantom{*} &\mbox{}  37  \mbox{} &  4  \mbox{} &   320 \mbox{}& \hspace{0.05in}58 &  0  \mbox{} &  92 \\
+17 \mbox{}&  3  \mbox{} & 225\phantom{*} &\mbox{}  38  \mbox{} &  0  \mbox{} &   996 \mbox{}& \hspace{0.05in}59 &  2  \mbox{} &  466 \\
+18 \mbox{}&  8  \mbox{} & 433\phantom{*} &\mbox{}  39  \mbox{} &  1  \mbox{} &   253 \mbox{}& \hspace{0.05in}60 &  2  \mbox{} &  387 \\
+19 \mbox{}&  7  \mbox{} & 468\phantom{*} &\mbox{}  40  \mbox{} & 13  \mbox{} &   704 \mbox{}& \hspace{0.05in}61 &  1  \mbox{} &  183 \\
+20 \mbox{}&  1  \mbox{} & 218\phantom{*} &\mbox{}  41  \mbox{} &  2  \mbox{} &   151 \mbox{}& \hspace{0.05in}62 &  5  \mbox{} &  278 \\
+21 \mbox{}&  9  \mbox{} & 317\phantom{*} &\mbox{}  42  \mbox{} &  2  \mbox{} &   385 \mbox{}& \hspace{0.05in}63 &  0  \mbox{} &  212\\
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+We model the failure counts $X_i$ as conditionally independent given
+$\pi_i$ with $Binomial(n_i,1 - \pi_i)$ distributions, where
+$\pi_i$ is the $i$th plant reliability. Because the plants have
+all been built and operated to the same Nuclear Regulatory
+Commission (NRC)-controlled safety standards, model the 63
+$\pi_i \con \delta, \gamma$ as i.i.d.\ with a common
+$Beta(\delta,\gamma)$ distribution. In our analysis of these data,
+we use independent and diffuse $InverseGamma(0.1,0.1)$ prior
+distributions for $\delta$ and $\gamma$. See
+Table~\ref{ch10:tab2}, which summarizes the marginal posterior
+distributions for $\delta$ and $\gamma$ and the predictive
+distribution for $\pi$. The hierarchical binomial model fits the
+load-run demand data well (see
+Exercise~\ref{ch4}.\ref{exercise:ch4EDG}).
+
+\begin{table}
+\caption{Posterior distribution summaries for the hyperparameters
+$\delta$ and $\gamma$ and the predictive distribution for
+$\pi$}\label{ch10:tab2}
+ \centering
+\begin{tabular}{crrrrrrrrrrrrrr}
+\hline                              &       &    &       &       &
+ &                                & & \multicolumn{3}{c}{Quantiles}  & &
+ \\ \cline{7-15}
+ Parameter&\mbox{}&Mean&\mbox{}&Std
+ Dev&\mbox{}\mbox{}\mbox{}
+ &\multicolumn{1}{r}{0.025}&\mbox{}&\multicolumn{1}{r}{0.05}&\mbox{}&0.50 & \mbox{} & \multicolumn{1}{r}{0.95}& \mbox{} & \multicolumn{1}{r}{0.975}\\
+\hline%
+$\delta$ &\mbox{}   &286.4&\mbox{}  &135.6&\mbox{}  &121.5&\mbox{}  &136.9&\mbox{}  &253.2&\mbox{}  &557.4&\mbox{}   &652.8\\
+$\gamma$&\mbox{}    &2.710&\mbox{}  &1.243&\mbox{}  &1.226&\mbox{}  &1.360&\mbox{}  &2.402&\mbox{}  &5.171&\mbox{}   &6.204\\
+$\pi$&\mbox{}& 0.9903 &\mbox{}& 0.0067 &\mbox{}& 0.9735 &\mbox{}& 0.9778 &\mbox{}& 0.9917 &\mbox{}& 0.9981 &\mbox{}& 0.9987 \\
+\hline
+\end{tabular}
+\end{table}
+
+Using the posterior risk criteria, suppose now that we want to
+find the test plan having the posterior consumer's and producer's
+risks $\beta = 0.05$ for $\pi_{1} = 0.985$, and $\alpha = 0.10$
+for $\pi_{0} = 0.999$, respectively.
+
+Using the algorithm in Fig.~\ref{ch10:fig1}, we obtain the
+required test plan $n = 42$ and $c = 0$. For this test plan, the
+actual posterior consumer's risk \linebreak $\PP[\pi \leq 0.985
+\con Test\mbox{ }Is\mbox{ }Passed, \vec{x}] = 0.0014$ and the
+actual posterior producer's risk $\PP[\pi \geq 0.999\con
+Test\mbox{ }Is\mbox{ }Failed,\vec{x}] = 0.0992$. Therefore, at the
+new plant, load and run the EDGs 42 times. (Note that we are also
+assuming here that all the EDGs at the new plant have the same
+load-run demand reliability.) If there are no failures, then we
+can assure an EDG load-run demand reliability of 0.985 with a 0.95
+probability. On the other hand, if the test is failed, we have the
+assurance that the EDG load-run demand reliability is not greater
+than 0.999 with a 0.90 probability. Finally, from
+Eq.~\ref{ch10:eqn9a}, the unconditional probability of passing
+this test is approximately 0.69.
+\end{sidebar}
+
+\subsection{Hybrid Risk Criterion}\label{ch10:sec1:ss4}\index[sub]{risk!hybrid}
+\citet{FMP99} uses the posterior consumer's
+risk\index[sub]{risk!posterior consumer's} criterion in
+Eq.~\ref{ch10:eqn6} and the average producer's risk criterion in
+Eq.~\ref{ch10:eqn3} to \index[sub]{risk!average producer's}
+determine alternative binomial test plans. These ``hybrid''
+criteria are appropriate in situations where we are interested in
+a single specified level of reliability, which \citet{FMP99}
+refers to as the \emph{target reliability
+level}\index[sub]{reliability!target}. \citet{FMP99} reasons that,
+in many applications of reliability assurance testing, the
+consumer and producer are one and the same. Consequently, in such
+situations, there may be less adversarial tension in determining
+appropriate risk criteria, and therefore, little motivation to
+specify two different (and acceptable) levels of reliability
+($\pi_{0}$ and $\pi_{1}$) for the required test
+plan.\index[aut]{Fitzgerald, M.} \index[aut]{Martz, H.}
+\index[aut]{Parker, R.}\index[aut]{Fitzgerald, M.}
+\index[aut]{Martz, H.} \index[aut]{Parker, R.}
+
+Likewise, we use this hybrid approach and seek a Bayesian binomial
+test plan for which there is a probability of at most $\beta$ that
+$\pi \leq \pi^{*}$ for a passing test, and simultaneously, there
+is a probability of at most $\alpha$ that a test is failed given
+$\pi \geq \pi^{*}$.
+
+Notationally, we want to find the test plan $(n,c)$ that satisfies
+the hybrid risk criteria\index[sub]{risk!hybrid} given by
+\begin{equation}\label{ch10:eqn12}
+\PP[Test\mbox{ }Is\mbox{ }Failed \con\pi\geq\pi^{*}, \vec{x}] \leq
+\alpha
+\end{equation}
+and
+\begin{equation}\label{ch10:eqn13}
+\PP[\pi \leq \pi^{*} \con Test\mbox{ }Is\mbox{ }Passed,\vec{x}]
+\leq \beta.
+\end{equation}
+
+For test plan $(n,c)$, we can approximate the average producer's
+risk by
+\begin{eqnarray}\label{ch10:eqn14}
+\lefteqn{\PP[Test\mbox{ }Is\mbox{ }Failed \con \pi\geq\pi^{*},
+\vec{x}] \approx} \\
+& & \frac{\sum^{N}_{j=1} \left[
+1-I(\pi^{*};\delta^{(j)},\gamma^{(j)})-\sum^{c}_{y=0} b^{(j)}(y)
+[1-I(\pi^{*};n-y+\delta^{(j)}, y+\gamma^{(j)})] \right]}
+{\sum^{N}_{j=1} \left[ 1-I(\pi^{*};\delta^{(j)},\gamma^{(j)})
+\right] } .\nonumber
+\end{eqnarray}
+
+We find the desired Bayesian test plan by employing the algorithm
+in Fig.~\ref{ch10:fig1}, where Eq.~\ref{ch10:eqn14} replaces the
+producer's risk inequality statement used in the algorithm.
+
+\begin{sidebar}\label{ch10:ex3} {\bf Hierarchical binomial test plan using hybrid
+criteria.} Again consider Example~\ref{ch10:ex2}. Consider finding
+a Bayesian test plan having the posterior consumer's and
+average producer's risks $\beta = 0.05$ and $\alpha = 0.05$ for
+$\pi^{*} = 0.98$, respectively. Using the algorithm in
+Fig.~\ref{ch10:fig1} with the modification described above, we
+obtain the required test plan $n = 71$ and $c = 2$. For this test
+plan, the actual posterior consumer's risk is
+$\PP[\pi\leq 0.98 \con Test\mbox{ }Is\mbox{ }Passed, \vec{x} ] =
+0.0497$ and the actual average producer's risk $\PP[Test\mbox{
+}Is\mbox{ }Failed \con \pi\geq 0.98, \vec{x}] = 0.0333$. Because we
+now only consider a single target reliability level, this test
+plan requires significantly more testing than that found in
+Example~\ref{ch10:ex2}, in which two different reliability values
+were specified. From Eq.~\ref{ch10:eqn9a}, the unconditional
+probability of passing this test is approximately 0.951.
+\end{sidebar}
+
+\section{Poisson Testing}\label{ch10:sec3}\index[sub]{test
+plan!Poisson}\index[sub]{assurance
+testing}\index[sub]{test!assurance} We now move from binomial
+testing within a hierarchical framework to Poisson testing. Recall
+from Chap.~\ref{ch6} that a homogeneous Poisson
+process\index[sub]{Poisson process!homogeneous} generates a
+sequence of events for which the times between successive failures
+(the \emph{interfailure times}) are independently and identically
+$Exponential(\lambda)$ distributed. For a particular Poisson
+testing situation, let us develop a Bayesian test plan for
+assuring that the \emph{failure rate} $\lambda$ does not exceed a
+specified requirement. From Poisson process theory, the number of
+failures $X$ occurring in fixed total test or operating time $T$
+has a $Poisson(\lambda T)$ distribution. Let $T$ represent the
+total operating or exposure time of the devices during which we
+assume that devices are either repaired or replaced when they
+fail.
+
+Suppose that the plan tests $n$ devices for the length of time
+$t_{0}$, replacing devices as they fail, so that the total
+operating time is $T = nt_{0}$. In determining a Bayesian test
+plan, we seek $(T,c)$, where $c$ is the maximum allowed number of
+failures. The test is passed if no more than $c$ failures occur in
+total test time $T$. Note that any combination of $n$ and $t_{0}$
+satisfying $T = nt_{0}$ provides an acceptable test plan.
+
+As with binomial testing, let us assume in Poisson testing that
+there are data available from $m > 1$ situations. Let $x_{i}$
+denote the observed number of failures in total operating time
+$T_{i}$ for the $i$th situation, and let $\vec{x}$ represent all
+the observed failure data. Then, conditioning on $\lambda_{i}$,
+$X_{i} \sim Poisson(\lambda_{i}T_{i})$, where the $X_{i}$ are
+conditionally independent. We model the $\lambda_{i}$
+hierarchically, assuming they are i.i.d.\ $Gamma(\eta, \kappa)$,
+given $\eta$ and $\kappa$, and specify a prior distribution for
+the hyperparameters $(\eta, \kappa)$, denoted by $p(\eta,
+\kappa)$.
+
+We can write an expression for the posterior producer's
+risk\index[sub]{risk!posterior producer's} for the Poisson test
+plan\index[sub]{test plan!Poisson} $(T,c)$, where $\lambda_{0}$ is
+the rejectable failure rate and there is a maximum allowable
+posterior producer's risk $\alpha$:
+\begin{eqnarray}\label{ch10:ppr}
+Posterior\mbox{ }Producer's\mbox{ }Risk & = &
+\PP(\lambda \leq \lambda_{0}\con Test\mbox{ }Is\mbox{ }Failed)\\
+\mbox{} & = & \int_{0}^{\lambda_0} p(\lambda \con y > c) \D \lambda \nonumber\\
+\mbox{} & = & \int_{0}^{\lambda_0} \frac{f(y > c \con \lambda)
+p(\lambda)}{\int_{0}^{\infty} f(y > c \con \lambda) p(\lambda) \D \lambda} \,\, \D \lambda \nonumber\\
+\mbox{} & = & \frac{\int_{0}^{\lambda_0} \left[1-
+\sum^{c}_{y=0}\frac{(\lambda T)^y \exp(-\lambda T)}{y!} \right]
+p(\lambda) \D \lambda}{\int_{0}^{\infty} \left[ 1- \sum^{c}_{y=0}
+\frac{(\lambda T)^y \exp(-\lambda T)}{y!} \right] p(\lambda) \D
+\lambda}\nonumber \leq \alpha.\nonumber
+\end{eqnarray}
+
+Similarly, given that the test is passed, we can write an
+expression for the posterior consumer's
+risk\index[sub]{risk!posterior consumer's} for the Poisson test
+plan\index[sub]{test plan!Poisson} $(T,c)$, with acceptable
+failure rate $\lambda_{1}$ and maximum allowable posterior
+consumer's risk $\beta$, as
+\begin{eqnarray}\label{ch10:pcr}
+Posterior\mbox{ }Consumer's\mbox{ }Risk & = &
+\PP(\lambda \geq \lambda_{1}\con Test\mbox{ }Is\mbox{ }Passed)\\
+\mbox{} & = & \int_{\lambda_1}^{\infty} p(\lambda \con y \leq c) \D \lambda \nonumber\\
+\mbox{} & = & \int_{\lambda_1}^{\infty} \frac{f(y \leq c \con
+\lambda)
+p(\lambda)}{\int_{0}^{\infty} f(y \leq c \con \lambda) p(\lambda) \D \lambda} \,\, \D \lambda \nonumber\\
+\mbox{} & = & \frac{\int_{\lambda_1}^{\infty} \left[
+\sum^{c}_{y=0}\frac{(\lambda T)^y \exp(-\lambda T)}{y!} \right]
+p(\lambda) \D \lambda}{\int_{0}^{\infty} \left[\sum^{c}_{y=0}
+\frac{(\lambda T)^y \exp(-\lambda T)}{y!} \right] p(\lambda) \D
+\lambda}\nonumber \leq \beta.\nonumber
+\end{eqnarray}
+
+Since there are available data $\vec{x}$, we use the posterior
+distribution for $\lambda$, $p(\lambda \con \vec{x})$, in
+Eqs.~\ref{ch10:ppr} and \ref{ch10:pcr} to construct our test plan
+for a new situation. We can calculate the posterior producer's
+risk either using posterior predictive draws $\lambda^{(j)}$ or
+using posterior draws $(\eta^{(j)}, \kappa^{(j)})$. Let
+\begin{displaymath}
+g^{(j)}(y) = \frac {(\kappa^{(j)})^{\eta^{(j)}}T^{y}}{y!
+\Gamma(\eta^{(j)})(T+\kappa^{(j)})^{y+\eta^{(j)}}} \, .
+\end{displaymath}
+
+\begin{eqnarray*}
+\PP[ \lambda & \leq & \lambda_{0} \con Test\mbox{ }Is\mbox{ }Failed,\vec{x}]\\
+\mbox{} & \approx & \frac{\sum_{j=1}^{N} \left[1-
+\sum^{c}_{y=0}\frac{(\lambda^{(j)} T)^y \exp(-\lambda^{(j)}
+T)}{y!} \right]I(\lambda^{(j)} \leq \lambda_0)}{\sum_{j=1}^{N}
+\left[ 1- \sum^{c}_{y=0}
+\frac{(\lambda^{(j)} T)^y \exp(-\lambda^{(j)} T)}{y!} \right]}\\
+\mbox{} & \approx & \frac { \sum^{N}_{j=1} \left[
+\gamma(\eta^{(j)},\kappa^{(j)}\lambda_{0})/\Gamma(\eta^{(j)})-
+\sum^{c}_{y=0} g^{(j)}(y)
+\gamma[y+\eta^{(j)},(T+\kappa^{(j)})\lambda_{0}] \right]}
+{\sum^{N}_{j=1} \left[ 1- \sum^{c}_{y=0} g^{(j)}(y)
+\Gamma(y+\eta^{(j)})\right] } \, ,
+\end{eqnarray*}
+where $\gamma(q, z)$ denotes the \emph{lower incomplete gamma
+function}\index[sub]{gamma function!lower incomplete}.
+
+The expressions for the posterior consumer's
+risk\index[sub]{risk!posterior consumer's} are
+\begin{eqnarray*}
+\PP[\lambda & \geq & \lambda_{1}  \con  Test\mbox{ }Is\mbox{
+}Passed, \vec{x} ]\\
+\mbox{} & \approx & \frac{\sum_{j=1}^{N} \left[
+\sum^{c}_{y=0}\frac{(\lambda^{(j)} T)^y \exp(-\lambda^{(j)}
+T)}{y!} \right] I(\lambda^{(j)} \geq \lambda_1)} {\sum_{j=1}^{N}
+\left[\sum^{c}_{y=0}
+\frac{(\lambda^{(j)} T)^y \exp(-\lambda^{(j)} T)}{y!} \right]}\\
+& \approx & \frac { \sum^{N}_{j=1} \left[ \sum^{c}_{y=0}
+g^{(j)}(y) \{ \Gamma(y+\eta^{(j)})
+-\gamma[y+\eta^{(j)},(T_{0}+\kappa^{(j)})\lambda_{1}] \} \right] }
+{ \sum^{N}_{j=1} \left[ \sum^{c}_{y=0} g^{(j)}(y)
+\Gamma(y+\eta^{(j)}) \right] } \, .
+\end{eqnarray*}
+
+We can also write the unconditional probability of passing the
+test as
+\begin{eqnarray*}
+\PP[ Test \mbox{ }Is \mbox{ }Passed | \vec{x}] & \approx &
+\frac{1}{N} \sum_{j=1}^{N} \left[\sum^{c}_{y=0}
+\frac{(\lambda^{(j)} T)^y \exp(-\lambda^{(j)} T)}{y!} \right]\\
+\mbox{} & \approx & \frac {1}{N} \sum^{N}_{j=1}
+\sum^{c}_{y=0} g^{(j)}(y) \Gamma(y+\eta^{(j)})\\
+\mbox{} & \approx & \frac {1}{N} \sum^{N}_{j=1}\left[
+\sum^{c}_{y=0} \frac
+{(\kappa^{(j)})^{\eta^{(j)}}T^{y}\Gamma(y+\eta^{(j)})}{y!
+\Gamma(\eta^{(j)})(T+\kappa^{(j)})^{y+\eta^{(j)}}}\right].
+\end{eqnarray*}
+
+To obtain a test plan, simultaneously solve the following
+pair of nonlinear inequalities:
+\begin{equation}\label{ch10:eqn17}
+\PP[\lambda\leq\lambda_{0} \con Test\mbox{ }Is\mbox{ }Failed,
+\vec{x} ]\leq \alpha
+\end{equation}
+and
+\begin{equation}\label{ch10:eqn18}
+\PP[\lambda\geq\lambda_{1} \con Test \mbox{ }Is\mbox{ }Passed,
+\vec{x}]\leq\beta,
+\end{equation}
+where $\lambda_{0} \leq \lambda_{1}$.
+
+Because $T$ is continuous, we can hold either of the risks in
+Eqs.~\ref{ch10:eqn17} and \ref{ch10:eqn18} at its precise value.
+Holding the posterior producer's risk at exactly $\alpha$, use the
+algorithm in Fig. \ref{ch10:fig2} to obtain the desired test plan.
+On the other hand, holding the posterior consumer's risk at
+precisely $\beta$, simply reverse the two main steps in the
+procedure.
+
+\begin{figure}
+\setlength{\unitlength}{0.1in} \centering
+\begin{picture}(40,40)
+\put(0,36){\framebox(5,4){Begin}} \put(2.5,36){\vector(0,-1){4}}
+\put(0,28){\framebox(5,4){$c=0$}} \put(2.5,28){\vector(0,-1){4}}
+\put(0,16){\framebox(21,8){\shortstack{Posterior Producer's Risk
+\\ Solve the nonlinear equation \\ $\PP[\lambda \leq \lambda_0 \con \mbox{Test is Failed}, \vec{x}] = \alpha$ \\ for $T$}}}
+\put(2.5,16){\vector(0,-1){4}}
+\put(0,8){\framebox(21,4){\shortstack{Posterior Consumer's Risk
+\\ $\PP[\lambda \ge \lambda_1 \con \mbox{Test is Passed}, \vec{x}] \le \beta$?}}}
+\put(2.5,8){\vector(0,-1){4}} \put(0,0){\framebox(5,4){End}}
+\put(0,6){Yes} \put(24,8){\framebox(8,4){$c = c + 1$}}
+\put(22,10){No}\put(21,9.5){\vector(1,0){3}}\put(32,10){\line(1,0){2}}
+\put(34,10){\line(0,1){10}}\put(34,20){\vector(-1,0){13}}
+\end{picture}
+\caption{An algorithm for finding Bayesian Poisson test
+plans.}\label{ch10:fig2}
+\end{figure}
+
+\begin{sidebar}\label{ch10:ex4}
+{\bf Hierarchical Poisson test plan for pumps.} \citet{GO87}
+provides the data shown in Table~\ref{ch10:tab3} on the number of
+pump failures $x$ observed in $t$ thousands of operating hours for
+$m = 10$ different systems at the Farley 1 U.S.\ commercial
+nuclear power plant.\index[aut]{Gaver, D.}
+\index[aut]{O'Muircheartaigh, I.}
+
+\begin{table}
+\caption{Pump failure count data from Farley 1 U.S.\ nuclear power
+plant (number of failures $x$ in $t$ thousands of operating hours)
+\citep{GO87}}\label{ch10:tab3}
+ \centering
+\begin{tabular}{cccccll}
+\hline
+\mbox{} & \mbox{} & \multicolumn{1}{c}{$x_{i}$} & \mbox{} & \multicolumn{1}{c}{$t_{i}$} & \mbox{} & \multicolumn{1}{c}{$\widehat{\lambda}$}\\
+$\mbox{System}$ & \mbox{} & \multicolumn{1}{c}{(failures)} & \mbox{} & \multicolumn{1}{c}{(thousand hours)} & \mbox{} & \multicolumn{1}{c}{(MLE)}\\
+\hline%
+1  & \mbox{} & \hspace{0.05in}5  & \mbox{} & \hspace{0.05in}94.320  & \mbox{} & 5.3 x $10^{-2}$\\
+2  & \mbox{} & \hspace{0.05in}1  & \mbox{} & \hspace{0.05in}15.720  & \mbox{} & 6.4 x $10^{-2}$\\
+3  & \mbox{} & \hspace{0.05in}5  & \mbox{} & \hspace{0.05in}62.880  & \mbox{} & 8.0 x $10^{-2}$\\
+4  & \mbox{} & 14 & \mbox{} & 125.760 & \mbox{} & 11.1 x $10^{-2}$\\
+5  & \mbox{} & \hspace{0.05in}3  & \mbox{} & \hspace{0.11in}5.240   & \mbox{} & 57.3 x $10^{-2}$\\
+6  & \mbox{} & 19 & \mbox{} & \hspace{0.05in}31.440  & \mbox{} & 60.4 x $10^{-2}$\\
+7  & \mbox{} &\hspace{0.05in}1   & \mbox{} & \hspace{0.11in}1.048   & \mbox{} & 95.4 x $10^{-2}$\\
+8  & \mbox{} & \hspace{0.05in}1  & \mbox{} & \hspace{0.11in}1.048   & \mbox{} & 95.4 x $10^{-2}$\\
+9  & \mbox{} & \hspace{0.05in}4  & \mbox{} & \hspace{0.11in}2.096   & \mbox{} & 191.0 x $10^{-2}$\\
+10 & \mbox{} & 22 & \mbox{} & \hspace{0.05in}10.480  & \mbox{} & 209.9 x $10^{-2}$\\
+\hline
+\end{tabular}
+\end{table}
+Note that we have listed the data in increasing order of the
+corresponding maximum likelihood estimates (MLEs)
+$\widehat{\lambda}$.
+
+We model the failures as conditionally independent given their
+individual failure rates $\lambda_{i}$ with $Poisson(\lambda_i
+t_i)$ distributions. Given $\eta$ and $\kappa$, we model the
+$\lambda_i$ as i.i.d.\ $Gamma(\eta, \kappa)$ and use independent
+and diffuse $InverseGamma(0.001,0.001)$ prior distributions for
+$\eta$ and $\kappa$. Table~\ref{ch10:tab4} summarizes the marginal
+posterior distributions of $\eta$ and $\kappa$ as well as the
+predictive distribution of $\lambda$. The hierarchical Poisson
+model fits the pump failure count data well (see
+Exercise~\ref{ch4}.\ref{ch4:ex6}).
+
+\begin{table}
+\caption{Posterior distribution summaries for the
+gamma distribution hyperparameters ($\eta, \kappa$) given
+$\vec{x}$ and of the predictive distribution for $\lambda$ for pump example}\label{ch10:tab4}
+ \centering
+\begin{tabular}{crrrrrrrrrrrrrr}
+\hline                              &       &    &       &       &
+ &                                & & \multicolumn{3}{c}{Quantiles}  & &
+ \\\cline{7-15}
+  Parameter&\mbox{}&Mean&\mbox{}&Std
+ Dev&\mbox{}\mbox{}\mbox{}
+ &\multicolumn{1}{r}{0.025}&\mbox{}&\multicolumn{1}{r}{0.05}&\mbox{}&0.50 & \mbox{} & \multicolumn{1}{r}{0.95}& \mbox{} & \multicolumn{1}{r}{0.975}\\
+\hline%
+    $\eta$  &\mbox{} & 0.7981&\mbox{} & 0.3635&\mbox{} &        0.2995&\mbox{} &    0.3419&\mbox{} &    0.7272&\mbox{} &    1.4840&\mbox{} &    1.6950 \\
+    $\kappa$&\mbox{} &  1.284&\mbox{} &     0.855&\mbox{} &         0.229&\mbox{} &     0.306&\mbox{} &      1.087&\mbox{} &    2.971&\mbox{} &     3.460 \\
+    $\lambda$&\mbox{} &     0.796&\mbox{} &     1.306&\mbox{} &         0.002&\mbox{} &     0.007&\mbox{} &      0.390&\mbox{} &    2.939&\mbox{} &     4.037 \\
+\hline
+\end{tabular}
+\end{table}
+
+Using the posterior risk criteria in Eqs.~\ref{ch10:eqn17} and
+\ref{ch10:eqn18}, suppose that we want to find the Poisson test
+plan\index[sub]{test plan!Poisson} with risk parameters
+$\lambda_{0} = 0.2$, $\alpha = 0.05$, $\lambda_{1} = 0.7$, and
+$\beta = 0.05$. Using the algorithm in Fig.~\ref{ch10:fig2} with
+$N = 10,000$ joint posterior draws of $(\eta, \kappa)$ given
+$\vec{x}$, we find the required test plan $T_{0} = 5.43$ and $c =
+1$. The actual risks for this test plan are $\PP[\lambda\geq 0.7
+\con Test\mbox{ }Is\mbox{ }Passed, \vec{x} ] = 0.0171$ and $\PP[
+\lambda\leq 0.2 \con Test\mbox{ }Is\mbox{ } Failed, \vec{x} ] =
+0.0500$, and the unconditional probability of passing this test is
+approximately 0.44. To implement this test plan for new systems,
+accumulate 5,430 hours of pump operating time with repair (or
+replacement) of the failed pumps. If no more than one failure
+occurs, then the test is passed, otherwise, the test is failed.
+\end{sidebar}
+
+Although it is inappropriate for Example~\ref{ch10:ex4}, in many
+cases we are free to accumulate the required total test time $T$
+by choosing any desired combination of $n$ devices and time on
+test $t_{0}$ satisfying $T=nt_{0}$. To illustrate this trade-off,
+Fig.~\ref{ch10:fig3} shows selected combinations of the number of
+test devices $n$ and required test time $t_{0}$ satisfying $nt_{0}
+= 5,430$ hours. For example, if $n = 5$, then test each of these
+pumps (with repair or replacement) for $t_{0} = 1,000$ hours each.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth,angle=270]{Chapter10/ch10_fig3.eps}
+\caption{The required test time
+$t_{0}$ in hours versus the number of test devices $n$ for a Poisson test plan.}\label{ch10:fig3}
+\end{figure}
+
+\section{Weibull Testing}\label{ch10:sec4}\index[sub]{test
+plan!Weibull}\index[sub]{assurance
+testing}\index[sub]{test!assurance} The previous sections on
+binomial and Poisson testing\index[sub]{test
+plan!binomial}\index[sub]{test plan!Poisson} considered attribute
+test data, which capture the survival/nonsurvival of each device
+on test. This section focuses on lifetime data, where testers
+record the actual failure times. We assume that the failure times
+$t$ follow a $Weibull(\lambda, \beta)$ distribution with scale
+parameter $\lambda$ and shape parameter $\beta$, with probability
+density function
+\begin{equation}\label{ch10:eqn19}
+f(t|\lambda,\beta)=\lambda\beta t^{\beta-1}\exp(-\lambda
+t^{\beta}), \, \, \, t > 0, \, \lambda > 0, \, \beta>0.
+\end{equation}
+
+Suppose that we would like to use the posterior risk criteria to
+develop a Weibull test plan $(n,t_0,c)$, where we put $n$ units on
+test for $t_0$ time units and the test passes if no more than $c$
+units fail. To define the risk criteria, we specify requirements
+on reliability at time $t_*$, $R(t_*)$. Let
+\begin{eqnarray*}
+m(y) & = & (1 - \exp[-\lambda t_0^{\beta}])^{y}
+\exp[-(n-y)\lambda t_0^{\beta}] \, ,\\
+k_0 & = & -\log(\pi_0)t_*^{-\beta} \quad \mbox{, and}\\
+k_1 & = & -\log(\pi_1)t_*^{-\beta} \, .\\
+\end{eqnarray*}
+For a Weibull test plan\index[sub]{test plan!Weibull} $(n,t_0,c)$,
+we calculate the posterior producer's risk as
+\begin{eqnarray}\label{ch10:wppr}
+\PP(R(t_*) & \geq & \pi_0 \con Test\mbox{ }Is\mbox{ }Failed)\\
+\mbox{} & = & \PP(\exp(-\lambda t_*^\beta) \geq \pi_0 \con
+Test\mbox{ }Is\mbox{ }Failed)\nonumber\\ \mbox{} & = & \PP(\lambda
+\leq -\log(\pi_0)t_*^{-\beta} \con Test\mbox{ }Is\mbox{ }Failed)\nonumber\\
+\mbox{} & = & \int_{0}^{\infty} \int_{0}^{k_0} f(\lambda, \beta
+\con
+Test\mbox{ }Is\mbox{ }Failed) \, \, \D \lambda \D \beta\nonumber\\
+\mbox{} & = & \int_{0}^{\infty} \int_{0}^{k_0}
+\frac{\PP(Test\mbox{ }Is\mbox{ }Failed \con \lambda, \beta)
+p(\lambda, \beta)}{\int_0^{\infty}\int_0^{\infty} \PP(Test\mbox{
+}Is\mbox{ }Failed \con \lambda, \beta)p(\lambda,\beta) \, \, \D
+\lambda \D \beta} \, \, \D \lambda \D \beta\nonumber\\ \mbox{} & =
+& \frac{\int_{0}^{\infty} \int_{0}^{k_0} \left[1 - \sum_{y=0}^{c}
+m(y) \right] p(\lambda,\beta) \, \, \D \lambda \D
+\beta}{\int_0^{\infty}\int_0^{\infty} \left[1 - \sum_{y=0}^{c}
+m(y) \right] p(\lambda,\beta) \, \, \D \lambda \D \beta}\nonumber
+\, \, .
+\end{eqnarray}
+We calculate the posterior consumer's risk as
+\begin{eqnarray}\label{ch10:wpcr}
+\PP(R(t_*) & \leq & \pi_1 \con Test\mbox{ }Is\mbox{ }Passed)\\
+\mbox{} & = & \PP(\exp(-\lambda t_*^\beta) \leq \pi_1 \con
+Test\mbox{ }Is\mbox{ }Passed)\nonumber\\ \mbox{} & = & \PP(\lambda
+\geq -\log(\pi_1)t_*^{-\beta} \con Test\mbox{ }Is\mbox{ }Passed)\nonumber\\
+\mbox{} & = & \int_{0}^{\infty} \int_{k_1}^{\infty} f(\lambda,
+\beta \con
+Test\mbox{ }Is\mbox{ }Passed) \, \, \D \lambda \D \beta\nonumber\\
+\mbox{} & = & \int_{0}^{\infty} \int_{k_1}^{\infty}
+\frac{\PP(Test\mbox{ }Is\mbox{ }Passed \con \lambda, \beta)
+p(\lambda,\beta)}{\int_0^{\infty}\int_0^{\infty} \PP(Test\mbox{
+}Is\mbox{ }Passed \con \lambda, \beta) p(\lambda,\beta) \, \, \D
+\lambda \D \beta} \, \, \D \lambda \D \beta\nonumber\\ \mbox{} & =
+& \frac{\int_{0}^{\infty} \int_{k_1}^{\infty} \left[\sum_{y=0}^{c}
+m(y)] \right] p(\lambda,\beta) \, \, \D \lambda \D
+\beta}{\int_0^{\infty}\int_0^{\infty} \left[\sum_{y=0}^{c} m(y)
+\right] p(\lambda,\beta) \, \, \D \lambda \D \beta}\nonumber \, \,
+.
+\end{eqnarray}
+
+\subsection{Single Weibull Population
+Testing}\label{ch10:sec4:ss1}\index[sub]{test
+plan!Weibull}\index[sub]{assurance
+testing}\index[sub]{test!assurance} One description of a failure
+time distribution is its reliable life. The \emph{reliable
+life}\index[sub]{reliable life}, $t_{R}$, for specified $R$, is
+the time beyond which $100 \times R\%$ of the population will
+survive. In other words, $t_{R}$ is the $(1 - R)$th quantile of
+the failure time distribution. For the Weibull distribution
+described by Eq.~\ref{ch10:eqn19}, $t_{R} =
+\lambda^{-1/\beta}[-\log (R)]^{1/\beta}$.
+
+Among a variety of testing schemes, we focus here on a minimum
+sample size (or zero-failure) test plan $(n,
+t_{0},c=0)$\index[sub]{test plan!minimum sample
+size}\index[sub]{test plan!zero-failure}. For a zero-failure test
+plan, test $n$ devices each for a length of time $t_{0}$, and the
+test is passed if we observe no failures. To use such a test plan,
+we must determine appropriate values for both $n$ and $t_{0}$.
+\citet{ME98} considers such classical test plans in situations
+where the Weibull shape parameter $\beta$ is known. We relax this
+restriction here by considering plans within a Bayesian
+hierarchical framework. In turn, there are two such cases to
+study: (1) an assurance test plan based on available data from a
+single Weibull population, and (2) an assurance test plan based on
+available data from a Weibull accelerated life test
+program.\index[aut]{Meeker, W.} \index[aut]{Escobar, L.}
+
+Consider developing a test criterion to assure that $t_{R} >
+t_{R^*}$. For example, a manufacturer may want to assure that
+$99\%$ of a certain expensive electronic product will survive a
+one-year warranty period; in this case, $R = 0.99$ and $t_{R^*} =
+8,760$ hours. We use the posterior risk criterion $P[t_{R} >
+t_{R^*} \con Test\mbox{ }Is\mbox{ }Passed] \geq 1 - \alpha$. If
+the test is passed, we would like a high probability ($1 -
+\alpha$) that $t_{R} > t_{R^*}$ --- a high probability that the
+0.99 quantile of the lifetime of the electronic products is
+greater than 8,760 hours. This leads to the expression
+\begin{eqnarray}\label{ch10:wtc}
+\PP(t_{R} & > & t_{R^*} \con Test\mbox{ } Is\mbox{ }Passed)\\
+\mbox{} & = & \PP(
+\lambda^{-1/\beta}[-\log(R)]^{1/\beta} > t_{R^*} \con Test\mbox{ } Is\mbox{ }Passed)\nonumber\\
+\mbox{} & = & \PP(\lambda < -\log(R)t_{R^*}^{-\beta} \con
+Test\mbox{ } Is\mbox{ }Passed)\nonumber\\
+\mbox{} & = & \int_0^{\infty} \int_{0}^{-\log(R)t_{R^*}^{-\beta}}
+f(\lambda,\beta \con Test\mbox{ } Is\mbox{
+}Passed) \,\, \D \lambda \D \beta\nonumber\\
+\mbox{} & = & \int_0^{\infty} \int_{0}^{-\log(R)t_{R^*}^{-\beta}}
+\frac{\PP(Test\mbox{ }Is\mbox{ }Passed \con \lambda,
+\beta)p(\lambda, \beta)}{\int_{0}^{\infty} \int_{0}^{\infty}
+\PP(Test\mbox{
+}Is\mbox{ }Passed \con \lambda, \beta)p(\lambda, \beta) \D\lambda \D \beta} \,\, \D \lambda \D \beta\nonumber\\
+& = & \frac{\int_0^\infty \int^{-\log(R)t_{R^*}^{-\beta}}_0
+\exp(-n\lambda t_0^{\beta}) p(\lambda, \beta) \D \lambda \D
+\beta}{\int_0^\infty \int_0^\infty \exp(-n\lambda t_0^{\beta})
+p(\lambda, \beta) \D \lambda \D \beta} \geq 1 - \alpha \, .
+\nonumber
+\end{eqnarray}
+Notice the similarities of this risk formulation to the posterior
+consumer's risk. As with the Poisson test plan, for a fixed $n$,
+we can solve for $t_0$ to meet the desired risk criteria.
+With the chosen $c = 0$, this also specifies the level of posterior
+producer's risk.
+
+Suppose now that we have failure time data from $m > 1$
+situations. Note that some of the available failure time data may
+be censored. Let $t_{ij}, i = 1, \ldots, m,  j = 1, \ldots,
+n_{i}$, denote the observed failure or censoring time for the
+$j$th device in the $i$th situation, and let $\vec{t}$ denote all
+the observed failure time data. Given $\lambda_{i}$ and $\beta$,
+model the $T_{ij}$ as conditionally independent with $T_{ij} \sim
+Weibull(\lambda_{i}, \beta)$. We assume a common shape parameter,
+because in practice, the failure times of similar devices often
+(but not always) exhibit the same general Weibull shape because
+they share common intrinsic failure mechanisms. To complete the
+model, let us use the following prior distributions:
+\begin{eqnarray*}
+\lambda_{i} & \sim & Gamma(\eta, \kappa), \quad i = 1, \ldots, m, \\
+(\eta, \kappa) & \sim & p(\eta, \kappa), \mbox{ and}\\
+\beta & \sim & p(\beta),
+\end{eqnarray*}
+with known hyperparameters for $p(\eta, \kappa)$ and $p(\beta)$.
+
+We want to develop a zero-failure test plan for a new situation
+where we assume the failure time data will be distributed
+$Weibull(\lambda,\beta)$, with $\lambda \sim \Gamma(\eta,
+\kappa)$. Conditioning on the observed data $\vec{t}$ in
+Eq.~\ref{ch10:wtc},
+\begin{eqnarray}\label{ch10:wtc2}
+\PP(t_{R} & > & t_{R^*} \con Test\mbox{ } Is\mbox{ }Passed,
+\vec{t})\\\nonumber & = & \frac{\int_0^\infty
+\int^{-\log(R)t_{R^*}^{-\beta}}_0 \exp(-n\lambda t_0^{\beta})
+p(\lambda, \beta \con \vec{t}) \D \lambda \D \beta}{\int_0^\infty
+\int_0^\infty \exp(-n\lambda t_0^{\beta}) p(\lambda, \beta \con
+\vec{t}) \D \lambda \D \beta} \, .
+\end{eqnarray}
+
+Assuming that we have $j = 1, \ldots, N$ MCMC draws from the
+posterior distributions (given $\vec{t}$) of $\eta$, $\kappa$, and
+$\beta$ and $N$ draws from the predictive distribution of
+$\lambda$, $\lambda^{(j)} \sim \Gamma(\eta^{(j)},\kappa^{(j)})$,
+we can calculate our criterion as follows:
+\begin{eqnarray}\label{ch10:wtc3}
+\PP(t_{R} & > & t_{R^*} \con Test\mbox{ } Is\mbox{ }Passed,
+\vec{t})\\\nonumber & = & \frac{\int_0^\infty
+\int^{-\log(R)t_{R^*}^{-\beta}}_0 \exp(-n\lambda t_0^{\beta})
+p(\lambda, \beta \con \vec{t}) \D \lambda \D \beta}{\int_0^\infty
+\int_0^\infty \exp(-n\lambda t_0^{\beta}) p(\lambda, \beta \con
+\vec{t}) \D \lambda \D \beta}\\\nonumber \mbox{} & \approx &
+\frac{\sum_{j=1}^{N} \exp(-n\lambda^{(j)}
+t_0^{\beta^{(j)}})I[\lambda^{(j)} \leq
+-\log(R)t_{R^*}^{-\beta^{(j)}}]} {\sum_{j=1}^{N}
+\exp(-n\lambda^{(j)} t_0^{\beta^{(j)}})}\\\nonumber \mbox{} &
+\approx & \frac{\sum^{N}_{j=1} \frac{{(\kappa^{(j)})}^{\eta^{(j)}}
+\gamma[\eta^{(j)},[-\log (R)]
+(\kappa^{(j)}+nt^{\beta^{(j)}}_{0})/t^{\beta^{(j)}}_{R*}]}{(\kappa^{(j)}+nt^{\beta^{(j)}}_{0})^{\eta^{(j)}}\Gamma(\eta^{(j)})
+} }{\sum^{N}_{j=1} \frac{{(\kappa^{(j)})}^{\eta^{(j)}}}
+{(\kappa^{(j)}+nt^{\beta^{(j)}}_{0})^{\eta^{(j)}}}}\nonumber \, ,
+\end{eqnarray}
+where $\gamma(q, z)$ denotes the lower incomplete gamma function.
+
+Note that we may base the choice of number of test devices $n$ on
+other considerations, such as cost. It may also be interesting and
+useful to see how $t_{0}$ functionally depends on $n$, which we
+can examine by varying $n$ over an appropriate range, solving for
+$t_{0}$, and plotting the results.
+
+\begin{sidebar}\label{ch10:ex5} {\bf Hierarchical Weibull test plan for pressure
+vessels.}\index[sub]{test plan!Weibull} \citet{GK83}  provides the
+failure times (in hours) for pressure vessels that were wrapped in
+Kevlar-49 fibers and subsequently tested at four different
+stresses: 23.4, 25.5, 27.6, and 29.7 megapascals (MPa).
+\citet{CKSS91} analyzes these data assuming a constant Weibull
+shape parameter. The fibers came from eight different spools
+(numbered 1--8) of material, and both studies conclude that there
+is a significant spool effect. In this example, consider only the
+failure time data obtained at 23.4 MPa. See Table~\ref{ch10:tab5},
+which displays the failure time data at all the stresses; an
+asterisk indicates a time- or Type I-censored observation.
+\index[aut]{Gerstle, F.} \index[aut]{Kunz, S.}\index[aut]{Crowder,
+M.} \index[aut]{Kimber, A.} \index[aut]{Smith, R.}
+\index[aut]{Sweeting, T.}
+
+\begin{table}
+\caption{Failure times of Kevlar-49-wrapped pressure vessels at
+four stress levels (An asterisk indicates a time-censored or Type
+I-censored observation) \citep{GK83}}\label{ch10:tab5}
+% \centering
+\begin{tabular}{ccl}\\
+\hline Stress (MPa) &  Spool&  \hspace{0.2in} Failure Time (hours)\\
+\hline%
+29.7& 1  & 444.4\hspace{0.02in} 755.2\hspace{0.02in} 952.2\hspace{0.02in} 1108.2\\
+29.7& 2  &  2.2\hspace{0.02in} 8.5\hspace{0.02in} 9.1\hspace{0.02in} 10.2\hspace{0.02in} 22.1\hspace{0.02in} 55.4\hspace{0.02in} 111.4\hspace{0.02in} 158.7\\
+29.7& 3  &  12.5\hspace{0.02in} 14.6\hspace{0.02in} 18.7\hspace{0.02in} 101.0\\
+29.7& 4  &  254.1\hspace{0.02in} 1148.5\hspace{0.02in} 1569.3\hspace{0.02in} 1750.6\hspace{0.02in} 1802.1\\
+29.7& 5  &  8.3\hspace{0.02in} 13.3\hspace{0.02in} 87.5\hspace{0.02in} 243.9\\
+29.7& 6  &  6.7\hspace{0.02in} 15.0\hspace{0.02in} 144.0\\
+29.7& 7  &  4.0\hspace{0.02in} 4.0\hspace{0.02in} 4.6\hspace{0.02in} 6.1\hspace{0.02in} 7.9\hspace{0.02in} 14.0\hspace{0.02in} 45.9\hspace{0.02in} 61.2\\
+29.7& 8  &  98.2\hspace{0.02in} 590.4\hspace{0.02in} 638.2\\
+
+ 27.6& 1  &  453.4\hspace{0.02in} 664.5\hspace{0.02in} 930.4\hspace{0.02in} 1755.5\\
+ 27.6& 2  &  71.2\hspace{0.02in} 199.1\hspace{0.02in} 403.7\hspace{0.02in} 432.2\hspace{0.02in} 514.1\hspace{0.02in} 544.9\hspace{0.02in} 694.1\\
+ 27.6& 3  &  19.1\hspace{0.02in} 24.3\hspace{0.02in} 69.8\hspace{0.02in} 136.0\\
+ 27.6& 4  &  876.7\hspace{0.02in} 1275.6\hspace{0.02in} 1536.8\hspace{0.02in} 6177.5\\
+ 27.6& 5  &  \\
+ 27.6& 6  &  514.2\hspace{0.02in} 541.6\hspace{0.02in} 1254.9\\
+ 27.6& 7  &  \\
+ 27.6& 8  &  554.2\hspace{0.02in} 2046.2\\
+
+ 25.5& 1  &  11487.3\hspace{0.02in} 14032.0\hspace{0.02in} 31008.0\\
+ 25.5& 2  &  1134.2\hspace{0.02in} 1824.3\hspace{0.02in} 1920.1\hspace{0.02in} 2383.0\hspace{0.02in} 3708.9\hspace{0.02in} 5556.0\\
+ 25.5& 3  &  1087.7\hspace{0.02in} 2442.5\\
+ 25.5& 4  &  13501.3\hspace{0.02in} 29808.0\\
+ 25.5& 5  &  11727.1\\
+ 25.5& 6  &  225.2\hspace{0.02in} 6271.1\hspace{0.02in} 7996.0\\
+ 25.5& 7  &  503.6\\
+ 25.5& 8  &  2974.6\hspace{0.02in} 4908.9\hspace{0.02in} 7332.0\hspace{0.02in} 7918.7\hspace{0.02in} 9240.3\hspace{0.02in} 9973.0\\
+
+ 23.4& 1  &  41000*\hspace{0.02in} 41000*\hspace{0.02in} 41000*\hspace{0.02in} 41000*\\
+ 23.4& 2  &  14400.0\\
+ 23.4& 3  &  8616.0\\
+ 23.4& 4  &  41000*\hspace{0.02in} 41000*\hspace{0.02in} 41000*\hspace{0.02in} 41000*\\
+ 23.4& 5  &  9120.0\hspace{0.02in} 20231.0\hspace{0.02in} 35880.0\\
+ 23.4& 6  &  7320.0\hspace{0.02in} 16104.0\hspace{0.02in} 20233.0\\
+ 23.4& 7  &  4000.0\hspace{0.02in} 5376.0\\
+ 23.4& 8  &  41000*\hspace{0.02in} 41000*\hspace{0.02in} 41000* \\
+
+\hline
+\end{tabular}
+\end{table}
+
+Because any difference in the reliability of the spools is
+primarily due to uncontrollable random manufacturing process
+variability (or noise), let us model the pressure vessel failure times
+corresponding to each spool as conditionally independent with
+$Weibull(\lambda_i,\beta)$ distributions. Given $\eta$ and
+$\kappa$, the $\lambda_i$ are i.i.d.\ $Gamma(\eta, \kappa)$. In
+our analysis of these data, we use independent and diffuse
+$InverseGamma(0.01, 0.01)$ prior distributions for $\eta$ and
+$\kappa$. Also, we use an independent $Exponential(1.0)$ prior
+distribution for $\beta$; the motivation for this prior
+distribution is the analysis results of \citet{CKSS91}, which
+suggests values of $\beta$ near 1.0.  See Table~\ref{ch10:tab6},
+which summarizes the marginal posterior distributions for $\eta$,
+$\kappa$, and $\beta$ given $\vec{t}$. The hierarchical Weibull
+model fits these data well (see Exercise~\ref{ch4}.\ref{ch4:ex7}).
+Table~\ref{ch10:tab6} also summarizes the predictive distribution
+of $\lambda$. \index[aut]{Crowder, M.} \index[aut]{Kimber, A.}
+\index[aut]{Smith, R.} \index[aut]{Sweeting, T.}
+
+\begin{table}
+\caption{Posterior distribution summaries for $\eta$, $\kappa,$
+and $\beta$ given $\vec{t}$ and of the predictive distribution for
+$\lambda$}\label{ch10:tab6} \centering
+\begin{tabular}{crrrrrrrrrrrr}
+\hline      &       &    &      &       &
+                                          \multicolumn{5}{c}{Quantiles}  &
+ \\
+ \cline{7-13}
+  Parameter&\mbox{}&Mean  &\mbox{}&Std Dev &\mbox{}\mbox{}\mbox{}
+ &\multicolumn{1}{r}{0.025}&\mbox{}&\mbox{}&0.50 & \mbox{} &  \mbox{}       & \multicolumn{1}{r}{0.975}\\
+\hline
+ $\beta$   &\mbox{}& 2.255&\mbox{}&   0.643&\mbox{}&      1.128&\mbox{}&  \mbox{}&  2.211&\mbox{}&   \mbox{}& 3.773\\
+    $\eta$  &\mbox{}&0.2100&\mbox{}&    0.1730&\mbox{}&     0.0529&\mbox{}& \mbox{}& 0.1666&\mbox{}&  \mbox{}&    0.6113\\
+    $\kappa$    &\mbox{}&2.313E+13&\mbox{}& 3.105E+14&\mbox{}&      7.346E+3&\mbox{}&   \mbox{} &1.121E+8   &\mbox{} &\mbox{} &6.463E+13\\
+    $\lambda$   &\mbox{}&5.630E$-$6&\mbox{}&  1.221E$-$4&\mbox{}&       7.304E$-$25&\mbox{}&  \mbox{}&   3.832E$-$11&\mbox{}& \mbox{}&   1.273E$-$5\\
+\hline
+\end{tabular}
+\end{table}
+
+
+Now suppose that we want to find a Bayesian minimum sample size
+test plan\index[sub]{test plan!minimum sample
+size}\index[sub]{test plan!zero-failure} at a stress of 23.4 MPa
+for $t_{R^*} = 2,000$ hours, $R = 0.9$, and $\alpha = 0.05$. By
+letting $n = 1, 2, \ldots, 30$ and solving Eq.~\ref{ch10:wtc3} for
+the corresponding test length $t_{0}$, we obtain the graph shown
+in Fig.~\ref{ch10:fig4}.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.7\textwidth,angle=270]{Chapter10/ex5Figt0VsnV2.ps}}
+\caption{The required Weibull test duration $t_{0}$ versus the
+number of test devices $n$ for the pressure vessels example.}\label{ch10:fig4}
+\end{figure}
+
+For example, suppose that we decide to test $n = 10$ pressure
+vessels all wrapped from a particular spool of Kevlar-49 fibers.
+Figure~\ref{ch10:fig4} indicates required testing of each of these
+pressure vessels for approximately $t_{0} = 1,122$ hours at a
+stress of 23.4 MPa. If none of these fail, we can then claim, with
+0.95 probability, that at least 90\% of the pressure vessels
+wrapped from this spool will survive 2,000 hours at this stress.
+\end{sidebar}
+
+\subsection{Combined Weibull Accelerated/Assurance
+Testing}\label{ch10:sec4:ss2}\index[sub]{assurance
+testing}\index[sub]{test plan!Weibull} Now consider a Bayesian
+test plan based on data from a Weibull accelerated test
+program\index[sub]{test plan!Weibull!accelerated test}.
+Specifically, we consider again the failure time data in
+Table~\ref{ch10:tab5}. Let $t_{ij}, i = 1, \ldots, m, j = 1,
+\ldots, n_{i}$, denote either the observed failure or censoring
+time for the $j$th device from the $i$th situation, with $\vec{t}$
+denoting all of the observed failure time data. Let $s_{ij}$ be
+the value of the stress $s$ under which we obtained $t_{ij}$.
+
+Conditional on $\lambda_{ij}$ and $\beta$, we model the $T_{ij}$
+conditionally independent with a $Weibull(\lambda_{ij}, \beta)$
+distribution. Let us define a model for $\lambda_{ij}$ as
+\begin{equation}\label{ch10:eqn23}
+\lambda_{ij} = \exp(\gamma_{0})s_{ij}^{\gamma_{1}}\omega_{i} \, ,
+\end{equation}
+where $\omega_{i} > 0$ is the random effect associated with the
+$i$th spool, and $\gamma_{0}$ and $\gamma_{1}$ are two regression
+parameters used to model the relationship between $\lambda_{ij}$
+and $s_{ij}$. Recall that we presented similar regression models
+in Chap.~\ref{ch7} (see also \citet{LRAT07}).\index[aut]{Leon,
+R.@Le\'{o}n, R.}\index[aut]{Ramachandran, R.}\index[aut]{Ashby,
+A.}\index[aut]{Thyagarajan, J.}
+
+We specify prior distributions $\omega_{i} \con \eta, \kappa \sim
+Gamma(\eta, \kappa)$, $(\eta, \kappa) \sim p(\eta, \kappa)$,
+$\beta \sim p(\beta)$, $\gamma_{0} \sim p(\gamma_{0})$,
+$\gamma_{1} \sim p(\gamma_{1})$ with known hyperparameters for
+$p(\eta, \kappa)$, $p(\beta)$, $p(\gamma_{0})$, and
+$p(\gamma_{1})$.
+
+To develop the Bayesian zero-failure test\index[sub]{test
+plan!zero-failure}\index[sub]{test plan!minimum sample size} for a
+new spool, we assume the plan consists of testing $n$ samples for
+time $t_{0}$ at stress $s_{0}$. We use MCMC to obtain posterior
+draws $\eta^{(j)}$, $\kappa^{(j)}$, $\beta^{(j)}$,
+$\gamma_{0}^{(j)}$, $\gamma_{1}^{(j)}$ given $\vec{t}$ and
+predictive draws $\omega^{(j)} \sim
+\Gamma(\eta^{(j)},\kappa^{(j)})$. Let
+\begin{eqnarray*}
+\bt & = & (\omega, \gamma_0, \gamma_1, \beta) \quad \mbox{and}\\
+q^{(j)} & = & \kappa^{(j)}+n
+\exp(\gamma_{0}^{(j)})s^{\gamma_{1}^{(j)}}_{0}t^{\beta^{(j)}}_{0}
+\, .
+\end{eqnarray*}
+Our test criterion is calculated as
+\begin{eqnarray}\label{ch10:wtc4}
+\PP(t_{R} & > & t_{R^*} \con Test\mbox{ } Is\mbox{ }Passed,
+\vec{t})\\\nonumber & = & \frac{\int_0^\infty \int_0^\infty
+\int_0^\infty
+\int_0^{\frac{-\log(R)t_{R^*}^{-\beta}}{\exp(\gamma_0)s_0^{\gamma_1}}}
+\exp(-n\exp(\gamma_0)s_0^{\gamma_1}\omega t_0^{\beta}) p(\bt \con
+\vec{t}) \D \bt}{\int_0^\infty \int_0^\infty \int_0^\infty
+\int_0^\infty \exp(-n\exp(\gamma_0)s_0^{\gamma_1}\omega
+t_0^{\beta}) p(\bt \con \vec{t}) \D \bt}\\\nonumber \mbox{} &
+\approx & \frac{\sum_{j=1}^{N}
+\exp(-n\exp(\gamma_0^{(j)})s_0^{\gamma_1^{(j)}}\omega^{(j)}
+t_0^{\beta^{(j)}}) I\left[\omega^{(j)} \leq
+\frac{-\log(R)t_{R^*}^{-\beta^{(j)}}}{\exp(\gamma_0^{(j)})s_0^{\gamma_1^{(j)}}}\right]}
+{\sum_{j=1}^{N}
+\exp(-n\exp(\gamma_0^{(j)})s_0^{\gamma_1^{(j)}}\omega^{(j)}
+t_0^{\beta^{(j)}})}\\\nonumber & \approx & \frac{ \sum^{N}_{j=1}
+\frac{ {(\kappa^{(j)})}^{\eta^{(j)}} \gamma \left[ \eta^{(j)},
+[-\log (R)] \exp(-\gamma_{0}^{(j)})
+ s_{0}^{-\gamma_{1}^{(j)}}
+ q^{(j)}
+/t^{\beta^{(j)}}_{R^{*}} \right]}{\Gamma(\eta^{(j)}){(q^{(j)})
+}^{\eta^{(j)}}}} { \sum^{N}_{j=1} \frac
+{{(\kappa^{(j)})}^{\eta^{(j)}}}{{{(q^{(j)}) }^{\eta^{(j)}}}}
+}\nonumber \, ,
+\end{eqnarray}
+where $\gamma(q, z)$ denotes the lower incomplete gamma function.
+
+More specifically, to analyze the data in Table~\ref{ch10:tab5},
+we use the following independent prior distributions:
+\begin{eqnarray*}
+\beta & \sim & Exponential(1.0),\\
+\eta & \sim &
+InverseGamma(0.01, 0.01),\\
+\kappa & \sim & InverseGamma(0.01, 0.01),\\
+\gamma_{0} & \sim & Normal(0, 10^{6}), \mbox{ and}\\
+\gamma_{1} & \sim & Normal(0,10^{6}).
+\end{eqnarray*}
+
+See Table~\ref{ch10:tab7}, which summarizes the marginal posterior
+distributions for these five parameters. The hierarchical Weibull
+regression model fits these data well (see
+Exercise~\ref{ch7}.\ref{exercise:goodnessOfFitCh10Example5}).
+
+\begin{table}
+\caption{Posterior distribution summaries for $\eta, \kappa,
+\beta, \gamma_{0}$, and $\gamma_{1}$ given $\vec{t}$ and
+predictive distribution for $\omega$ for pressure vessels
+example}\label{ch10:tab7}
+
+ \centering
+\begin{tabular}{crrrrrrrrrrrr}
+\hline     &             &       &       & &
+ & & \multicolumn{3}{c}{Quantiles}  & &
+ \\\cline{7-13}
+  Parameter&\mbox{}&Mean&\mbox{}&Std
+ Dev&\mbox{}\mbox{}\mbox{}
+ &\multicolumn{1}{r}{0.025}&\mbox{}&\mbox{}&0.50 & \mbox{} &  \mbox{} & \multicolumn{1}{r}{0.975}\\
+\hline%
+    $\beta$&\mbox{} &   1.199 &\hspace{0.01in} &    0.085 &\hspace{0.01in} &        1.038 &\hspace{0.01in}  &\hspace{0.01in} &    1.199 &\hspace{0.01in} &    \hspace{0.01in} &   1.3650\\
+    $\eta$&\mbox{} &    0.6522 &\hspace{0.01in} &   0.3068 &\hspace{0.01in} &       0.2198 &\hspace{0.01in} &\hspace{0.01in} &   0.5977 &\hspace{0.01in} &   \hspace{0.01in} &    1.391   \\
+    $\gamma_0$&\mbox{} &    $-$84.81 &\hspace{0.01in} & 11.31 &\hspace{0.01in} &        $-$105.50 &\hspace{0.01in}  &\hspace{0.01in} &   $-$83.40 &\hspace{0.01in}  &\hspace{0.01in} & $-$66.32 \\
+    $\gamma_1$&\mbox{} &    27.84 &\hspace{0.01in} &    1.81 &\hspace{0.01in} &     24.56 &\hspace{0.01in} &\hspace{0.01in} &    27.85 &\hspace{0.01in} &   \hspace{0.01in} &    31.31\\
+    $\kappa$&\mbox{} &  3.704E+15 &\hspace{0.01in} &    5.666E+16 &\hspace{0.01in} &        2.403E$-$2 &\hspace{0.01in}  &\hspace{0.01in} &  4.873E+6 &\hspace{0.01in} &\hspace{0.01in} &    7.071E+15\\
+$\omega$&\mbox{} & 2.512 &\hspace{0.01in} & 19.42 &\hspace{0.01in}
+& 1.34E-17 &\hspace{0.01in}  &\hspace{0.01in} &
+3.900E-08 &\hspace{0.01in} & \hspace{0.01in} & 19.73\\
+ \hline
+\end{tabular}
+\end{table}
+
+\iffalse Using $K=5$ bins, the value of the Bayesian $\chi^{2}$
+goodness-of-fit test statistic discussed in Sect.~3.4 is computed
+to be 4.1.  Comparing this to a $ChiSquared$(4) distribution, we
+find that the p-value for testing whether the specified Weibull
+regression model with random spool effects ``fits'' the data is
+0.30.  Therefore, there is sufficient evidence to suggest that
+this model provides an adequate fit to the data. \fi
+
+We can see the effect that stress has on failure time by computing
+the posterior distribution of the Weibull mean time to failure
+(MTTF) as a function of $s$ for a randomly selected spool of
+Kevlar 49. Recall that the MTTF of the Weibull distribution in
+Eq.~\ref{ch10:eqn23} is $\lambda^{-1/\beta}\Gamma(1+1/\beta)$,
+which, substituting using Eq.~\ref{ch10:eqn23}, becomes
+$\exp(-\gamma_{0}/\beta)s^{-\gamma_{1}/\beta}\omega^{-1/\beta}\Gamma(1+1/\beta)$.
+
+In Fig.~\ref{ch10:fig5}, we plot the median log MTTF and a 90\%
+central credible interval as a function of stress $s$. Note the
+decreasing trend in the Weibull log MTTF as $s$ increases, as well
+as the extremely heavy right tail of the posterior log MTTF
+distribution for a given value of $s$.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.7\textwidth,angle=270]{Chapter10/tenfiveV2.ps}}
+\caption{The posterior median and 90\% credible interval of the Weibull log MTTF as a function of stress
+$s$ for pressure vessels example.}\label{ch10:fig5}
+\end{figure}
+
+We can also see the effect of stress on pressure vessel
+reliability by computing the posterior distribution of reliability
+as a function of $s$ for a randomly selected Kevlar-49 spool.
+Substituting using Eq.~\ref{ch10:eqn23}, the reliability at $t =
+2,000$ hours is $\exp[-\exp (\gamma_{0})s^{\gamma_{1}}\omega
+(2,000)^{\beta}]$. In Fig.~\ref{ch10:fig6}, we plot the posterior
+median and 90\% credible interval for pressure vessel reliability
+at $2,000$ hours as a function of stress $s$. Note the significant
+increase in the width of the 90\% credible intervals as the stress
+$s$ increases.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.7\textwidth,angle=270]{Chapter10/tensixV2.ps}}
+\caption{The posterior median and 90\% credible interval for $R(2000)$ as a function of stress
+$s$ for pressure vessels example.}\label{ch10:fig6}
+\end{figure}
+
+Now suppose that we want to find a Bayesian zero-failure test plan
+for $t_{R^*} = 2,000$ hours, $R = 0.9$, $\alpha = 0.05$, and
+$s_{0} = 23$ MPa. By letting $n = 1, 2, \ldots ,15$ and solving
+Eq.~\ref{ch10:wtc4} for the corresponding test length $t_{0}$, we
+obtain the solid curve in Fig.~\ref{ch10:fig7}. For example, in
+testing $n = 10$ pressure vessels all wrapped from a spool of
+Kevlar-49 fiber, Fig.~\ref{ch10:fig7} indicates testing each of
+these vessels for approximately $t_{0} = 1,900$ hours. Note that
+in Example~\ref{ch10:ex5}, a shorter time of $t_{0} = 1,132$ was
+required because the reliability at 2,000 hours was assessed to be
+higher based on the only 23 MPa data. If there are no failures,
+then we can claim with 0.95 probability that at least 90\% of the
+pressure vessels wrapped from this spool will survive 2,000 hours
+at a stress of 23 MPa. Figure~\ref{ch10:fig7} also presents the
+test length $t_{0}$ as a function of $n$ for stresses $s_{0} = 24$
+MPa and $s_{0} = 27$ MPa.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.7\textwidth,angle=270]{Chapter10/tensevenV3.ps}}
+\caption{The required test duration $t_{0}$ versus the number of
+test devices $n$ for three different values of stress $s_{0}$ in
+MPa for pressure vessels example. The three stress values are 23
+MPa (solid line), 24 MPa (short dashed line), and 27 MPa (long
+dashed line).}\label{ch10:fig7}
+\end{figure}
+
+From Fig.~\ref{ch10:fig7}, we can make an important observation;
+namely, for a given number of devices $n$, as the stress $s_0$
+decreases, the required test time $t_{0}$ also decreases. This
+desirable situation arises because the failure time data model
+using the original accelerated life test data predicts that the
+probability of surviving the required 2,000 hours of operation
+increases dramatically as the stress decreases. In other words,
+because the fitted model predicts long failure times at low
+stress, achieving the required assurance needs very little
+additional data. For those cases, in which there is high
+reliability at low stress, the required assurance is already
+embedded in the fitted model. On the other hand, if the
+accelerated life test results indicate low reliability at low
+stress, then significant assurance testing would be required to
+overcome this situation.
+
+\section{Related Reading}\label{ch10:sec5}
+There is extensive literature on Bayesian assurance testing dating
+back to the late 1960s, and \citet{MW82} describes this early
+research. \citet{B86}  clarifies the distinction between a
+posterior Bayes' and a modified classical (or average) producer's
+risk and compares these two criteria for various test plans.
+\index[aut]{Waller, R.}\index[aut]{Brush, G.} \citet{B86} also
+highlights the importance of calculating a Bayes' producer's risk
+as a supplement to the modified classical producer's
+risk.\index[aut]{Brush, G.}\index[aut]{Martz, H.} \citet{SB92}
+analyzes the performance of Bayes' and classical assurance test
+plans for simultaneously specified consumer's and producer's
+risks. Both \citet{B86} and \citet{SB92} conclude that Bayes' and
+classical risks need consideration. \index[aut]{Sharma, K.}
+\index[aut]{Bhutani, R.}
+
+Since 1990 there have been several more articles concerned with
+either Bayesian acceptance sampling or assurance test plans.
+\citet{H90},  with comments by \citet{GHMF90}, uses Bayesian
+methods to determine a test plan for qualifying the reliability of
+some industrial products, whereas \citet{GU90} considers a
+Bayesian approach to the assurance testing of highly reliable
+devices. \citet{F91} proposes a Bayesian acceptance test plan for
+binomial testing, while \citet{SF92} presents a method for
+choosing a prior distribution for binomial testing.  In a Master's
+thesis, \citet{J91}  develops Bayesian acceptance test plans based
+on failure-free life tests and compares these with other test
+plans. \citet{PT92}  considers a four-parameter beta prior in
+binomial testing. In a somewhat different approach, \citet{MT92}
+  uses both quadratic and step-function
+loss functions in determining Bayesian acceptance test plans.
+\citet{BS93} develops Bayesian sequential reliability
+demonstration tests using two different approaches: posterior loss
+and predictive loss.  In addition, \citet{BS93}  considers three
+test data models. \citet{WYK94}  proposes two different approaches
+for integrating life test data into a Bayesian analysis based on
+the exponential distribution. For the exponential distribution,
+\citet{DK94}  develops Bayesian stopping rules for use in
+terminating a sequential assurance test. \citet{V99} considers the
+optimization of reliability requirements from a manufacturer's
+point of view. \citet{TP03}  proposes Bayesian reliability testing
+for a new generation of semiconductor processing equipment, while
+\citet{KSB04}  develops reliability demonstration test plans based
+on minimizing life cycle costs.\index[aut]{Hart,
+L.}\index[aut]{Ganter, W.} \index[aut]{Hart, L.}
+\index[aut]{Martz, H.}  \index[aut]{Fisher, R.}\index[aut]{Guess,
+F.} \index[aut]{Usher, J.} \index[aut]{Fan, D.} \index[aut]{Sheng,
+Z.} \index[aut]{Fan, D.}\index[aut]{Jin, H.}\index[aut]{Pham, T.}
+\index[aut]{Turkkan, N.}\index[aut]{Tang,
+K.}\index[aut]{Moskowitz, H.}\index[aut]{Berger,
+J.}\index[aut]{Berger, J.} \index[aut]{Sun, D.} \index[aut]{Sun,
+D.}\index[aut]{Whitmore, G.} \index[aut]{Young, K.}
+\index[aut]{Kimber, A.}\index[aut]{Deely, J.} \index[aut]{Keats,
+K.}\index[aut]{Vintr, Z.}\index[aut]{Tobias, P.} \index[aut]{Pore,
+M.}\index[aut]{Kleyner, A.} \index[aut]{Sandborn, P.}
+\index[aut]{Boyle, J.}
+
+\section{Exercises for Chapter~\ref{ch10}}
+\begin{enumerate}[\ref{ch10}.1]
+\item In determining a Bayesian reliability assurance test plan,
+what happens if the prior distribution is especially strong and
+satisfies the desired criteria prior to testing?
+\begin{enumerate} \item How does one know when this is the case? \item
+What calculations should one perform to check whether or not this
+is the case?\end{enumerate}
+
+\item \label{ch10:exr1} \begin{enumerate} \item What is the
+(classical) producer's risk for a binomial test plan with $n =
+15$, $c = 1$, and $\pi_0 = 0.9$? \item What is the (classical)
+consumer's risk for a binomial test plan with $n = 15$, $c = 1$,
+and $\pi_1 = 0.6$?
+\end{enumerate}
+
+\item \label{ch10:exr2} \begin{enumerate} \item What is the
+average producer's risk for a binomial test plan with $n = 15$, $c
+= 1$, $\pi_0 = 0.9$, and $p(\pi) \sim Beta(10,1)$? \item What is
+the average consumer's risk for a binomial test plan with $n =
+15$, $c = 1$, $\pi_1 = 0.6$, and $p(\pi) \sim Beta(10,1)$?
+\end{enumerate}
+
+\item \label{ch10:exr3} \begin{enumerate} \item What is the
+posterior producer's risk for a binomial test plan with $n = 15$,
+$c = 1$, $\pi_0 = 0.9$, and $p(\pi) \sim Beta(10,1)$? \item What
+is the posterior consumer's risk for a binomial test plan with $n
+= 15$, $c = 1$, $\pi_1 = 0.6$, and $p(\pi) \sim Beta(10,1)$?
+\end{enumerate}
+
+\item Discuss the similarities and differences between the
+producer's and consumer's risks calculated in
+Exercises~\ref{ch10}.\ref{ch10:exr1}, \ref{ch10}.\ref{ch10:exr2},
+and \ref{ch10}.\ref{ch10:exr3}.
+
+\item Calculate a binomial test plan with a $Uniform(0,1)$ prior
+distribution for $\pi$, and $\pi_0 = 0.9$, $\pi_1 = 0.5$, $\alpha
+= \beta = 0.05$.
+
+\item \label{exercise:ch10AFW} The auxiliary feedwater (AFW)
+system is an important standby safety system in a nuclear power
+plant \citep{PGGGK98}. The AFW system probability of starting on demand is an
+important indicator of its reliability. The data in
+Table~\ref{ch10:tab8} are the number of AFW system failures to
+start on demand $x_{i}$ in $n_{i}$ demands at 68 U.S.\ commercial
+nuclear power plants. \begin{enumerate} \item Find the Bayesian
+hierarchical test plan having the posterior consumer's and
+producer's risk values $\pi_{1} = 0.985$, $\beta = 0.05$, $\pi_{0}
+= 0.995$, and $\alpha = 0.10$. \item What are the actual posterior
+risks when using this test plan? \item What is the unconditional
+probability of passing the test when using this test plan? \item
+Is there anything unusual about this problem?\end{enumerate}
+
+\begin{table}
+\caption{Number of AFW system failures to start on demand $x$
+in $n$ demands at 68 U.S.\ commercial nuclear power
+plants \citep{PGGGK98}}\label{ch10:tab8}
+ \centering
+\begin{tabular}{lcr |lcr}
+\hline Plant     & $x$                   & $n${\hspace{0.1in}} & {\hspace{0.1in}}Plant            & $x$                   & $n$\\
+\hline%
+Arkansas       1 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 14\phantom{*}   &{\hspace{0.1in}}North Anna 2     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 18\\
+Arkansas       2 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 9\phantom{*}    &{\hspace{0.1in}}Oconee 1         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 18\\
+Beaver Valley 1  & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 24\phantom{*}   &{\hspace{0.1in}}Oconee 2         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 18\\
+Beaver Valley 2  & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 43\phantom{*}   &{\hspace{0.1in}}Oconee 3         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 12\\
+Braidwood 1      & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 13\phantom{*}   &{\hspace{0.1in}}Palisades        & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 13 \\
+Braidwood 2      & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 24\phantom{*}   &{\hspace{0.1in}}Palo Verde 1     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 7\\
+Byron 1          & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 11\phantom{*}   &{\hspace{0.1in}}Palo Verde 2     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 12\\
+Byron 2          & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 26\phantom{*}   &{\hspace{0.1in}}Palo Verde 3     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 9\\
+Callaway         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 57\phantom{*}   &{\hspace{0.1in}}Point Beach 1    & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 8\\
+Calvert Cliffs 1 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 12\phantom{*}   &{\hspace{0.1in}}Point Beach 2    & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 16\\
+Calvert Cliffs 2 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 15\phantom{*}   &{\hspace{0.1in}}Prairie Island 1 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 3\\
+Catawba 1        & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 41\phantom{*}   &{\hspace{0.1in}}Prairie Island 2 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 7\\
+Catawba 2        & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 89\phantom{*}   &{\hspace{0.1in}}Robinson 2       & {\hspace{0.1in}}1\mbox{\hspace{0.1in}} & 28\\
+Comanche Pk 1    & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 66\phantom{*}   &{\hspace{0.1in}}Salem 1          & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 24\\
+Comanche Pk 2    & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 14\phantom{*}   &{\hspace{0.1in}}Salem 2          & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 32\\
+Cook 1           & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 18\phantom{*}   &{\hspace{0.1in}}San Onofre 2     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 13 \\
+Cook 2           & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 36\phantom{*}   &{\hspace{0.1in}}San Onofre 3     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 17\\
+Crystal River 3  & {\hspace{0.1in}}1\mbox{\hspace{0.1in}} & 16\phantom{*}   &{\hspace{0.1in}}Seabrook         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 17\\
+Diablo Canyon 1  & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 46\phantom{*}   &{\hspace{0.1in}}Sequoyah 1       & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 30\\
+Diablo Canyon 2  & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 30\phantom{*}   &{\hspace{0.1in}}Sequoyah 2       & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 41\\
+Farley 1         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 34\phantom{*}   &{\hspace{0.1in}}South Texas 1    & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 69\\
+Farley 2         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 54\phantom{*}   &{\hspace{0.1in}}South Texas 2    & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 87\\
+Fort Calhoun     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 5\phantom{*}    &{\hspace{0.1in}}St. Lucie 1      & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 35\\
+Ginna            & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 28\phantom{*}   &{\hspace{0.1in}}St. Lucie 2      & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 21\\
+Harris           & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 98\phantom{*}   &{\hspace{0.1in}}Summer           & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 24 \\
+Indian Point 2   & {\hspace{0.1in}}1\mbox{\hspace{0.1in}} & 24\phantom{*}   &{\hspace{0.1in}}Surry 1          & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 26\\
+Indian Point 3   & {\hspace{0.1in}}2\mbox{\hspace{0.1in}} & 32\phantom{*}   &{\hspace{0.1in}}Surry 2          & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 32\\
+Kewaunee         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 26\phantom{*}   &{\hspace{0.1in}}Three Mile Isl 1 & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 6\\
+Maine Yankee     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 23\phantom{*}   &{\hspace{0.1in}}Vogtle 1         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 103\\
+McGuire 1        & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 45\phantom{*}   &{\hspace{0.1in}}Vogtle 2         & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 45\\
+McGuire 2        & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 44\phantom{*}   &{\hspace{0.1in}}Waterford 3      & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 38\\
+Millstone  2     & {\hspace{0.1in}}1\mbox{\hspace{0.1in}} & 11\phantom{*}   &{\hspace{0.1in}}Wolf Creek       & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 51\\
+Millstone  3     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 54\phantom{*}   &{\hspace{0.1in}}Zion 1           & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 13\\
+North Anna 1     & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 20\phantom{*}   &{\hspace{0.1in}}Zion 2           & {\hspace{0.1in}}0\mbox{\hspace{0.1in}} & 8\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\item Derive Eq.~\ref{ch10:eqn14}.
+
+\item \label{ch10:hw4} \citet{B62} provides data that apparently
+originated at the U.S.\ Bureau of Naval Weapons regarding the
+number of minor, major, and critical defectives in successive
+MIL-STD-105B samples of some material. The data in
+Table~\ref{ch10:tab9} consist of the observed frequencies of the
+number of minor defectives $x$ in samples of size $n = 150$ from
+$m = 205$ lots each of size 2016 items of this material.
+\begin{enumerate} \item Using the ``hybrid'' posterior consumer's and average
+producer's risk criteria, find the Bayesian hierarchical test plan
+having the risk values $\beta = 0.10$ and $\alpha = 0.05$ for
+$\pi^* = 0.975$. \item What are the actual risks when using this
+test plan? \item What is the unconditional probability of passing
+this test?\end{enumerate} \index[aut]{Borg, J.}
+
+
+\begin{table}
+\caption{Minor defectives from MIL-STD-105B sampling of material
+\citep{B62}}\label{ch10:tab9}
+ \centering
+\begin{tabular}{cccc|ccc}
+\hline
+$x$ & \mbox{} & Frequency & \mbox{} & $x$ & \mbox{} & Frequency\\
+\hline%
+0 & \mbox{} & 68 & \mbox{} & \hspace{0.05in}9  & \mbox{} & 2\\
+1 & \mbox{} & 45 & \mbox{} & 10 & \mbox{} & 1\\
+2 & \mbox{} & 24 & \mbox{} & 12 & \mbox{} & 1\\
+3 & \mbox{} & 20 & \mbox{} & 13 & \mbox{} & 1\\
+4 & \mbox{} & \hspace{0.05in}8  & \mbox{} & 15 & \mbox{} & 4\\
+5 & \mbox{} & \hspace{0.05in}7  & \mbox{} & 18 & \mbox{} & 1\\
+6 & \mbox{} & \hspace{0.05in}8  & \mbox{} & 20 & \mbox{} & 1\\
+7 & \mbox{} & 10 & \mbox{} & 22 & \mbox{} & 1\\
+8 & \mbox{}\ \ \ \ \  & \hspace{0.05in}3  & \mbox{} &  & \mbox{} & \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\item Using the data in Exercise~\ref{ch10}.\ref{ch10:hw4}, find
+the Bayesian hierarchical test plan having the posterior
+consumer's and producer's risk values $\pi_{1} = 0.96$, $\beta =
+0.10$, $\pi_{0} = 0.975$, and $\alpha = 0.05$.
+\begin{enumerate} \item What are the actual risks when using this test
+plan? \item What is the unconditional probability of passing this
+test?\end{enumerate}
+
+\item \label{ch10:exr4} \begin{enumerate} \item What is the
+posterior producer's risk for a Poisson test plan with $T = 10$,
+$c = 3$, $\lambda_0 = 3.0$, and $p(\lambda) \sim Gamma(5,1)$?
+\item What is the posterior consumer's risk for a Poisson test
+plan with $T = 10$, $c = 3.0$, $\lambda_1 = 7.0$, and $p(\lambda)
+\sim Gamma(5,1)$?
+\end{enumerate}
+
+\item \label{ch10:hw6} For Poisson testing
+presented in Sect.~\ref{ch10:sec3}, show that
+\begin{displaymath}
+\PP(Test\mbox{ }Is\mbox{
+}Failed|\lambda\leq\lambda_{0},\eta,\kappa) =
+1-\frac{\kappa^{\eta}\sum^{c}_{x=0}
+\frac{T_{0}^{x}\gamma[x+\eta,(T_{0}+\kappa)\lambda_{0}]}
+{x!(T_{0}+\kappa)^{x+\eta}}}{\gamma(\eta,\kappa\lambda_{0})} \, .
+\end{displaymath}
+
+\item Using the expression given in
+Exercise~\ref{ch10}.\ref{ch10:hw6} and the pump failure data in
+Table~\ref{ch10:tab3}, find the Bayesian hierarchical test plan
+having the ``hybrid'' posterior consumer's and average producer's
+risk values $\lambda_{1} = 0.3$, $\beta = 0.10$, $\lambda_{0}=
+0.2$, and $\alpha = 0.05$. \begin{enumerate} \item What are the
+actual risks for this test plan? \item What is the unconditional
+probability of passing this test?\end{enumerate}
+
+\item Using the pump failure data in Table~\ref{ch10:tab3}, find
+the Bayesian hierarchical test plan having the posterior
+consumer's and producer's risk values $\lambda_{1} = 0.1$, $\beta
+= 0.10$, $\lambda_{0}= 0.05$, and $\alpha = 0.05$.
+\begin{enumerate} \item What are the actual risks for this test plan? \item What is
+the unconditional probability of passing this test? \item Is this
+a good test plan to use?\end{enumerate}
+
+\item \label{ch10:ex9} For the model in Sect.~\ref{ch10:sec4:ss1},
+show that we may approximate the unconditional probability of
+passing the Bayesian minimum sample size test plan by
+\begin{displaymath}
+ \PP[Test\mbox{ }Is\mbox{ }Passed \con \vec{t} ] \approx \frac
+ {1}{N}\sum^{N}_{j=1}\left(\frac
+ {\kappa^{(j)}}{\kappa^{(j)}+nt^{\beta^{(j)}}_{0}}\right)^{\eta^{(j)}}.
+\end{displaymath}
+
+\item Using the expression in Exercise~\ref{ch10}.\ref{ch10:ex9},
+what is the approximate unconditional probability of passing the
+Bayesian test plan ($n = 10, t_{0} = 1,122$) given in
+Example~\ref{ch10:ex5}?
+
+\item \citet{GK83}  gives the failure times for Kevlar-49-wrapped
+pressure vessels at a stress of 25.5 MPa. Table~\ref{ch10:tab10}
+displays these data. For $t_{R^*} = 300$ hours, $R = 0.9$, $\alpha
+= 0.05$, and these Weibull distributed data, find the Bayesian
+minimum sample size test plan time $t_{0}$ that we must test each
+of $n = 5$ items. What is the unconditional probability of passing
+this test? Is this a satisfactory test plan? \index[aut]{Gerstle,
+F.} \index[aut]{Kunz, S.}
+
+
+\begin{table}
+\caption{Failure times of Kevlar-49-wrapped pressure vessels at a
+stress of 25.5 MPa \citep{GK83}}\label{ch10:tab10}
+ \centering
+\begin{tabular}{cll}
+\hline Spool & \mbox{} & \hspace{0.5in}Failure Time (hours) \\
+\hline%
+1 & \mbox{} & 11487.3, 14032.0, 31008.0\\
+2 & \mbox{} & 1134.3, 1824.3, 1920.1, 2383.0,
+ 3708.9, 5556.0\\
+3 & \mbox{} & 1087.7, 2442.5\\
+4 & \mbox{} & 13501.3, 29808.0\\
+5 & \mbox{} & 11727.1\\
+6 & \mbox{} & 225.2, 6271.1, 7996.0\\
+7 & \mbox{} & 503.6\\
+8 & \mbox{} & 2974.6, 4908.9, 7332.0, 7918.7,
+ 9240.3, 9973.0\\
+\hline
+\end{tabular}
+\end{table}
+
+\item For the Weibull testing described in
+Sect.~\ref{ch10:sec4}, suppose that we want to find a Bayesian
+minimum sample size test plan to assure that, at some
+specified time $t_{R}$, the Weibull reliability $R$ is at least as
+large as a requirement $R^*$ at the $100\times (1 - \alpha)$\%
+credible level. How does this test plan compare to the one based on
+the reliable life criterion?
+\end{enumerate}
+
+\end{document}

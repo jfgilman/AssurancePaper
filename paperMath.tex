@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\begin{document}
+
+\title{Repairable Series System Assurance Testing}
+
+\section{Series System Failure Rate}
+
+\textbf{Definitions:} \\
+\noindent
+Reliability: $R(t) = 1 - F(t)$ \\
+Hazard or failure rate function: $\lambda(t) = \frac{f(t)}{R(t)}$ \\
+Series system reliability: $R_S(t) = \prod_{i = 1}^N R_i(t)$
+\\
+\\
+\textbf{Result:}
+$$
+\begin{aligned}
+	R_S(t) &= \prod_{i = 1}^N R_i(t) \\
+	\frac{dR_S(t)}{dt} &= \frac{d}{dt} \prod_{i = 1}^N R_i(t) \; \; \text{(derivative of both sides)} \\
+	\frac{dR_S(t)}{dt} &= \sum_{i=1}^N \left[ \frac{dR_i(t)}{dt} \frac{dR_S(t)}{dR_i(t)} \right] \; \; \text{(product rule)} \\
+    \frac{-\frac{dR_S(t)}{dt}}{R_S(t)} &= \sum_{i=1}^N \left[  \frac{-\frac{d}{dt}R_i(t)}{dR_i(t)} \right] \; \; \text{(divide both sides by $-R_S(t)$)} \\
+    \lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \; \; \text{(because $\lambda(t) = \frac{f(t)}{R(t)} = \frac{-\frac{dR(t)}{dt}}{R(t)}$ )}
+\end{aligned}
+$$
+
+\section{Non-Homogeneous Poisson Process}
+
+\textbf{Definitions:} \\
+\noindent
+Number of failures before time t: $N(t) \sim \text{Poisson}(m(t))$ \\
+Mean function: $m(t) = \int_0^t \lambda(s)ds$ (represents the expected number of failures before time t) \\
+Weibull($\gamma, \beta $) failure rate: $\lambda(t) = \gamma\beta t^{\beta - 1}$
+\\
+\\
+\textbf{Result:}\\
+If we assume a constant shape parameter $\beta$ then,\\
+$$
+\begin{aligned}
+	\lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \\
+    &= \sum_{i = 1}^N \gamma_i\beta t^{\beta - 1} \\
+    &= \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i
+\end{aligned}
+$$
+\newpage
+Then Solving for the mean function of the system,
+
+$$
+\begin{aligned}
+	m_S(t) &= \int_0^t \lambda_S(s)ds \\
+    &= \int_0^t \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i \\
+    &= \sum_{i = 1}^N \gamma_i \int_0^t \beta t^{\beta -1} \\
+    &= t^\beta \sum_{i = 1}^N \gamma_i
+\end{aligned}
+$$
+
+This gives us: $N(t) \sim \text{Poisson}(t^\beta \sum_{i = 1}^N \gamma_i)$
+
+
+\section{Building an Assurance Test}
+
+\textbf{Overview}
+
+R(t) = reliability at time t (miles in our case)
+\\
+\\$ t_{*c} $ : time of interest to consumer
+\\$ t_{*p} $ : time of interest to producer
+\\
+\\
+Two types of risk we want to control for:
+\begin{itemize}
+\item Consumer Risk :   Prob( $ R(t_{*c}) \leq \pi_c \vert $ Test is passed)
+\item Producer Risk :   Prob( $ R(t_{*p}) \geq \pi_p \vert $ Test is failed)
+\end{itemize}
+\
+\\$ \pi_c $ : minimum reliability acceptable to the consumer at $ t_{*c} $
+\\$ \pi_p $ : minimum reliability goal of the producer at $ t_{*p} $
+\\
+\\
+We would like to get reliability into a inequality in terms of something we have a distribution for so we can evaluate the conditional probability statements.
+\\
+\\
+\\$ R(t_{*c}) \leq \pi_c \Rightarrow $ average number of system failures in 80 miles is greater than 2
+\\$ R(t_{*p}) \geq \pi_p \Rightarrow $ average number of system failures in 140 miles is less than 2
+\\
+\\
+\textbf{Case 1 - Exponential}
+
+\noindent
+If we model the reliability of all 26 components in the system as $Y_{ij} \sim$ exponential$\;(\gamma_i) $ random variables, this leads to the system reliability being the minimum or $Y_{system} \sim $ exponential $ \;(\sum_{n = 1}^{26} \gamma_i) $
+\\
+\\
+- Looking at consumer risk first:
+\\
+want to find Prob( $ R(t_{*c}) \leq \pi_c \vert $ Test is passed)
+\\
+Let $ \sum_{n = 1}^{26} \gamma_i = \lambda_S $
+\\
+The expected number of failures for the system per mile is $ \mathbf{E}(Y_{system}) = \lambda_S $
+\\
+\\
+This leads to our consumer risk probability constraint as follows.  Given the test is passed, the consumer would like the probability of the expected number of failures in 80 miles being greater than 2 to be smaller than $\alpha$.
+\\
+\\
+Prob( $ \lambda_S \cdot (80) \geq 2 \; \vert $ Test is passed) $ \leq \alpha $
+\\
+\\
+Let $ W $ be the number of failures during the test and $ W \leq c \Rightarrow $ Test is passed and $ W > c \Rightarrow $ Test is failed.
+\\
+\\
+Because failures are exponential $ W \sim Poisson(\lambda_S T) $ where $ T $ is the number of miles run during the test.
+\\
+\\
+$$
+\begin{aligned}
+	 P(\lambda_S \geq 2/80 \; \vert \; W \leq c) &= \int_{1/40}^{\infty} P(\lambda_S \; \vert W < c) d\lambda_S \\
+     &= \int_{1/40}^{\infty} \frac{f(W < c \; \vert \lambda_S) p(\lambda_S)}{f(W < c)}d\lambda_S\\
+     &= \int_{1/40}^{\infty} \frac{f(W < c \; \vert \lambda_S) p(\lambda_S)}{\int_{0}^{\infty} f(W < c \; \vert \lambda_S) p(\lambda_S) d\lambda_S}d\lambda_S \\
+     &= \frac{\int_{1/40}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda T)}{W!}]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S}
+\end{aligned}
+$$
+\\
+\\
+For simplicity we fix c to be zero (The number of failures needed to pass the test) and take N posterior draws $ \lambda_S^{(j)} $
+$$
+\begin{aligned}
+	 P(\lambda_S \geq 1/40 \; \vert \; W = 0) &= \frac{\int_{1/40}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} \\
+     &\approx \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)I(\lambda_S^{(j)} \geq \frac{1}{40})} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)}
+\end{aligned}
+$$
+\\
+\\
+Using the same technique for producer risk we get the following. The producer would like, given the test is failed, the probability of the expected number of failures in 140 miles being less than 2 to be smaller than $\beta$.
+\\
+\\
+$$
+\begin{aligned}
+	 P(\lambda_S \leq 1/70 \; \vert \; W > 0) &= \frac{\int_{0}^{1/70} [1 - exp(-\lambda_S T)]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [1 - exp(-\lambda_S T)]p(\lambda_S)d\lambda_S} \\
+     &\approx  \frac{\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T)] I(\lambda_S^{(j)} \leq \frac{1}{70})} {\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T)]}
+\end{aligned}
+$$
+\\
+\\
+By constraining these two probabilities to acceptable risk levels we can solve for the smallest $ T $ that satisfies both.
+\\
+\\
+Consumer Risk : $ P(\lambda_S \geq 2/80 \; \vert  W = 0) \leq \alpha $ \\
+Producer Risk : $ P(\lambda_S \leq 2/140 \; \vert  W > 0) \leq \beta $
+\\
+\\
+\textbf{Case 2 - Weibull}
+
+\noindent
+Now if we model the reliability of all 26 components in the system as $Y_{ij} \sim$ Weibull$\;(\gamma_i, \beta) $ random variables we are able to use the the non-homogeneous result from part two to build our assurance test. This follows the same process as the exponential test plan with all mile variables adjusted by the $\beta$ exponent and the N posterior draws will use both $\lambda_S^{(j)}$ and $\beta^{(j)}$.
+\\
+\\
+Consumer risk:
+\\
+$$
+	 P(80^\beta (\lambda_S) \geq 2 \; \vert \; W = 0) \approx \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T^{\beta^{(j)}})I(80^{\beta^{(j)}} (\lambda_S^{(j)}) \geq 2)} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T^{\beta^{(j)}})}
+$$
+\\
+\\
+Producer risk:
+\\
+$$
+	 P(140^\beta (\lambda_S) \leq 2 \; \vert \; W > 0) \approx  \frac{\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T^{\beta^{(j)}})] I(140^{\beta^{(j)}} (\lambda_S^{(j)}) \leq 2)} {\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T^{\beta^{(j)}})]}
+$$
+\\
+\\
+\textbf{Important note:} For the exponential test plan, the producer and consumer risks were in terms of expected number of failures in a certain number of miles, say $t$.  Because the exponential has a constant hazard rate this can be considered the expected number of failures for a given number of miles regardless of how many miles have been driven prior.  On the other hand the Weibull does not have a constant hazard rate.  For the Weibull test plan presented here the producer and consumer risk statements are now in terms of expected number of failures in the first $t$ miles driven.
+
+
+
+
+\end{document}

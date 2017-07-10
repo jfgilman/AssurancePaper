@@ -1,0 +1,344 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx,psfrag,epsf}
+\usepackage{enumerate}
+
+\begin{document}
+
+\title{Bayesian Hierarchical Models for Common Components across Multiple System Configurations}
+
+\begin{abstract}
+    We use a Bayesian hierarchical model to assess the reliability of the Joint Light Tactical
+    Vehicle (JLTV), which is a family of vehicles. The proposed model effectively combines information
+    across three phases of testing and across common vehicle components. The analysis yields
+    estimates of failure rates for specific failure modes and vehicles as well as an overall estimate of the
+    failure rate for the family of vehicles. We are also able to obtain estimates of how well vehicle
+    modifications between test phases improve failure rates. In addition to using all data to improve on
+    current assessments of reliability and reliability growth, we illustrate how to leverage the information
+    learned from the three phases to determine appropriate specifications for subsequent testing that will
+    demonstrate if the reliability meets a given reliability threshold.
+\end{abstract}
+
+
+\section{Introduction}
+
+\section{Data}
+
+
+\section{Methodology}
+
+\subsection{Modeling Reliability}
+A standard reliability analysis employed by the Department of Defense (DoD) test
+community considers each test phase independently and uses the exponential
+distribution to model the miles between failure ~\cite{ref1}. The traditional
+analysis is overly simplistic, relies on correct modeling assumptions
+and ignores valuable information learned about the individual vehicles and their
+failure modes.
+
+In considering the following alternative approach we will begin by introducing a
+hierarchical model structure that can use data across all test phases and
+incorporate known similarities between vehicle failure modes.  Next, we will
+explore the distributional assumptions of the model; how we can test these
+assumptions and how misspecifications can effect our assessments of system
+reliability.  This will then lead us into the next section on how this modeling
+can be used for assurance test planning.
+
+\subsubsection{Exponential Model}
+In Test Phase 1, we assume the vehicle miles at failure, $y$, follow an
+exponential distribution with a failure rate parameter $\lambda_{ij}$.
+Introducing notation,
+\begin{align}
+y_{ijk}\mid\lambda_{ij}\sim Exp(\lambda_{ij}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
+\end{align}
+where $y_{ijk}$ are the miles between failure for vehicle $i$ failure mode $j$,
+$v$ is the number of vehicles, $s$ is the number of failure modes, and $n_{ij}$
+are the number of failures of vehicle $i$ failure mode $j$. The number of
+failure modes is assumed fixed and known \textit{a priori}.
+
+The prior distribution on the exponential failure rate parameter,
+$\lambda_{ij}$, depends on whether failure mode $j$ is considered to be common
+across vehicles or related but not identical. For the related failure modes,
+we place a gamma prior distribution on the collection of $\lambda_{ij}$; in
+other words, we assume each vehicle has a distinct failure rate in failure mode
+$j$ but they arise from a common gamma distribution.
+
+If failure mode $j$ is considered common across vehicles, the collection of
+failure rates is collapsed to a single parameter, $\lambda_{ij} = \lambda_j$. As
+with the related failure modes, a gamma prior distribution is placed on the
+single failure rate. The prior distributions are independent across failure
+mode, and can potentially have different hyperparameters.
+
+The Phase 1 analysis yields an estimate of the failure rate $\lambda_{ij}$ for
+each of the vehicles for failure modes that are related. We are assuming the
+vehicles are conditionally independent, therefore the failure rate estimate for
+the family of vehicles for such failure modes can be found by
+$\sum_{i}\lambda_{ij}$. For failure modes that are common across vehicles the
+Phase 1 analysis yields a $\lambda_{j}$, which is the failure rate for the
+family of vehicles. Under the exponential modeling assumption the overall
+failure rate across all failure modes can be found by $\sum_{j}\lambda_{j}$.
+
+\subsubsection{Fix Effectiveness}
+After the first CAP, Test Phase 2 begins with the repaired vehicles. To capture
+these revisions, the PM2 reliability growth model \cite{EH06} is often used.
+This model explicitly captures testing phases, choices about which failure modes
+to correct, and the potential of not completely eliminating a failure upon
+repair. One of the downsides of PM2 is that many parameters of potential
+interest, such as the Fix Effectiveness Factor (FEF), which measures how much
+repairs improve failure rates, are typically fixed. A common value for FEF is
+0.70. We follow the premise of this type of model, but allow a more flexible and
+data-driven result that is less dependent on hard-coded assumptions.
+
+One normal assumption used in reliability growth modeling is non-decreasing
+failure rates; that is either the fixes were effective or had no effect, but did
+not degrade the family of vehicles.  This should generally be the case, but
+because we are dealing with complex systems we will sometimes see decreases in
+failure rates after adjustments are made.  Therefore for the Phase 2 data we
+write the rate parameters as a function of the rate parameters found in Phase 1.
+In particular, we define $\lambda_{ij}^{P2}=(\rho_{j})\lambda_{ij}^{P1}$ where
+$\rho_{j}$ represents the between phase change in failure mode $j$. Given this
+definition of $\lambda_{ij}^{P2}$, we again model the failure miles for a given
+vehicle and failure mode using the exponential distribution. We assume the prior
+distribution for the $\rho_{j}$ is a gamma distribution.  If $\rho_{j}$ is less
+than one, this represents an improvement in reliability.  After Phase 2 we can
+look again at failure rates across failure modes and vehicles and obtain an
+overall estimate of the rate for the family of vehicles.  The analysis of Test
+Phase 3 follows the same pattern as that shown in Phase 2. At the end of
+Phase 3, we can look at failure rates across failure modes and vehicles and
+obtain an overall estimate of the rate for the family of vehicles.
+Future tests will be planned based on the inferences of Phase 3.
+
+\subsubsection{Weibull Model}
+The exponential model is by far the most common parametric distribution used in
+reliability modeling because of its desirable math mathematical properties and
+simple interpretations.   Dispite its common uses the assumption of a constant
+failure rate over time is rarely justifiable.  It has been well documented
+(Statistics, Testing, and Defense Acquisition: Background Papers chapter - 2 http://www.nap.edu/catalog/9655.html)
+the issues that can arise when this assumption is violated.  We will now
+consider the same hierarchical model structure while using the Weibull
+distribution for each miles between failure observation.
+\begin{align}
+y_{ijk}\mid\lambda_{ij}\kappa_{i}\sim Weibull(\lambda_{ij}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
+\end{align}
+The Weibull distribution is a more flexible model with both a rate parameter
+$\lambda_{ij}$ and a shape parameter $\kappa_{i}$.  The exponential is a special
+case of the Weibull, when $\kappa = 1$.
+\\
+Talk about how to index the shape parameter and what it means
+
+\subsubsection{JLTV Model Fitting}
+So far we have discussed a number of different models and the assumptions that
+accompany them.  Now looking at the JLTV dataset we will run a few diagnostics to
+decide what model we will use for inference and future test planning.
+\\
+Models: \\
+Exponential and Weibull with no hierarchy \\
+Exponential and Weibull full hierarchy \\
+Exponential and Weibull full hierarchy \\
+Weibull with multipule shape vs. one shape \\
+\\
+DIC \\
+posterior predictive checks \\
+QQ Plots \\
+Shape Parameter Plot \\
+
+\subsubsection{JLTV Reliability Results}
+
+Results plots \\
+Exponential vs. Weibull interpretation
+
+\subsection{Assurance Test Planning}
+Assurance Testing
+consumer and producer risk
+
+\subsubsection{Traditional Approach}
+no producer risk
+
+\subsubsection{Bayes Risk}
+
+R(t) = reliability at time t (miles in our case)
+\\
+\\$ t_{*c} $ : time of interest to consumer
+\\$ t_{*p} $ : time of interest to producer
+\\
+\\
+\begin{itemize}
+\item Consumer Risk :   Prob( $ R(t_{*c}) \leq \pi_c \vert $ Test is passed)
+\item Producer Risk :   Prob( $ R(t_{*p}) \geq \pi_p \vert $ Test is failed)
+\end{itemize}
+\
+\\$ \pi_c $ : minimum reliability acceptable to the consumer at $ t_{*c} $
+\\$ \pi_p $ : minimum reliability goal of the producer at $ t_{*p} $
+\\
+\\
+We would like to get reliability into a inequality in terms of something we have
+a distribution for so we can evaluate the conditional probability statements.
+\\
+\\
+\\$ R(t_{*c}) \leq \pi_c \Rightarrow $ average number of system failures in 80
+miles is greater than 2
+\\$ R(t_{*p}) \geq \pi_p \Rightarrow $ average number of system failures in 140
+miles is less than 2
+
+\subsubsection{Poisson Process}
+
+Reliability: $R(t) = 1 - F(t)$ \\
+Hazard or failure rate function: $\lambda(t) = \frac{f(t)}{R(t)}$ \\
+Series system reliability: $R_S(t) = \prod_{i = 1}^N R_i(t)$
+\\
+\\
+\textbf{Result:}
+$$
+\begin{aligned}
+	R_S(t) &= \prod_{i = 1}^N R_i(t) \\
+	\frac{dR_S(t)}{dt} &= \frac{d}{dt} \prod_{i = 1}^N R_i(t) \; \; \text{(derivative of both sides)} \\
+	\frac{dR_S(t)}{dt} &= \sum_{i=1}^N \left[ \frac{dR_i(t)}{dt} \frac{dR_S(t)}{dR_i(t)} \right] \; \; \text{(product rule)} \\
+    \frac{-\frac{dR_S(t)}{dt}}{R_S(t)} &= \sum_{i=1}^N \left[  \frac{-\frac{d}{dt}R_i(t)}{dR_i(t)} \right] \; \; \text{(divide both sides by $-R_S(t)$)} \\
+    \lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \; \; \text{(because $\lambda(t) = \frac{f(t)}{R(t)} = \frac{-\frac{dR(t)}{dt}}{R(t)}$ )}
+\end{aligned}
+$$
+
+\subsubsection{Non-Homogeneous Poisson Process}
+
+\textbf{Definitions:} \\
+\noindent
+Number of failures before time t: $N(t) \sim \text{Poisson}(m(t))$ \\
+Mean function: $m(t) = \int_0^t \lambda(s)ds$ (represents the expected number of failures before time t) \\
+Weibull($\gamma, \beta $) failure rate: $\lambda(t) = \gamma\beta t^{\beta - 1}$
+\\
+\\
+\textbf{Result:}\\
+If we assume a constant shape parameter $\beta$ then,\\
+$$
+\begin{aligned}
+	\lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \\
+    &= \sum_{i = 1}^N \gamma_i\beta t^{\beta - 1} \\
+    &= \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i
+\end{aligned}
+$$
+\newpage
+Then Solving for the mean function of the system,
+
+$$
+\begin{aligned}
+	m_S(t) &= \int_0^t \lambda_S(s)ds \\
+    &= \int_0^t \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i \\
+    &= \sum_{i = 1}^N \gamma_i \int_0^t \beta t^{\beta -1} \\
+    &= t^\beta \sum_{i = 1}^N \gamma_i
+\end{aligned}
+$$
+
+This gives us: $N(t) \sim \text{Poisson}(t^\beta \sum_{i = 1}^N \gamma_i)$
+
+\subsubsection{Exponential Case}
+
+If we model the reliability of all 26 components in the system as $Y_{ij} \sim$
+exponential$\;(\gamma_i) $ random variables, this leads to the system
+reliability being the minimum or $Y_{system} \sim $ exponential
+$ \;(\sum_{n = 1}^{26} \gamma_i) $
+\\
+\\
+- Looking at consumer risk first:
+\\
+want to find Prob( $ R(t_{*c}) \leq \pi_c \vert $ Test is passed)
+\\
+Let $ \sum_{n = 1}^{26} \gamma_i = \lambda_S $
+\\
+The expected number of failures for the system per mile is
+$ \mathbf{E}(Y_{system}) = \lambda_S $
+\\
+\\
+This leads to our consumer risk probability constraint as follows.  Given the
+test is passed, the consumer would like the probability of the expected number
+of failures in 80 miles being greater than 2 to be smaller than $\alpha$.
+\\
+\\
+Prob( $ \lambda_S \cdot (80) \geq 2 \; \vert $ Test is passed) $ \leq \alpha $
+\\
+\\
+Let $ W $ be the number of failures during the test and $ W \leq c \Rightarrow $
+Test is passed and $ W > c \Rightarrow $ Test is failed.
+\\
+\\
+Because failures are exponential $ W \sim Poisson(\lambda_S T) $ where $ T $ is
+the number of miles run during the test.
+\\
+\\
+$$
+\begin{aligned}
+	 P(\lambda_S \geq 2/80 \; \vert \; W \leq c) &= \int_{1/40}^{\infty} P(\lambda_S \; \vert W < c) d\lambda_S \\
+     &= \int_{1/40}^{\infty} \frac{f(W < c \; \vert \lambda_S) p(\lambda_S)}{f(W < c)}d\lambda_S\\
+     &= \int_{1/40}^{\infty} \frac{f(W < c \; \vert \lambda_S) p(\lambda_S)}{\int_{0}^{\infty} f(W < c \; \vert \lambda_S) p(\lambda_S) d\lambda_S}d\lambda_S \\
+     &= \frac{\int_{1/40}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda T)}{W!}]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S}
+\end{aligned}
+$$
+\\
+\\
+For simplicity we fix c to be zero (The number of failures needed to pass the
+test) and take N posterior draws $ \lambda_S^{(j)} $
+$$
+\begin{aligned}
+	 P(\lambda_S \geq 1/40 \; \vert \; W = 0) &= \frac{\int_{1/40}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} \\
+     &\approx \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)I(\lambda_S^{(j)} \geq \frac{1}{40})} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)}
+\end{aligned}
+$$
+\\
+\\
+Using the same technique for producer risk we get the following. The producer
+would like, given the test is failed, the probability of the expected number of
+failures in 140 miles being less than 2 to be smaller than $\beta$.
+\\
+\\
+$$
+\begin{aligned}
+	 P(\lambda_S \leq 1/70 \; \vert \; W > 0) &= \frac{\int_{0}^{1/70} [1 - exp(-\lambda_S T)]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [1 - exp(-\lambda_S T)]p(\lambda_S)d\lambda_S} \\
+     &\approx  \frac{\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T)] I(\lambda_S^{(j)} \leq \frac{1}{70})} {\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T)]}
+\end{aligned}
+$$
+\\
+\\
+By constraining these two probabilities to acceptable risk levels we can solve
+for the smallest $ T $ that satisfies both.
+\\
+\\
+Consumer Risk : $ P(\lambda_S \geq 2/80 \; \vert  W = 0) \leq \alpha $ \\
+Producer Risk : $ P(\lambda_S \leq 2/140 \; \vert  W > 0) \leq \beta $
+
+\subsubsection{Weibull Case}
+Now if we model the reliability of all 26 components in the system as
+$Y_{ij} \sim$ Weibull$\;(\gamma_i, \beta) $ random variables we are able to use
+the the non-homogeneous result from part two to build our assurance test. This
+follows the same process as the exponential test plan with all mile variables
+adjusted by the $\beta$ exponent and the N posterior draws will use both
+$\lambda_S^{(j)}$ and $\beta^{(j)}$.
+\\
+\\
+Consumer risk:
+\\
+$$
+	 P(80^\beta (\lambda_S) \geq 2 \; \vert \; W = 0) \approx \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T^{\beta^{(j)}})I(80^{\beta^{(j)}} (\lambda_S^{(j)}) \geq 2)} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T^{\beta^{(j)}})}
+$$
+\\
+\\
+Producer risk:
+\\
+$$
+	 P(140^\beta (\lambda_S) \leq 2 \; \vert \; W > 0) \approx  \frac{\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T^{\beta^{(j)}})] I(140^{\beta^{(j)}} (\lambda_S^{(j)}) \leq 2)} {\sum_{j = 1}^{N} [1 - exp(-\lambda_S^{(j)} T^{\beta^{(j)}})]}
+$$
+\\
+\\
+\textbf{Important note:} For the exponential test plan, the producer and
+consumer risks were in terms of expected number of failures in a certain number
+of miles, say $t$.  Because the exponential has a constant hazard rate this can
+be considered the expected number of failures for a given number of miles
+regardless of how many miles have been driven prior.  On the other hand the
+Weibull does not have a constant hazard rate.  For the Weibull test plan
+presented here the producer and consumer risk statements are now in terms of
+expected number of failures in the first $t$ miles driven.
+
+
+
+\subsubsection{Results}
+
+
+
+\end{document}
