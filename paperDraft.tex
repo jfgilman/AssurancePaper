@@ -123,23 +123,41 @@ The Weibull distribution is a more flexible model with both a rate parameter
 $\lambda_{ij}$ and a shape parameter $\kappa_{i}$.  The exponential is a special
 case of the Weibull, when $\kappa = 1$.
 \\
-Talk about how to index the shape parameter and what it means
+***Talk about how to index the shape parameter and what it means
 
-\subsubsection{JLTV Model Fitting}
+\subsubsection{JLTV Model Selection}
 So far we have discussed a number of different models and the assumptions that
-accompany them.  Now looking at the JLTV dataset we will run a few diagnostics to
-decide what model we will use for inference and future test planning.
-\\
-Models: \\
-Exponential and Weibull with no hierarchy \\
-Exponential and Weibull full hierarchy \\
-Exponential and Weibull full hierarchy \\
-Weibull with multipule shape vs. one shape \\
-\\
-DIC \\
-posterior predictive checks \\
-QQ Plots \\
-Shape Parameter Plot \\
+accompany them.  We will now discuss the process of model selection.  The
+decision of which model to use can have a drastic impact on reliability
+assessment and future test planning.  We will use the JLTV dataset to
+demonstrate the process.
+
+The first model selection question we will explore is the parametric form,
+exponential versus Weibull.  In statistical modeling we often face the
+trade-off between fit and interpretability, and this situation is no different.
+Because the Weibull is a more flexible model, it will always, in a sense, fit the
+data better, but this comes at a price.  The exponential's convenient form
+makes both computation and interpretation straight forward.  When the Weibull's
+shape parameter is introduced this advantage is lost.  Thus, when the overall
+fit is close to the same between the exponential and the Weibull we will
+defualt to using the exponential.
+
+The first check we used to decide between the exponential and Weibull models is
+to fit the Weibull model and look at the posterior distributions of the
+shape parameters and determine if one is a reasonable value.  Looking at the
+plot below from the JLTV data, we see that for the 26 components it appears
+that the value of one falls in the extreme tails of the distributions.  This is
+our first clue that the exponential model will not be a good fit to this data.
+
+\includegraphics[width=6cm, height=5cm]{betaPostPlot}
+
+Not suprising, the exponential model assumes constant failure rate.  shapes less
+than 1 means wears out over time.  shapes more than 1 either fail early or last
+long time.
+
+Look at the DIC values for different indexings
+
+Last check, we do post predictive checks to see if we get reasonable values.
 
 \subsubsection{JLTV Reliability Results}
 
