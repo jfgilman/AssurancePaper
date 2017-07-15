@@ -2,6 +2,9 @@
 \usepackage{amsmath}
 \usepackage{graphicx,psfrag,epsf}
 \usepackage{enumerate}
+\usepackage{caption}
+\usepackage{subcaption}
+
 
 \begin{document}
 
@@ -38,10 +41,11 @@ failure modes.
 In considering the following alternative approach we will begin by introducing a
 hierarchical model structure that can use data across all test phases and
 incorporate known similarities between vehicle failure modes.  Next, we will
-explore the distributional assumptions of the model; how we can test these
-assumptions and how misspecifications can effect our assessments of system
-reliability.  This will then lead us into the next section on how this modeling
-can be used for assurance test planning.
+look at a number different modeling and distributional assumptions.  We discuss
+different model diagnostics to consider when choosing a final model.  Then we
+illustrate how this decision can effect our assessments of system reliability.
+This will lead us into the next section on how this modeling can be used for
+assurance test planning.
 
 \subsubsection{Exponential Model}
 In Test Phase 1, we assume the vehicle miles at failure, $y$, follow an
@@ -96,21 +100,21 @@ failure rates after adjustments are made.  Therefore for the Phase 2 data we
 write the rate parameters as a function of the rate parameters found in Phase 1.
 In particular, we define $\lambda_{ij}^{P2}=(\rho_{j})\lambda_{ij}^{P1}$ where
 $\rho_{j}$ represents the between phase change in failure mode $j$. Given this
-definition of $\lambda_{ij}^{P2}$, we again model the failure miles for a given
+definition of $\lambda_{ij}^{P2}$, we again model the miles to failure for a given
 vehicle and failure mode using the exponential distribution. We assume the prior
 distribution for the $\rho_{j}$ is a gamma distribution.  If $\rho_{j}$ is less
 than one, this represents an improvement in reliability.  After Phase 2 we can
 look again at failure rates across failure modes and vehicles and obtain an
 overall estimate of the rate for the family of vehicles.  The analysis of Test
 Phase 3 follows the same pattern as that shown in Phase 2. At the end of
-Phase 3, we can look at failure rates across failure modes and vehicles and
+Phase 3, we can look at failure rates across failure m odes and vehicles and
 obtain an overall estimate of the rate for the family of vehicles.
 Future tests will be planned based on the inferences of Phase 3.
 
 \subsubsection{Weibull Model}
 The exponential model is by far the most common parametric distribution used in
 reliability modeling because of its desirable math mathematical properties and
-simple interpretations.   Dispite its common uses the assumption of a constant
+simple interpretations.   Despite its common uses the assumption of a constant
 failure rate over time is rarely justifiable.  It has been well documented
 (Statistics, Testing, and Defense Acquisition: Background Papers chapter - 2 http://www.nap.edu/catalog/9655.html)
 the issues that can arise when this assumption is violated.  We will now
@@ -120,10 +124,18 @@ distribution for each miles between failure observation.
 y_{ijk}\mid\lambda_{ij}\kappa_{i}\sim Weibull(\lambda_{ij}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
 \end{align}
 The Weibull distribution is a more flexible model with both a rate parameter
-$\lambda_{ij}$ and a shape parameter $\kappa_{i}$.  The exponential is a special
+$\lambda_{ij}$ and a shape parameter $\kappa_{j}$.  The exponential is a special
 case of the Weibull, when $\kappa = 1$.
 \\
-***Talk about how to index the shape parameter and what it means
+It should be noted that we are currently indexing both $\rho$ and $\kappa$, only
+by $j$ and not $i$, in other words we are assuming a single shape and rate
+change parameter for each failure mode across vehicles.  All of these parameters
+could also be indexed by $i$ and modeled hierarchical or with some combination
+of both.  This is something we will omit for this paper but hope to explore in
+the future.  One special case we will discuss is when a single shape parameter
+can be assumed across all failure modes.  When this is justifiable it can
+greatly simplify test planning calculations, as we will show in the assurance
+testing section.
 
 \subsubsection{JLTV Model Selection}
 So far we have discussed a number of different models and the assumptions that
@@ -137,10 +149,10 @@ exponential versus Weibull.  In statistical modeling we often face the
 trade-off between fit and interpretability, and this situation is no different.
 Because the Weibull is a more flexible model, it will always, in a sense, fit the
 data better, but this comes at a price.  The exponential's convenient form
-makes both computation and interpretation straight forward.  When the Weibull's
+makes both computation and interpretation straightforward.  When the Weibull's
 shape parameter is introduced this advantage is lost.  Thus, when the overall
 fit is close to the same between the exponential and the Weibull we will
-defualt to using the exponential.
+default to using the exponential.
 
 The first check we used to decide between the exponential and Weibull models is
 to fit the Weibull model and look at the posterior distributions of the
@@ -151,13 +163,71 @@ our first clue that the exponential model will not be a good fit to this data.
 
 \includegraphics[width=6cm, height=5cm]{betaPostPlot}
 
-Not suprising, the exponential model assumes constant failure rate.  shapes less
-than 1 means wears out over time.  shapes more than 1 either fail early or last
-long time.
+This is not a surprising result, because the exponential model assumes constant
+failure rate.  For most vehicle components we would expect the failure rate to
+increase as the distance driven grows larger, and this corresponds with a shape
+parameter between zero and one.  On the other hand, when the shape parameter is
+larger than 1, the failure rate will decrease with time/distance.
 
-Look at the DIC values for different indexings
+Now a more formal diagnostic tool used for model selection is the Deviance
+information criterion (DIC).  This is a popular method for comparing the
+goodness of fit of multiple models.  The DIC method gives a slight penalty for
+larger numbers of parameters.  The DIC value is a unitless measure with lower
+values indicating a better fit to the data.  In the table below we show the DIC
+results for the different distribution and structure combinations we considered
+with the JLTV dataset.
 
-Last check, we do post predictive checks to see if we get reasonable values.
+\begin{tabular}{|l|l|r|}
+\multicolumn{3}{c}{\textbf{Goodness of Fit}} \\
+\cline{1-3}
+Distribution    & Structure & DIC \\
+\hline
+Exponential   & Single Rate                       & 23258               \\
+              & Hierarchical Rate                 & 23022               \\
+Weibull       & Single Rate                       & 18750               \\
+              & Hierarchical Rate                 & \textbf{18556}      \\
+              & Hierarchical Rate (One shape)     & 18677               \\
+\hline
+\end{tabular}
+
+The single rate structure represents the non-hierarchical model, using one rate
+parameter all 8 vehicles for a given failure mode.  The hierarchical rate
+structure uses the common gamma distribution for the failure modes that are
+common across vehicles.  The final entry in the table is the model that uses one
+shape parameter across all 26 failure modes.
+
+While we have shown that the hierarchical Weibull model fits much better than
+the exponential, these test still do not tell us that this model is a good fit
+for the data.  The last method we will present is called posterior predictive
+checking ***reference***.  Here we are given important features of the data.
+In the JLTV case we were interested in the total failure counts for each phase
+and the number of time the miles between failures was less than 140.  We then
+used the final model to simulate 5,000 new datasets.  We then plot histograms
+for each of the 8 vehicles for all 3 phases.  In Figure 1 are examples of the
+histograms produced, with the line showing where the value of the true dataset
+fell.  For this method we don’t expect all of the true values to fall in the
+center of the distribution.  Values in the tales are to be expected in a random
+processes like this one.  We will only be concerned if we find true values
+falling in the extreme tails or if we see a common bias to the high or low side
+of the distributions.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{Rplot1}
+  \caption{Plot 1}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{Rplot2}
+  \caption{Plot 2}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Posterior Predictive Plots}
+\label{fig:test}
+\end{figure}
 
 \subsubsection{JLTV Reliability Results}
 
@@ -171,7 +241,7 @@ consumer and producer risk
 \subsubsection{Traditional Approach}
 no producer risk
 
-\subsubsection{Bayes Risk}
+\subsubsection{Bayesian Approach}
 
 R(t) = reliability at time t (miles in our case)
 \\

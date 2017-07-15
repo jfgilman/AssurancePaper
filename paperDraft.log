@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  12 JUL 2017 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 JUL 2017 13:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -120,33 +120,51 @@ This is `epsf.tex' v2.7.4 <14 February 2011>
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/enumerate.sty
 Package: enumerate 2014/10/28 v3.00 enumerate extensions (DPC)
 \@enLab=\toks20
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen122
+\captionmargin@=\dimen123
+\captionwidth=\dimen124
+\caption@tempdima=\dimen125
+\caption@indent=\dimen126
+\caption@parindent=\dimen127
+\caption@hangindent=\dimen128
+)
+\c@ContinuedFloat=\count102
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count103
+\c@subtable=\count104
 ) (./paperDraft.aux)
 \openout1 = `paperDraft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
  (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count102
-\scratchdimen=\dimen122
+\scratchcounter=\count105
+\scratchdimen=\dimen129
 \scratchbox=\box28
-\nofMPsegments=\count103
-\nofMParguments=\count104
+\nofMPsegments=\count106
+\nofMParguments=\count107
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count105
-\MPscratchDim=\dimen123
-\MPnumerator=\count106
-\makeMPintoPDFobject=\count107
+\MPscratchCnt=\count108
+\MPscratchDim=\dimen130
+\MPnumerator=\count109
+\makeMPintoPDFobject=\count110
 \everyMPtoPDFconversion=\toks22
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
@@ -184,191 +202,204 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 
-LaTeX Warning: Citation `ref1' on page 1 undefined on input line 33.
+
+LaTeX Warning: Citation `ref1' on page 1 undefined on input line 36.
 
 [1
 Non-PDF special ignored!
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `EH06' on page 2 undefined on input line 82.
+LaTeX Warning: Citation `EH06' on page 2 undefined on input line 86.
 
 [2]
-Overfull \hbox (13.73886pt too wide) in paragraph at lines 91--109
+Overfull \hbox (13.73886pt too wide) in paragraph at lines 95--113
 []\OT1/cmr/m/n/12 One nor-mal as-sump-tion used in re-li-a-bil-ity growth mod-el-ing is non-decreasing
  []
 
 [3] <betaPostPlot.png, id=22, 745.78625pt x 805.0075pt>
 File: betaPostPlot.png Graphic file (type png)
  <use betaPostPlot.png>
-Package pdftex.def Info: betaPostPlot.png used on input line 152.
+Package pdftex.def Info: betaPostPlot.png used on input line 164.
 (pdftex.def)             Requested size: 170.70789pt x 142.25417pt.
+ [4]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+ [5 <./betaPostPlot.png>] <Rplot1.png, id=31, 446.66875pt x 803.0pt>
+File: Rplot1.png Graphic file (type png)
+ <use Rplot1.png>
+Package pdftex.def Info: Rplot1.png used on input line 218.
+(pdftex.def)             Requested size: 77.99881pt x 140.22078pt.
+ <Rplot2.png, id=32, 446.66875pt x 803.0pt>
+File: Rplot2.png Graphic file (type png)
+ <use Rplot2.png>
+Package pdftex.def Info: Rplot2.png used on input line 224.
+(pdftex.def)             Requested size: 77.99881pt x 140.22078pt.
 
-Overfull \hbox (2.65935pt too wide) in paragraph at lines 154--157
-[]\OT1/cmr/m/n/12 Not supris-ing, the ex-po-nen-tial model as-sumes con-stant fail-ure rate. shapes
+Underfull \hbox (badness 10000) in paragraph at lines 246--252
+
  []
 
-[4 <./betaPostPlot.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 176--182
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--252
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--182
+Underfull \hbox (badness 10000) in paragraph at lines 246--252
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 176--182
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 183.
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+[6 <./Rplot1.png> <./Rplot2.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 253.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 183.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 253.
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--199
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--199
+Underfull \hbox (badness 10000) in paragraph at lines 256--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--199
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 202--208
+Underfull \hbox (badness 10000) in paragraph at lines 256--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--229
+Underfull \hbox (badness 10000) in paragraph at lines 256--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--229
+Underfull \hbox (badness 10000) in paragraph at lines 272--278
 
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 290--299
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--284
+Underfull \hbox (badness 10000) in paragraph at lines 290--299
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 291--296
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--309
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--309
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--309
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--323
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--323
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--335
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 325--335
+Underfull \hbox (badness 10000) in paragraph at lines 322--354
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 337--342
+Underfull \hbox (badness 10000) in paragraph at lines 361--366
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--342
+Underfull \hbox (badness 10000) in paragraph at lines 371--379
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--355
+Underfull \hbox (badness 10000) in paragraph at lines 371--379
 
  []
 
-[10] (./paperDraft.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 371--379
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 384--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 384--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 395--405
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 395--405
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 407--412
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--412
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 414--425
+
+ []
+
+[11] (./paperDraft.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2271 strings out of 493089
- 30806 string characters out of 6134842
- 97466 words of memory out of 5000000
- 5730 multiletter control sequences out of 15000+600000
+ 3384 strings out of 493089
+ 50837 string characters out of 6134842
+ 118031 words of memory out of 5000000
+ 6833 multiletter control sequences out of 15000+600000
  10371 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,12n,23p,254b,144s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,38p,254b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 12.pfb>
-Output written on paperDraft.pdf (10 pages, 262901 bytes).
+Output written on paperDraft.pdf (11 pages, 300886 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 99 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

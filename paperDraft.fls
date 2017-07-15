@@ -42,6 +42,12 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/epsf/epsf.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/epsf/epsf.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/enumerate.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/enumerate.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
 INPUT paperDraft.aux
 INPUT paperDraft.aux
 OUTPUT paperDraft.aux
@@ -91,6 +97,12 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
 INPUT betaPostPlot.png
 INPUT ./betaPostPlot.png
 INPUT ./betaPostPlot.png
+INPUT Rplot1.png
+INPUT ./Rplot1.png
+INPUT ./Rplot1.png
+INPUT Rplot2.png
+INPUT ./Rplot2.png
+INPUT ./Rplot2.png
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
