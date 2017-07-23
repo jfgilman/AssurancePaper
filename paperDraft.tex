@@ -51,9 +51,10 @@ assurance test planning.
 In Test Phase 1, we assume the vehicle miles at failure, $y$, follow an
 exponential distribution with a failure rate parameter $\lambda_{ij}$.
 Introducing notation,
-\begin{align}
-y_{ijk}\mid\lambda_{ij}\sim Exp(\lambda_{ij}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
-\end{align}
+\begin{equation}
+f(y_{ijk}|\lambda_{ij})=\lambda_{ij} \exp(-\lambda_{ij}
+y_{ijk}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
+\end{equation}
 where $y_{ijk}$ are the miles between failure for vehicle $i$ failure mode $j$,
 $v$ is the number of vehicles, $s$ is the number of failure modes, and $n_{ij}$
 are the number of failures of vehicle $i$ failure mode $j$. The number of
@@ -116,18 +117,22 @@ The exponential model is by far the most common parametric distribution used in
 reliability modeling because of its desirable math mathematical properties and
 simple interpretations.   Despite its common uses the assumption of a constant
 failure rate over time is rarely justifiable.  It has been well documented
-(Statistics, Testing, and Defense Acquisition: Background Papers chapter - 2 http://www.nap.edu/catalog/9655.html)
-the issues that can arise when this assumption is violated.  We will now
-consider the same hierarchical model structure while using the Weibull
-distribution for each miles between failure observation.
-\begin{align}
-y_{ijk}\mid\lambda_{ij}\kappa_{i}\sim Weibull(\lambda_{ij}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
-\end{align}
+(Statistics, Testing, and Defense Acquisition: Background Papers chapter - 2
+http://www.nap.edu/catalog/9655.html) the issues that can arise when this
+assumption is violated.  We will now consider the same hierarchical model
+structure while using the Weibull distribution.  Now we assume that the failure
+times $y_{ijk}$ each follow a $Weibull(\lambda, \gamma)$ distribution with scale
+parameter $\lambda$ and shape parameter $\gamma$, with probability density
+function
+\begin{equation}
+f(y_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i} y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij}
+y_{ijk}^{\gamma_{i}}), \quad i = 1,2,..,v \quad j=1,2,..,s \quad k=1,2,..,n_{ij}
+\end{equation}
 The Weibull distribution is a more flexible model with both a rate parameter
-$\lambda_{ij}$ and a shape parameter $\kappa_{j}$.  The exponential is a special
-case of the Weibull, when $\kappa = 1$.
+$\lambda_{ij}$ and a shape parameter $\gamma_{j}$.  The exponential is a special
+case of the Weibull, when $\gamma = 1$.
 \\
-It should be noted that we are currently indexing both $\rho$ and $\kappa$, only
+It should be noted that we are currently indexing both $\rho$ and $\gamma$, only
 by $j$ and not $i$, in other words we are assuming a single shape and rate
 change parameter for each failure mode across vehicles.  All of these parameters
 could also be indexed by $i$ and modeled hierarchical or with some combination
@@ -235,18 +240,42 @@ Results plots \\
 Exponential vs. Weibull interpretation
 
 \subsection{Assurance Test Planning}
-For all statisticical test planning we are interested in minimizing error rates
-while using the resoruces avalible as efficently as possible.  In the DoD
-acquisition process the error rates will be refrenced in terms of risk.
-Consumer risk being the probability of a unacceptable product passing a given
-test.  Producer risk being the probability of an acceptable product failing a
-given test.
+In this section inferences learned from the first three phases of testing will
+be used to develop a test plan for the next phase.  Here the objective is to
+demonstrate that at a desired level of confidence, the system will meet or
+exceed a specified requirement. The methods to be employed will be similar to
+the assurance testing as discussed by Hamada et al. ~\cite{ref2}. Bayesian
+assurance tests are used to insure that the reliability of an item meets or
+exceeds a specified requirement with a desired probability. Although
+practitioners often use ``assure'' and ``demonstrate'' synonymously, Meeker and
+Escobar ~\cite{ME04} distinguish between reliability demonstration and
+reliability assurance testing. A \emph{reliability demonstration test} is
+essentially a classical hypothesis test, which uses only the data from the test
+to assess whether the reliability-related quantity of interest meets or exceeds
+the requirement. A \emph{reliability assurance test}, however, uses
+supplementary data and information in order to testing as efficient as possible.
 
-\subsubsection{Traditional Approach}
+In both classical and Bayesian test planning scenario we are interested in
+controlling error rates while minimizing the resources required for testing.  In
+the DoD acquisition process the error rates will be referenced in terms of risk.
+\textit{Consumer risk} which considers the event of purchasing a product that
+does not meet reliability requirements.  \textit{Producer risk} which considers
+the event of a product with acceptable reliability failing a given test and not
+being considered for purchase.  Introducing the notation for this section, In
+the JLTV case study we will be determining how many miles on test $t_0$, are
+required and how many system failures to allow $c$, before the product is
+considered unacceptable.  We will let $\pi$ represent  the system reliability at
+a given time. It is common to base both classical and Bayesian test plans on two
+specified levels of $\pi$: $\pi_0$, an \emph{acceptable reliability level}
+(ARL), and $\pi_1$, a \emph{rejectable reliability level} (RRL), where $\pi_1
+\leq  \pi_0$.  Although the precise definition of ARL and RRL differ between the
+classical and Bayesian test criteria, we use them in an equivalent way.
+
+\subsubsection{Reliability Demonstration Test}
 Traditional methods do not use any past data for determining the testing
 proceedure.  The only rely on distributional assumptions and asymptoic results.
 
-\subsubsection{Bayesian Approach}
+\subsubsection{Reliability Assurance Test}
 
 With Bayesian statistical approach we can incorperate the supplementary data
 from previous testing phases with the hopes of minimizing the resorces needed
@@ -436,6 +465,16 @@ expected number of failures in the first $t$ miles driven.
 
 \subsubsection{Results}
 
-
+%%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of system reliability availability maintainability - A primer; Third Edition (1982).
+\bibitem{ref2} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz. Bayesian Reliability. Springer (2008).
+\bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\ Escobar. Reliability: the other dimension of quailty. \textit{Quality Technology and Quantitative Management} 1, 1-25 (2004).
+\bibitem{HWWGM13} M.\ S.\ Hamada, A.\ G.\ Wilson, B.\ P.\ Weaver, R.\ W.\ Griffiths and H.\ F.\ Martz. Bayesian binomial assurance tests for system reliability using component data. \textit{Journal of Quality Technology} 46, 24-32 (2014).
+\bibitem{JGHR03} V.\ E.\ Johnson, T.\ L.\ Graves, M.\ S.\ Hamada, and C.\ S.\ Reese. A hierarchical model for estimating the reliability of complex systems. In Bayesian Statistics, Vol. 7,\ J.\ M.\ Bernardo, M.\ J.\ Bayerri, J.\ O.\ Berger, A.\ P.\ Dawid, D.\ Heckerman, A.\ F.\ M.\ Smith, and M.\ West eds., Oxford, UK: Oxford University Press (2003).
+\bibitem{HMRGJW04} M.\ S.\ Hamada, H.\ F.\ Martz, C.\ S.\ Reese, T.\ L.\ Graves, V.\ E.\ Johnson, and A.\ G.\ Wilson. A fully Bayesian approach
+for combining multilevel failure information in fault tree quantification and optimal follow-on resource allocation. \textit{Reliability Engineering and System Safety} 86, 397-405 (2004).
+\bibitem{EH06} P.\ M.\ Ellner and J.\ B.\ Hall, An approach to reliability growth planning based on failure mode discovery and correction using AMSAA projection methodology. \textit{IEEE Proceedings of the Annual Reliability and Maintainability Symposium} (2006).
+\end{thebibliography}
 
 \end{document}

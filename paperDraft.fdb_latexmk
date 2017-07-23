@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1500141272 "paperDraft.tex" "paperDraft.pdf" "paperDraft" 1500141350
+["pdflatex"] 1500820694 "paperDraft.tex" "paperDraft.pdf" "paperDraft" 1500820695
   "./Rplot1.png" 1500140050 28777 f9dcdf6fbcdc5e1f2fd9dfc6b207e64f ""
   "./Rplot2.png" 1500140088 28431 f511296ad07a6bfc1837a4f907d7908f ""
   "./betaPostPlot.png" 1485300711 90924 b30654162e3282c98a760ba4c75785f9 ""
@@ -76,9 +76,9 @@
   "Rplot1.png" 1500140050 28777 f9dcdf6fbcdc5e1f2fd9dfc6b207e64f ""
   "Rplot2.png" 1500140088 28431 f511296ad07a6bfc1837a4f907d7908f ""
   "betaPostPlot.png" 1485300711 90924 b30654162e3282c98a760ba4c75785f9 ""
-  "paperDraft.aux" 1500141272 1829 32fc0bf2a4c07a10da59249f333732c6 ""
-  "paperDraft.tex" 1500141271 20462 e5e4b1b3891ee331f749a76f9446841f ""
+  "paperDraft.aux" 1500820695 2016 2645c95d02aeef763b14dc8d317622a3 ""
+  "paperDraft.tex" 1500820694 24963 72690a5ad9c0c17807a46a135221d77d ""
   (generated)
-  "paperDraft.aux"
-  "paperDraft.pdf"
   "paperDraft.log"
+  "paperDraft.pdf"
+  "paperDraft.aux"

@@ -1,12 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2017.6.29)  21 JUL 2017 09:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 JUL 2017 10:38
 entering extended mode
-**./paperDraft.tex
-(paperDraft.tex
-LaTeX2e <2015/10/01> patch level 2
-Babel <3.9n> and hyphenation patterns for 69 languages loaded.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**paperDraft.tex
+(./paperDraft.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -20,25 +23,21 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks14
 \ex@=\dimen103
-))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+)) (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count87
@@ -78,46 +77,36 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \mathdisplay@stack=\toks18
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 94.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count99
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
-)
-(C:\Users\mjahja\AppData\Roaming\MiKTeX\2.9\tex\latex\psfrag\psfrag.sty
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/psfrag/psfrag.sty
 Package: psfrag 1998/04/11 v3.04 PSfrag (MCG)
 \pfg@pcount=\count100
 \pfg@scount=\count101
 \pfg@temp=\write3
-)
-(C:\Users\mjahja\AppData\Roaming\MiKTeX\2.9\tex\latex\epsf\epsf.sty
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/epsf/epsf.sty
 This is `epsf.tex' v2.7.4 <14 February 2011>
 \epsffilein=\read1
 \epsfframemargin=\dimen114
@@ -128,16 +117,14 @@ This is `epsf.tex' v2.7.4 <14 February 2011>
 \epsfxsize=\dimen119
 \epsfysize=\dimen120
 \pspoints=\dimen121
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
-Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2014/10/28 v3.00 enumerate extensions (DPC)
 \@enLab=\toks20
-)
-(C:\Users\mjahja\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
-Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
-
-(C:\Users\mjahja\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
-Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 67.
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
 \captionmargin=\dimen122
 \captionmargin@=\dimen123
 \captionwidth=\dimen124
@@ -147,13 +134,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@hangindent=\dimen128
 )
 \c@ContinuedFloat=\count102
-)
-(C:\Users\mjahja\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\subcaption.sty
-Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 \c@subfigure=\count103
 \c@subtable=\count104
-)
-(paperDraft.aux)
+) (./paperDraft.aux)
 \openout1 = `paperDraft.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -168,8 +153,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
-
-(C:\Users\mjahja\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+ (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count105
 \scratchdimen=\dimen129
@@ -182,219 +166,233 @@ LaTeX Font Info:    ... okay on input line 9.
 \MPnumerator=\count109
 \makeMPintoPDFobject=\count110
 \everyMPtoPDFconversion=\toks22
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+)) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-
-LaTeX Warning: Citation `ref1' on page 1 undefined on input line 36.
-
-[1
+ [1
 Non-PDF special ignored!
 
-{C:/Users/mjahja/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Citation `EH06' on page 2 undefined on input line 86.
-
-[2]
-Overfull \hbox (13.73886pt too wide) in paragraph at lines 95--113
-[]\OT1/cmr/m/n/12 One nor-mal as-sump-tion used in re-li-a-bil-ity growth mod-e
-l-ing is non-decreasing
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (13.73886pt too wide) in paragraph at lines 96--114
+[]\OT1/cmr/m/n/12 One nor-mal as-sump-tion used in re-li-a-bil-ity growth mod-el-ing is non-decreasing
  []
 
-[3] <betaPostPlot.png, id=21, 745.78625pt x 805.0075pt>
+
+Overfull \hbox (42.99559pt too wide) detected at line 130
+\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^U[]; ^^M[]\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 ^^U[]^^M[]y[] []\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^@\OML/cmm/m/it/12 ^^U[]y[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ;  i \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; ::; v j \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; ::; s k \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; ::; n[]
+ []
+
+[3] <betaPostPlot.png, id=24, 745.78625pt x 805.0075pt>
 File: betaPostPlot.png Graphic file (type png)
  <use betaPostPlot.png>
-Package pdftex.def Info: betaPostPlot.png used on input line 164.
+Package pdftex.def Info: betaPostPlot.png used on input line 169.
 (pdftex.def)             Requested size: 170.70789pt x 142.25417pt.
-
-[4]
+ [4]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- [5 <./betaPostPlot.png>] <Rplot1.png, id=30, 446.66875pt x 803.0pt>
+ [5 <./betaPostPlot.png>] <Rplot1.png, id=33, 446.66875pt x 803.0pt>
 File: Rplot1.png Graphic file (type png)
-
-<use Rplot1.png>
-Package pdftex.def Info: Rplot1.png used on input line 218.
+ <use Rplot1.png>
+Package pdftex.def Info: Rplot1.png used on input line 223.
 (pdftex.def)             Requested size: 77.99881pt x 140.22078pt.
- <Rplot2.png, id=31, 446.66875pt x 803.0pt>
+ <Rplot2.png, id=34, 446.66875pt x 803.0pt>
 File: Rplot2.png Graphic file (type png)
  <use Rplot2.png>
-Package pdftex.def Info: Rplot2.png used on input line 224.
+Package pdftex.def Info: Rplot2.png used on input line 229.
 (pdftex.def)             Requested size: 77.99881pt x 140.22078pt.
-
-[6 <./Rplot1.png> <./Rplot2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 255--261
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 255--261
+ [6 <./Rplot1.png> <./Rplot2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 284--290
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--261
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 262.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 262.
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--278
+Underfull \hbox (badness 10000) in paragraph at lines 284--290
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--278
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 265--278
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 281--287
+Underfull \hbox (badness 10000) in paragraph at lines 284--290
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 299--308
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 291.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 291.
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--307
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--308
-
- []
-
-[8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 294--307
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 294--307
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 310--316
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 328--337
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 328--337
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--363
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--392
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 370--375
+Underfull \hbox (badness 10000) in paragraph at lines 399--404
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--388
+Underfull \hbox (badness 10000) in paragraph at lines 409--417
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--388
+Underfull \hbox (badness 10000) in paragraph at lines 409--417
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--388
+Underfull \hbox (badness 10000) in paragraph at lines 409--417
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--402
+Underfull \hbox (badness 10000) in paragraph at lines 422--431
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--402
+Underfull \hbox (badness 10000) in paragraph at lines 422--431
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 404--414
+Underfull \hbox (badness 10000) in paragraph at lines 433--443
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 404--414
+Underfull \hbox (badness 10000) in paragraph at lines 433--443
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 416--421
+Underfull \hbox (badness 10000) in paragraph at lines 445--450
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 416--421
+Underfull \hbox (badness 10000) in paragraph at lines 445--450
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 423--434
+Underfull \hbox (badness 10000) in paragraph at lines 452--463
 
  []
 
-[12] (paperDraft.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[12] [13] (./paperDraft.aux) ) 
 Here is how much of TeX's memory you used:
- 3051 strings out of 493634
- 44714 string characters out of 3141311
- 113796 words of memory out of 3000000
- 6432 multiletter control sequences out of 15000+200000
- 10371 words of font info for 37 fonts, out of 3000000 for 9000
- 1025 hyphenation exceptions out of 8191
- 36i,12n,39p,257b,441s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/
-Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paperDraft.pdf (12 pages, 314297 bytes).
+ 3389 strings out of 493089
+ 50876 string characters out of 6134842
+ 118052 words of memory out of 5000000
+ 6838 multiletter control sequences out of 15000+600000
+ 10371 words of font info for 37 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 38i,12n,38p,379b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti12.pfb>
+Output written on paperDraft.pdf (13 pages, 312528 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
+ 106 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
