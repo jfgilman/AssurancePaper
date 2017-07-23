@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb, fullpage}
+\usepackage{array}
 \usepackage{graphicx,psfrag,epsf}
 \usepackage{enumerate}
 \usepackage{caption}
@@ -258,53 +259,148 @@ supplementary data and information in order to testing as efficient as possible.
 In both classical and Bayesian test planning scenario we are interested in
 controlling error rates while minimizing the resources required for testing.  In
 the DoD acquisition process the error rates will be referenced in terms of risk.
-\textit{Consumer risk} which considers the event of purchasing a product that
-does not meet reliability requirements.  \textit{Producer risk} which considers
-the event of a product with acceptable reliability failing a given test and not
+\emph{Consumer risk} which considers the event of purchasing a product that does
+not meet reliability requirements.  \emph{Producer risk} which considers the
+event of a product with acceptable reliability failing a given test and not
 being considered for purchase.  Introducing the notation for this section, In
-the JLTV case study we will be determining how many miles on test $t_0$, are
+the JLTV case study we will be determining how many miles on test $T$, are
 required and how many system failures to allow $c$, before the product is
-considered unacceptable.  We will let $\pi$ represent  the system reliability at
+considered unacceptable.  We will define $W(t)$ as a random variable that
+represents the total number of system failures after $t$ miles.  Suppose that
+$\pi$ denotes some quantity of interest that is related to system reliability at
 a given time. It is common to base both classical and Bayesian test plans on two
 specified levels of $\pi$: $\pi_0$, an \emph{acceptable reliability level}
 (ARL), and $\pi_1$, a \emph{rejectable reliability level} (RRL), where $\pi_1
-\leq  \pi_0$.  Although the precise definition of ARL and RRL differ between the
+\leq  \pi_0$. Although the precise definition of ARL and RRL differ between the
 classical and Bayesian test criteria, we use them in an equivalent way.
 
-\subsubsection{Reliability Demonstration Test}
-Traditional methods do not use any past data for determining the testing
-proceedure.  The only rely on distributional assumptions and asymptoic results.
+\subsubsection{Classical Approach}
+It is quite common to use two criteria in determining classical test plans. The
+\emph{producer's risk} is the probability of failing the test when $\pi =
+\pi_0$, whereas the \emph{consumer's risk} is the probability of passing the
+test when $\pi = \pi_1$.  Suppose that we specify a maximum value, $\alpha$, of
+the producer's risk and a maximum value, $\beta$, of the consumer's risk. For
+test planning, these criteria become
+$$
+\begin{aligned}
+	\text{Producer's Risk} &= P \text{(Test Is Failed } \vert \pi_0 \text{)} \\
+    &= P \text{(} W(t) > c \vert \pi_0 \text{)} \leq \alpha
+\end{aligned}
+$$
+and
+$$
+\begin{aligned}
+	\text{Consumer's Risk} &= P \text{(Test Is Passed } \vert \pi_1 \text{)} \\
+    &= P \text{(} W(t) \leq c \vert \pi_1 \text{)} \leq \beta
+\end{aligned}
+$$
+To choose a test plan for specified values of $(\alpha, \pi_0, \beta, \pi_1)$,
+we assume a distributional form that defines the relationship between the number
+of system failyres $W(t)$ and the reliability $\pi$.  Then we can simply find
+the combinations of these probabilities by simultaneously solving these two
+equations.  In the case where the component failure times are assumed to be
+exponentially distributed with rate parameter $\lambda_i$ the failure counts for
+each component come from a homogeneous Poisson process $W_i(t) \sim
+\text{Poisson}(\lambda_i t)$, and the system failure counts $W(t) \sim
+\text{Poisson}(\lambda_S t)$  Numerous textbooks provide additional details of
+this purely classical approach.
 
-\subsubsection{Reliability Assurance Test}
+\subsubsection{Bayesian Approach}
+Traditional methods for determining the testing proceedure only rely on
+distributional assumptions and/or asymptoic results. With the Bayesian approach
+we incorperate the supplementary data from the previous testing phases with the
+hopes of minimizing the resorces needed for testing.
 
-With Bayesian statistical approach we can incorperate the supplementary data
-from previous testing phases with the hopes of minimizing the resorces needed
-for testing.
 
-R(t) = reliability at time t (miles in our case)
-\\
-\\$ t_{*c} $ : time of interest to consumer
-\\$ t_{*p} $ : time of interest to producer
-\\
-\\
-\begin{itemize}
-\item Consumer Risk :   Prob( $ R(t_{*c}) \leq \pi_c \vert $ Test is passed)
-\item Producer Risk :   Prob( $ R(t_{*p}) \geq \pi_p \vert $ Test is failed)
-\end{itemize}
-\
-\\$ \pi_c $ : minimum reliability acceptable to the consumer at $ t_{*c} $
-\\$ \pi_p $ : minimum reliability goal of the producer at $ t_{*p} $
-\\
-\\
-We would like to get reliability into a inequality in terms of something we have
-a distribution for so we can evaluate the conditional probability statements.
-\\
-\\
-\\$ R(t_{*c}) \leq \pi_c \Rightarrow $ average number of system failures in 80
-miles is greater than 2
-\\$ R(t_{*p}) \geq \pi_p \Rightarrow $ average number of system failures in 140
-miles is less than 2
+We now consider fully Bayesian posterior risks that convey a completely
+different outlook from the corresponding classical risks. While the classical
+provide assurance that satisfactory devices will pass the test and that
+unsatisfactory devices will fail it, posterior risks provide precisely the
+assurance that practitioners often desire: if the test is passed, then the
+consumer desires a maximum probability $\beta$ that $\pi \leq \pi_1$. On the
+other hand, if the test is failed, then the producer desires a maximum
+probability $\alpha$ that $\pi \geq \pi_0$. Unlike the average risks, these
+posterior risks are fully Bayesian in the sense that they are subjective
+probability statements about $\pi$.
 
+For a test that fails, the \emph{posterior producer's risk} is the probability
+that $\pi \geq \pi_{0}$, or $P \text{(}\pi \ge \pi_0 \vert \text{Test Is
+Failed)}$. Notice that this is simply the posterior probability that $\pi \ge
+\pi_0$ given that we have observed more than $c$ failures. In the exponential
+case, if we let $\pi$ be the system failure rate $\lambda_S$, then using Bayes'
+Theorem, and assuming a maximum allowable posterior producer's risk $\alpha$, an
+expression for the posterior producer's risk for the exponential test plan
+$(T,c)$ is
+$$
+\begin{aligned}
+    P(\lambda_S \geq \lambda_0 \; \vert \; \text{Test Is Failed)} &= P(\lambda_S \geq \lambda_0 \; \vert \; W > c) \\
+	&= \int_{\lambda_0}^{\infty} p(\lambda_S \; \vert W > c) d\lambda_S \\
+    &= \int_{\lambda_0}^{\infty} \frac{f(W > c \vert \lambda_S)}{\int_{0}{\infty} f(W > c \vert \lambda_S) d\lambda_S} d\lambda_S \\
+    &= \frac{\int_{\lambda_0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S} \leq \alpha
+\end{aligned}
+$$
+\\
+\\
+For simplicity we if fix c to be zero and then perform Monte Carlo integration using N posterior draws $ \lambda_S^{(j)} $
+$$
+\begin{aligned}
+	 P(\lambda_S \geq \lambda_0 \; \vert \; W = 0) &= \frac{\int_{\lambda_0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} \\
+     &\approx \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)I(\lambda_S^{(j)} \geq \lambda_0)} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)}
+\end{aligned}
+$$
+
+Similarly, given that the test is passed, the \emph{posterior
+consumer's risk} is the
+probability that $\pi \leq \pi_1$, or $P \text{(}\pi \leq \pi_0 \vert \text{Test Is
+Passed)}$. Notice that this is simply the
+posterior probability that $\pi \leq \pi_1$ given that we have
+observed no more than $c$ failures. In the exponential
+case, if we let $\pi$ be the system failure rate $\lambda_S$, then using Bayes'
+Theorem, and assuming a maximum allowable posterior consumer's risk $\beta$, an
+expression for the posterior producer's risk for the exponential test plan
+$(T,c)$ is
+
+$$
+\begin{aligned}
+    P(\lambda_S \leq \lambda_1 \; \vert \; \text{Test Is Passed)} &= P(\lambda_S \leq \lambda_1 \; \vert \; W \leq c) \\
+	&= \int_{0}^{\lambda_1} p(\lambda_S \; \vert W > c) d\lambda_S \\
+    &= \int_{0}^{\lambda_1} \frac{f(W > c \vert \lambda_S)}{\int_{0}{\infty} f(W > c \vert \lambda_S) d\lambda_S} d\lambda_S \\
+    &= \frac{\int_{0}^{\lambda_1} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S} \leq \beta
+\end{aligned}
+$$
+\\
+\\
+For simplicity we if fix c to be zero and then perform Monte Carlo integration using N posterior draws $ \lambda_S^{(j)} $
+$$
+\begin{aligned}
+	 P(\lambda_S \leq \lambda_1 \; \vert \; W = 0) &= \frac{\int_{0}^{\lambda_1} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} \\
+     &\approx \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)I(\lambda_S^{(j)} \leq \lambda_1)} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)}
+\end{aligned}
+$$
+
+\subsubsection{Weibull Case}
+
+In the exponential case we defined our quantity of interest that is related to system reliability at
+a given time $\pi$ to be equal to the system failure rate $\lambda_S$.  This gave us a convenient distributional form
+for our system failure counts with $W(t) \sim \text{Poisson}(\lambda_S t)$
+
+\subsubsection{Results}
+
+%%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of system reliability availability maintainability - A primer; Third Edition (1982).
+\bibitem{ref2} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz. Bayesian Reliability. Springer (2008).
+\bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\ Escobar. Reliability: the other dimension of quailty. \textit{Quality Technology and Quantitative Management} 1, 1-25 (2004).
+\bibitem{HWWGM13} M.\ S.\ Hamada, A.\ G.\ Wilson, B.\ P.\ Weaver, R.\ W.\ Griffiths and H.\ F.\ Martz. Bayesian binomial assurance tests for system reliability using component data. \textit{Journal of Quality Technology} 46, 24-32 (2014).
+\bibitem{JGHR03} V.\ E.\ Johnson, T.\ L.\ Graves, M.\ S.\ Hamada, and C.\ S.\ Reese. A hierarchical model for estimating the reliability of complex systems. In Bayesian Statistics, Vol. 7,\ J.\ M.\ Bernardo, M.\ J.\ Bayerri, J.\ O.\ Berger, A.\ P.\ Dawid, D.\ Heckerman, A.\ F.\ M.\ Smith, and M.\ West eds., Oxford, UK: Oxford University Press (2003).
+\bibitem{HMRGJW04} M.\ S.\ Hamada, H.\ F.\ Martz, C.\ S.\ Reese, T.\ L.\ Graves, V.\ E.\ Johnson, and A.\ G.\ Wilson. A fully Bayesian approach
+for combining multilevel failure information in fault tree quantification and optimal follow-on resource allocation. \textit{Reliability Engineering and System Safety} 86, 397-405 (2004).
+\bibitem{EH06} P.\ M.\ Ellner and J.\ B.\ Hall, An approach to reliability growth planning based on failure mode discovery and correction using AMSAA projection methodology. \textit{IEEE Proceedings of the Annual Reliability and Maintainability Symposium} (2006).
+\end{thebibliography}
+
+\newpage
+
+\subsection{Additional Material}
 \subsubsection{Poisson Process}
 
 Reliability: $R(t) = 1 - F(t)$ \\
@@ -341,7 +437,7 @@ $$
     &= \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i
 \end{aligned}
 $$
-\newpage
+
 Then Solving for the mean function of the system,
 
 $$
@@ -356,6 +452,30 @@ $$
 This gives us: $N(t) \sim \text{Poisson}(t^\beta \sum_{i = 1}^N \gamma_i)$
 
 \subsubsection{Exponential Case}
+
+R(t) = reliability at time t (miles in our case)
+\\
+\\$ t_{*c} $ : time of interest to consumer
+\\$ t_{*p} $ : time of interest to producer
+\\
+\\
+\begin{itemize}
+\item Consumer Risk :   Prob( $ R(t_{*c}) \leq \pi_c \vert $ Test is passed)
+\item Producer Risk :   Prob( $ R(t_{*p}) \geq \pi_p \vert $ Test is failed)
+\end{itemize}
+\
+\\$ \pi_c $ : minimum reliability acceptable to the consumer at $ t_{*c} $
+\\$ \pi_p $ : minimum reliability goal of the producer at $ t_{*p} $
+\\
+\\
+We would like to get reliability into a inequality in terms of something we have
+a distribution for so we can evaluate the conditional probability statements.
+\\
+\\
+\\$ R(t_{*c}) \leq \pi_c \Rightarrow $ average number of system failures in 80
+miles is greater than 2
+\\$ R(t_{*p}) \geq \pi_p \Rightarrow $ average number of system failures in 140
+miles is less than 2
 
 If we model the reliability of all 26 components in the system as $Y_{ij} \sim$
 exponential$\;(\gamma_i) $ random variables, this leads to the system
@@ -460,21 +580,5 @@ regardless of how many miles have been driven prior.  On the other hand the
 Weibull does not have a constant hazard rate.  For the Weibull test plan
 presented here the producer and consumer risk statements are now in terms of
 expected number of failures in the first $t$ miles driven.
-
-
-
-\subsubsection{Results}
-
-%%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{thebibliography}{99}
-\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of system reliability availability maintainability - A primer; Third Edition (1982).
-\bibitem{ref2} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz. Bayesian Reliability. Springer (2008).
-\bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\ Escobar. Reliability: the other dimension of quailty. \textit{Quality Technology and Quantitative Management} 1, 1-25 (2004).
-\bibitem{HWWGM13} M.\ S.\ Hamada, A.\ G.\ Wilson, B.\ P.\ Weaver, R.\ W.\ Griffiths and H.\ F.\ Martz. Bayesian binomial assurance tests for system reliability using component data. \textit{Journal of Quality Technology} 46, 24-32 (2014).
-\bibitem{JGHR03} V.\ E.\ Johnson, T.\ L.\ Graves, M.\ S.\ Hamada, and C.\ S.\ Reese. A hierarchical model for estimating the reliability of complex systems. In Bayesian Statistics, Vol. 7,\ J.\ M.\ Bernardo, M.\ J.\ Bayerri, J.\ O.\ Berger, A.\ P.\ Dawid, D.\ Heckerman, A.\ F.\ M.\ Smith, and M.\ West eds., Oxford, UK: Oxford University Press (2003).
-\bibitem{HMRGJW04} M.\ S.\ Hamada, H.\ F.\ Martz, C.\ S.\ Reese, T.\ L.\ Graves, V.\ E.\ Johnson, and A.\ G.\ Wilson. A fully Bayesian approach
-for combining multilevel failure information in fault tree quantification and optimal follow-on resource allocation. \textit{Reliability Engineering and System Safety} 86, 397-405 (2004).
-\bibitem{EH06} P.\ M.\ Ellner and J.\ B.\ Hall, An approach to reliability growth planning based on failure mode discovery and correction using AMSAA projection methodology. \textit{IEEE Proceedings of the Annual Reliability and Maintainability Symposium} (2006).
-\end{thebibliography}
 
 \end{document}
