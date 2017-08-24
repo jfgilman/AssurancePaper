@@ -348,24 +348,24 @@ of the distributions.
 
 
 \subsection{Assurance Test Planning}
-In this section inferences learned from the first three phases of testing will
-be used to develop a test plan for the next phase.  Here the objective is to
-demonstrate that at a desired level of confidence, the system will meet or
-exceed a specified requirement. The methods to be employed will be similar to
-the assurance testing as discussed by Hamada et al. ~\cite{ref2}. Bayesian
-assurance tests are used to insure that the reliability of an item meets or
-exceeds a specified requirement with a desired probability. Although
-practitioners often use ``assure'' and ``demonstrate'' synonymously, Meeker and
-Escobar ~\cite{ME04} distinguish between reliability demonstration and
-reliability assurance testing. A \emph{reliability demonstration test} is
-essentially a classical hypothesis test, which uses only the data from the test
-to assess whether the reliability-related quantity of interest meets or exceeds
-the requirement. A \emph{reliability assurance test}, however, uses
-supplementary data and information in order to testing as efficient as possible.
+In this section we use the resulting reliability model from the previous section
+develop a plan for future testing.  Here the objective is to demonstrate that at
+a desired level of confidence, the system will meet or exceed a specified
+requirement. The methods to be employed will be similar to the assurance testing
+as discussed by Hamada et al. ~\cite{ref2}. Bayesian assurance tests are used to
+insure that the reliability of an item meets or exceeds a specified requirement
+with a desired probability. Although practitioners often use ``assure'' and
+``demonstrate'' synonymously, Meeker and Escobar ~\cite{ME04} distinguish
+between reliability demonstration and reliability assurance testing. A
+\emph{reliability demonstration test} is essentially a classical hypothesis
+test, which uses only the data from the test to assess whether the
+reliability-related quantity of interest meets or exceeds the requirement. A
+\emph{reliability assurance test}, however, uses supplementary data and
+information in order to testing as efficient as possible.
 
-In both classical and Bayesian test planning scenario we are interested in
-controlling error rates while minimizing the resources required for testing.  In
-the DoD acquisition process the error rates will be referenced in terms of risk.
+In both classical and Bayesian test planning we are interested in controlling
+error rates while minimizing the resources required for testing.  In the DoD
+acquisition process the error rates will be referenced in terms of risk.
 \emph{Consumer risk} which considers the event of purchasing a product that does
 not meet reliability requirements.  \emph{Producer risk} which considers the
 event of a product with acceptable reliability failing a given test and not
@@ -383,10 +383,10 @@ classical and Bayesian test criteria, we use them in an equivalent way.
 
 \subsubsection{Classical Approach}
 It is quite common to use two criteria in determining classical test plans. The
-\emph{producer's risk} is the probability of failing the test when $\pi =
-\pi_0$, whereas the \emph{consumer's risk} is the probability of passing the
-test when $\pi = \pi_1$.  Suppose that we specify a maximum value, $\alpha$, of
-the producer's risk and a maximum value, $\beta$, of the consumer's risk. For
+\emph{producer's risk}, defined as the probability of failing the test when $\pi =
+\pi_0$, and the \emph{consumer's risk}, defined as the probability of passing
+the test when $\pi = \pi_1$.  Suppose that we specify a maximum value, $\alpha$,
+of the producer's risk and a maximum value, $\beta$, of the consumer's risk. For
 test planning, these criteria become
 $$
 \begin{aligned}
@@ -409,13 +409,13 @@ equations.  In the case where the component failure times are assumed to be
 exponentially distributed with rate parameter $\lambda_i$ the failure counts for
 each component come from a homogeneous Poisson process $W_i(t) \sim
 \text{Poisson}(\lambda_i t)$, and the system failure counts $W(t) \sim
-\text{Poisson}(\lambda_S t)$  Numerous textbooks provide additional details of
+\text{Poisson}(\lambda_S t)$.  Numerous textbooks provide additional details of
 this purely classical approach.
 
 \subsubsection{Bayesian Approach}
 Traditional methods for determining the testing proceedure only rely on
-distributional assumptions and/or asymptoic results. With the Bayesian approach
-we incorperate the supplementary data from the previous testing phases with the
+distributional assumptions and/or asymptoic results. With a Bayesian approach we
+incorperate the supplementary data from the previous testing phases with the
 hopes of minimizing the resorces needed for testing.
 
 We now consider fully Bayesian posterior risks that convey a completely
@@ -485,8 +485,8 @@ $$
 $$
 \\
 \\
-For simplicity we if fix c to be zero and then perform Monte Carlo integration using N posterior draws $ \lambda_S^{(j)} $
-$$
+For simplicity we if fix c to be zero and then perform Monte Carlo integration
+using N posterior draws $ \lambda_S^{(j)} $ $$
 \begin{aligned}
 	 P(\lambda_S \leq \lambda_1 \; \vert \; W = 0) &= \frac{\int_{0}^{\lambda_1}
 	 exp(-\lambda_S T)p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} exp(-\lambda_S
@@ -502,6 +502,14 @@ In the exponential case we defined our quantity of interest that is related to
 system reliability at a given time $\pi$ to be equal to the system failure rate
 $\lambda_S$.  This gave us a convenient distributional form for our system
 failure counts with $W(t) \sim \text{Poisson}(\lambda_S t)$
+
+For allowed failures of zero and 1 the math isn't too bad, but when dealing with
+systems that  wear down (shape < 1) this will lead to no test plans that will
+meet required risk criteria or extreame test plans in terms of resorces.
+
+For more than 1 allowed failure test plans the Weibull computations become
+complicated especially for systems with a large number of components.  The one
+exception is when a single shape parameter can be assumed accross all compoents.
 
 \subsubsection{JLTV Test Plan Results}
 
