@@ -226,10 +226,8 @@ components to wear down and become more likely to fail the longer they are
 driven.
 
 Despite its common uses the assumption of a constant failure rate over time is
-rarely justifiable.  It has been well documented (Statistics, Testing, and
-Defense Acquisition: Background Papers chapter - 2
-http://www.nap.edu/catalog/9655.html) the issues that can arise when this
-assumption is violated.  We will now consider the same hierarchical model
+rarely justifiable.  It has been well documented the issues that can arise when this
+assumption is violated ~\cite{ref2}.  We will now consider the same hierarchical model
 structure while using the Weibull distribution.  Now we assume that the failure
 times $y_{ijk}$ each follow a $Weibull(\lambda, \gamma)$ distribution with scale
 parameter $\lambda$ and shape parameter $\gamma$, with probability density
@@ -250,7 +248,12 @@ combination of both.  This is something we will omit for this paper but hope to
 explore in the future.  One special case we will discuss is when a single
 Weibull shape parameter can be assumed across all failure modes.  When this is
 justifiable it can greatly simplify test planning calculations, as we will show
-in the assurance testing section.
+in the assurance testing section.  In this paper we will also be assuming on
+site repairs return the component to a "good as new" condition and that all
+component failures are independent.  That is, when a component such as the
+breaks are fixed during a test phase we will treat it as if it is brand  new and
+this failure has no effect on the reliability of other components such as the
+armor.
 
 \subsubsection{Model Diagnostics}
 So far we have discussed a number of different models and the assumptions that
@@ -284,13 +287,12 @@ increase as the distance driven grows larger, and this corresponds with a shape
 parameter between zero and one.  On the other hand, when the shape parameter is
 larger than 1, the failure rate will decrease with time/distance.
 
-Now a more formal diagnostic tool used for model selection is the Deviance
-information criterion (DIC).  This is a popular method for comparing the
-goodness of fit of multiple models.  The DIC method gives a slight penalty for
-larger numbers of parameters.  The DIC value is a unitless measure with lower
-values indicating a better fit to the data.  In the table below we show the DIC
-results for the different distribution and structure combinations we considered
-with the JLTV dataset.
+Now a more formal diagnostic tool, the Deviance information criterion (DIC).
+This is a popular method for comparing the goodness of fit of multiple models.
+The DIC method gives a slight penalty for larger numbers of parameters.  The DIC
+value is a unitless measure with lower values indicating a better fit to the
+data.  In the table below we show the DIC results for the different distribution
+and structure combinations we considered with the JLTV dataset.
 
 \begin{tabular}{|l|l|r|}
 \multicolumn{3}{c}{\textbf{Goodness of Fit}} \\
@@ -345,15 +347,22 @@ of the distributions.
 \end{figure}
 
 \subsubsection{JLTV Reliability Results}
+*** TODO ***
+Now that we have selected a model for the data we can use the posterior
+distributions  of the systems parameters to estimate reliability-related
+quantities of interest.
 
+Expected miles to failure.
+
+Plot comparing exponential results vs. Weibull.
 
 \subsection{Assurance Test Planning}
-In this section we use the resulting reliability model from the previous section
+In this section, we use the resulting reliability model from the previous section
 develop a plan for future testing.  Here the objective is to demonstrate that at
 a desired level of confidence, the system will meet or exceed a specified
 requirement. The methods to be employed will be similar to the assurance testing
-as discussed by Hamada et al. ~\cite{ref2}. Bayesian assurance tests are used to
-insure that the reliability of an item meets or exceeds a specified requirement
+as discussed by Hamada et al. ~\cite{ref3}. Bayesian assurance tests are used to
+ensure that the reliability of an item meets or exceeds a specified requirement
 with a desired probability. Although practitioners often use ``assure'' and
 ``demonstrate'' synonymously, Meeker and Escobar ~\cite{ME04} distinguish
 between reliability demonstration and reliability assurance testing. A
@@ -361,16 +370,16 @@ between reliability demonstration and reliability assurance testing. A
 test, which uses only the data from the test to assess whether the
 reliability-related quantity of interest meets or exceeds the requirement. A
 \emph{reliability assurance test}, however, uses supplementary data and
-information in order to testing as efficient as possible.
+information in order to test as efficient as possible.
 
 In both classical and Bayesian test planning we are interested in controlling
 error rates while minimizing the resources required for testing.  In the DoD
-acquisition process the error rates will be referenced in terms of risk.
+acquisition process, the error rates will be referenced in terms of risk.
 \emph{Consumer risk} which considers the event of purchasing a product that does
 not meet reliability requirements.  \emph{Producer risk} which considers the
 event of a product with acceptable reliability failing a given test and not
 being considered for purchase.  Introducing the notation for this section, In
-the JLTV case study we will be determining how many miles on test $T$, are
+the JLTV case study, we will be determining how many miles on test $T$, are
 required and how many system failures to allow $c$, before the product is
 considered unacceptable.  We will define $W(t)$ as a random variable that
 represents the total number of system failures after $t$ miles.  Suppose that
@@ -407,16 +416,16 @@ of system failyres $W(t)$ and the reliability $\pi$.  Then we can simply find
 the combinations of these probabilities by simultaneously solving these two
 equations.  In the case where the component failure times are assumed to be
 exponentially distributed with rate parameter $\lambda_i$ the failure counts for
-each component come from a homogeneous Poisson process $W_i(t) \sim
+each component come from a homogeneous Poisson process $w_i(t) \sim
 \text{Poisson}(\lambda_i t)$, and the system failure counts $W(t) \sim
 \text{Poisson}(\lambda_S t)$.  Numerous textbooks provide additional details of
 this purely classical approach.
 
 \subsubsection{Bayesian Approach}
-Traditional methods for determining the testing proceedure only rely on
-distributional assumptions and/or asymptoic results. With a Bayesian approach we
-incorperate the supplementary data from the previous testing phases with the
-hopes of minimizing the resorces needed for testing.
+Traditional methods for determining the testing procedure only rely on
+distributional assumptions and/or asymptotic results. With a Bayesian approach we
+incorporate the supplementary data from the previous testing phases with the
+hopes of minimizing the resources needed for testing.
 
 We now consider fully Bayesian posterior risks that convey a completely
 different outlook from the corresponding classical risks. While the classical
@@ -442,7 +451,7 @@ $$
     P(\lambda_S \geq \lambda_0 \; \vert \; \text{Test Is Failed)} &= P(\lambda_S
     \geq \lambda_0 \; \vert \; W > c) \\ &= \int_{\lambda_0}^{\infty}
     p(\lambda_S \; \vert W > c) d\lambda_S \\ &= \int_{\lambda_0}^{\infty}
-    \frac{f(W > c \vert \lambda_S)}{\int_{0}{\infty} f(W > c \vert \lambda_S)
+    \frac{f(W > c \vert \lambda_S)}{\int_{0}^{\infty} f(W > c \vert \lambda_S)
     d\lambda_S} d\lambda_S \\ &= \frac{\int_{\lambda_0}^{\infty} [ \sum_{W=0}^c
     \frac{(\lambda_S T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S}
     {\int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S
@@ -497,29 +506,71 @@ using N posterior draws $ \lambda_S^{(j)} $ $$
 $$
 
 \subsubsection{Weibull Case}
-
-In the exponential case we defined our quantity of interest that is related to
+In the exponential case, we defined our quantity of interest that is related to
 system reliability at a given time $\pi$ to be equal to the system failure rate
-$\lambda_S$.  This gave us a convenient distributional form for our system
-failure counts with $W(t) \sim \text{Poisson}(\lambda_S t)$
+$\lambda_S$.  This distributional assumption gave us a convenient distributional
+form for our system failure counts with $W(t) \sim \text{Poisson}(\lambda_S t)$
+When we assume the miles to failure for each system component follows a Weibull
+distribution the system failure counts no longer follow a homogeneous Poisson
+process.  Because each component failure rate now varies with time each
+component failure count follows a non-homogeneous Poisson process $w_i(t) \sim
+\text{Poisson}(\gamma_i \lambda_i t^{\gamma_i})$.  In this case we no longer
+have a closed form for the system failure rate $\lambda_S$.  The exception being
+if we can assume a single shape parameter $\gamma$ for all components.  In this
+case, it can be shown that the system failure count follows a non-homogeneous
+Poisson process $W(t) \sim \text{Poisson}(\gamma \lambda_S t^{\gamma})$.  Now,
+we can use the same approach as with the exponential distribution. An expression
+for the posterior producer's risk for the exponential test plan $(T,c)$ is
+$$
+\begin{aligned}
+    P(\lambda_S \geq \lambda_0 \; \vert \; \text{Test Is Failed)} &= P(\lambda_S
+    \geq \lambda_0 \; \vert \; W > c) \\ &= \int_{\lambda_0}^{\infty}
+    p(\lambda_S \; \vert W > c) d\lambda_S \\ &= \int_{0}^{\infty}
+    \int_{\lambda_0}^{\infty} \frac{f(W > c \vert \lambda_S)}{\int_{0}^{\infty}
+    \int_{0}^{\infty} f(W > c \vert \lambda_S) d\lambda_S d\gamma} d\lambda_S
+    d\gamma \\ &= \frac{\int_{0}^{\infty} \int_{\lambda_0}^{\infty}
+    [\sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W exp(-\gamma \lambda_S
+    T^{\gamma})}{W!}]p(\lambda_S)p(\gamma)d\lambda_S d\gamma} {\int_{0}^{\infty}
+    \int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W
+    exp(-\gamma \lambda_S T^{\gamma})} {W!}]p(\lambda_S) p(\gamma)
+    d\lambda_Sd\gamma} \leq \alpha
+\end{aligned}
+$$
+\\
+\\
+Once again we can simplify by setting c to be zero and then perform Monte Carlo
+integration using N posterior draws for both $\lambda_S^{(j)}$ and
+$\gamma^{(j)}$
+$$
+\begin{aligned}
+	 P(\lambda_S \geq \lambda_0 \; \vert \; W = 0) &= \frac{\int_{0}^{\infty}
+	 \int_{\lambda_0}^{\infty} exp(- \gamma \lambda_S T^{\gamma})p(\lambda_S)
+	 p(\gamma) d\lambda_S d\gamma} {\int_{0}^{\infty} \int_{0}^{\infty} exp(-
+	 \gamma \lambda_S T^{\gamma})p(\lambda_S) p(\gamma) d\lambda_S d\gamma} \\
+	 &\approx \frac{\sum_{j = 1}^{N} exp(-\gamma^{(j)} \lambda_S^{(j)}
+	 T^{\gamma^{(j)}}) I(\lambda_S^{(j)} \geq \lambda_0)} {\sum_{j = 1}^{N}
+	 exp(- \gamma^{(j)} \lambda_S^{(j)} T^{\gamma^{(j)}})} \end{aligned}
+$$
 
-For allowed failures of zero and 1 the math isn't too bad, but when dealing with
-systems that  wear down (shape < 1) this will lead to no test plans that will
-meet required risk criteria or extreame test plans in terms of resorces.
-
-For more than 1 allowed failure test plans the Weibull computations become
-complicated especially for systems with a large number of components.  The one
-exception is when a single shape parameter can be assumed accross all compoents.
+In the case of multiple shape parameters, these calculations can still be done.
+The practitioner must be careful in defining the system reliability quantity of
+interest, accounting for each component failure rate.  The computation can
+quickly become  unmanagable as the number of components and/or number of allowed
+failures becomes large.
 
 \subsubsection{JLTV Test Plan Results}
+*** TODO ***
 
 %%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99}
 \bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of
 system reliability availability maintainability - A primer; Third Edition
 (1982).
-\bibitem{ref2} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
-Bayesian Reliability. Springer (2008). \bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\
+\bibitem{ref2} National Research Council. Statistics, Testing, and Defense Acquisition:
+Background Papers. \textit{National Academies Press} (1999).
+\bibitem{ref3} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
+Bayesian Reliability. Springer (2008).
+\bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\
 Escobar. Reliability: the other dimension of quailty. \textit{Quality Technology
 and Quantitative Management} 1, 1-25 (2004). \bibitem{HWWGM13} M.\ S.\ Hamada,
 A.\ G.\ Wilson, B.\ P.\ Weaver, R.\ W.\ Griffiths and H.\ F.\ Martz. Bayesian
