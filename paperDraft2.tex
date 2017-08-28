@@ -114,7 +114,7 @@ In this paper we propose an alternative approach using a Bayesian hierarchical
 model.  We will begin by introducing a hierarchical structure that models the
 relationships in the data across all test phases and incorporate known
 similarities between vehicle failure modes.  Next, we will consider different
-modeling and distributional assumptions and their implications.  We will aslo
+distributional assumptions and their implications.  We will aslo
 discuss model diagnostics to consider when choosing a final model. Then we will
 use the JLTV data to illustrate this process and discuss system reliability
 results. This will lead us into the next section on using these results to
@@ -139,25 +139,20 @@ whether failure mode $j$ is considered to be common across vehicles or related
 but not identical. For the related failure modes, we place a prior distribution
 on the collection of $\lambda_{ij}$; in other words, we assume each vehicle has
 a distinct failure rate in failure mode $j$ but they arise from a common
-distribution.
-
-If failure mode $j$ is considered common across vehicles, the collection of
+distribution.  If failure mode $j$ is considered common across vehicles, the collection of
 failure rates is collapsed to a single parameter, $\lambda_{ij} = \lambda_j$. As
 with the related failure modes, a prior distribution is placed on the single
 failure rate. The prior distributions are independent across failure mode, and
 can potentially have different hyperparameters.
 
 The Phase 1 analysis yields an estimate of the failure rate $\lambda_{ij}$ for
-each of the vehicles for failure modes that are related. We are assuming the
-vehicles are conditionally independent, therefore the failure rate estimate for
-the family of vehicles for such failure modes can be found by
-$\sum_{i}\lambda_{ij}$. For failure modes that are common across vehicles the
-Phase 1 analysis yields a $\lambda_{j}$, which is the failure rate for the
-family of vehicles. If we assume the miles at failure come from an exponential
-distribution the overall failure rate across all failure modes can be easily
-calculated by $\sum_{j}\lambda_{j}$.  The exponential distribution is commonly
-used in reliability analysis because of its convenience, but as we will discuss
-in later sections it can be unrealistic in many real-world situations.
+each of the vehicles for failure modes that are related.  We are assuming the
+vehicles are conditionally independent, if we also assume the miles at failure
+come from an exponential distribution the overall failure rate across all
+failure modes can be easily calculated by $\sum_{j}\lambda_{j}$.  The
+exponential distribution is commonly used in reliability analysis because of its
+convenience, but as we will discuss in later sections it can be unrealistic in
+many real-world situations.
 
 \subsubsection{Fix Effectiveness}
 After the first CAP, Test Phase 2 begins with the repaired vehicles. To capture
@@ -226,12 +221,12 @@ components to wear down and become more likely to fail the longer they are
 driven.
 
 Despite its common uses the assumption of a constant failure rate over time is
-rarely justifiable.  It has been well documented the issues that can arise when this
-assumption is violated ~\cite{ref2}.  We will now consider the same hierarchical model
-structure while using the Weibull distribution.  Now we assume that the failure
-times $y_{ijk}$ each follow a $Weibull(\lambda, \gamma)$ distribution with scale
-parameter $\lambda$ and shape parameter $\gamma$, with probability density
-function for Test Phase 1,
+rarely justifiable.  It has been well documented the issues that can arise when
+this assumption is violated ~\cite{ref2}.  Thus we will also consider the same
+hierarchical model structure while using the Weibull distribution.  Now we
+assume that the failure times $y_{ijk}$ each follow a $Weibull(\lambda, \gamma)$
+distribution with scale parameter $\lambda$ and shape parameter $\gamma$, with
+probability density function for Test Phase 1,
 \begin{equation}
 f(y_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i}
 y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} y_{ijk}^{\gamma_{i}})
@@ -316,7 +311,7 @@ shape parameter across all 26 failure modes.
 While we have shown that the hierarchical Weibull model fits much better than
 the exponential, these test still do not tell us that this model is a good fit
 for the data.  The last method we will present is called posterior predictive
-checking ***reference***.  Here we are given important features of the data.
+checking ~\cite{ref3}.  Here we are given important features of the data.
 In the JLTV case we were interested in the total failure counts for each phase
 and the number of time the miles between failures was less than 140.  We then
 used the final model to simulate 5,000 new datasets.  We then plot histograms
@@ -361,7 +356,7 @@ In this section, we use the resulting reliability model from the previous sectio
 develop a plan for future testing.  Here the objective is to demonstrate that at
 a desired level of confidence, the system will meet or exceed a specified
 requirement. The methods to be employed will be similar to the assurance testing
-as discussed by Hamada et al. ~\cite{ref3}. Bayesian assurance tests are used to
+as discussed by Hamada et al. ~\cite{ref4}. Bayesian assurance tests are used to
 ensure that the reliability of an item meets or exceeds a specified requirement
 with a desired probability. Although practitioners often use ``assure'' and
 ``demonstrate'' synonymously, Meeker and Escobar ~\cite{ME04} distinguish
@@ -517,7 +512,7 @@ component failure count follows a non-homogeneous Poisson process $w_i(t) \sim
 \text{Poisson}(\gamma_i \lambda_i t^{\gamma_i})$.  In this case we no longer
 have a closed form for the system failure rate $\lambda_S$.  The exception being
 if we can assume a single shape parameter $\gamma$ for all components.  In this
-case, it can be shown that the system failure count follows a non-homogeneous
+case, it can be shown [A1] that the system failure count follows a non-homogeneous
 Poisson process $W(t) \sim \text{Poisson}(\gamma \lambda_S t^{\gamma})$.  Now,
 we can use the same approach as with the exponential distribution. An expression
 for the posterior producer's risk for the exponential test plan $(T,c)$ is
@@ -566,9 +561,12 @@ failures becomes large.
 \bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of
 system reliability availability maintainability - A primer; Third Edition
 (1982).
-\bibitem{ref2} National Research Council. Statistics, Testing, and Defense Acquisition:
-Background Papers. \textit{National Academies Press} (1999).
-\bibitem{ref3} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
+\bibitem{ref2} National Research Council. Statistics, Testing, and Defense
+Acquisition: Background Papers. \textit{National Academies Press} (1999).
+\bibitem{ref3} Gelman, Andrew, Xiao-Li Meng, and Hal Stern. "Posterior
+predictive assessment of model fitness via realized discrepancies."
+\textit{Statistica sinica} 733-760 (1996).
+\bibitem{ref4} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
 Bayesian Reliability. Springer (2008).
 \bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\
 Escobar. Reliability: the other dimension of quailty. \textit{Quality Technology
@@ -589,5 +587,58 @@ Hall, An approach to reliability growth planning based on failure mode discovery
 and correction using AMSAA projection methodology. \textit{IEEE Proceedings of
 the Annual Reliability and Maintainability Symposium} (2006).
 \end{thebibliography}
+
+\section{Appendix A1}
+\subsection{Series System Failure Rate}
+
+\textbf{Definitions:} \\
+\noindent
+Reliability: $R(t) = 1 - F(t)$ \\
+Hazard or failure rate function: $\lambda(t) = \frac{f(t)}{R(t)}$ \\
+Series system reliability: $R_S(t) = \prod_{i = 1}^N R_i(t)$
+\\
+\\
+\textbf{Result:}
+$$
+\begin{aligned}
+	R_S(t) &= \prod_{i = 1}^N R_i(t) \\
+	\frac{dR_S(t)}{dt} &= \frac{d}{dt} \prod_{i = 1}^N R_i(t) \; \; \text{(derivative of both sides)} \\
+	\frac{dR_S(t)}{dt} &= \sum_{i=1}^N \left[ \frac{dR_i(t)}{dt} \frac{dR_S(t)}{dR_i(t)} \right] \; \; \text{(product rule)} \\
+    \frac{-\frac{dR_S(t)}{dt}}{R_S(t)} &= \sum_{i=1}^N \left[  \frac{-\frac{d}{dt}R_i(t)}{dR_i(t)} \right] \; \; \text{(divide both sides by $-R_S(t)$)} \\
+    \lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \; \; \text{(because $\lambda(t) = \frac{f(t)}{R(t)} = \frac{-\frac{dR(t)}{dt}}{R(t)}$ )}
+\end{aligned}
+$$
+
+\subsection{Non-Homogeneous Poisson Process}
+
+\textbf{Definitions:} \\
+\noindent
+Number of failures before time t: $N(t) \sim \text{Poisson}(m(t))$ \\
+Mean function: $m(t) = \int_0^t \lambda(s)ds$ (represents the expected number of failures before time t) \\
+Weibull($\gamma, \beta $) failure rate: $\lambda(t) = \gamma\beta t^{\beta - 1}$
+\\
+\\
+\textbf{Result:}\\
+If we assume a constant shape parameter $\beta$ then,\\
+$$
+\begin{aligned}
+	\lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \\
+    &= \sum_{i = 1}^N \gamma_i\beta t^{\beta - 1} \\
+    &= \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i
+\end{aligned}
+$$
+\newpage
+Then Solving for the mean function of the system,
+
+$$
+\begin{aligned}
+	m_S(t) &= \int_0^t \lambda_S(s)ds \\
+    &= \int_0^t \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i \\
+    &= \sum_{i = 1}^N \gamma_i \int_0^t \beta t^{\beta -1} \\
+    &= t^\beta \sum_{i = 1}^N \gamma_i
+\end{aligned}
+$$
+
+This gives us: $N(t) \sim \text{Poisson}(t^\beta \sum_{i = 1}^N \gamma_i)$
 
 \end{document}

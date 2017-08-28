@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 AUG 2017 15:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 AUG 2017 08:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,7 +237,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2] [3] [4] <betaPostPlot.png, id=26, 745.78625pt x 805.0075pt>
 File: betaPostPlot.png Graphic file (type png)
  <use betaPostPlot.png>
-Package pdftex.def Info: betaPostPlot.png used on input line 282.
+Package pdftex.def Info: betaPostPlot.png used on input line 277.
 (pdftex.def)             Requested size: 170.70789pt x 142.25417pt.
  [5]
 Missing character: There is no â in font cmr12!
@@ -246,43 +246,58 @@ Missing character: There is no ™ in font cmr12!
  <Rplot1.png, id=33, 446.66875pt x 803.0pt>
 File: Rplot1.png Graphic file (type png)
  <use Rplot1.png>
-Package pdftex.def Info: Rplot1.png used on input line 335.
+Package pdftex.def Info: Rplot1.png used on input line 330.
 (pdftex.def)             Requested size: 93.94955pt x 168.89229pt.
  <Rplot2.png, id=34, 446.66875pt x 803.0pt>
 File: Rplot2.png Graphic file (type png)
  <use Rplot2.png>
-Package pdftex.def Info: Rplot2.png used on input line 341.
+Package pdftex.def Info: Rplot2.png used on input line 336.
 (pdftex.def)             Requested size: 93.94955pt x 168.89229pt.
  [6 <./betaPostPlot.png>] [7 <./Rplot1.png> <./Rplot2.png>] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 460--465
+Underfull \hbox (badness 10000) in paragraph at lines 455--460
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 494--498
+Underfull \hbox (badness 10000) in paragraph at lines 489--493
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 538--544
+Underfull \hbox (badness 10000) in paragraph at lines 533--539
 
  []
 
-[10] [11] [12] (./paperDraft2.aux) ) 
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 594--602
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--623
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--623
+
+ []
+
+[12] [13] [14] (./paperDraft2.aux) ) 
 Here is how much of TeX's memory you used:
- 3724 strings out of 493089
- 54708 string characters out of 6134842
- 120336 words of memory out of 5000000
- 7153 multiletter control sequences out of 15000+600000
+ 3725 strings out of 493089
+ 54714 string characters out of 6134842
+ 121339 words of memory out of 5000000
+ 7154 multiletter control sequences out of 15000+600000
  12457 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,38p,245b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,38p,245b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paperDraft2.pdf (12 pages, 321313 bytes).
+Output written on paperDraft2.pdf (14 pages, 328933 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 71 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
