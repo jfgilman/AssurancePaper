@@ -229,7 +229,7 @@ distribution with scale parameter $\lambda$ and shape parameter $\gamma$, with
 probability density function for Test Phase 1,
 \begin{equation}
 f(y_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i}
-y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} y_{ijk}^{\gamma_{i}})
+y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} y_{ijk}^{\gamma_{i}}).
 \end{equation}
 The Weibull distribution is a more flexible model with both a rate parameter
 $\lambda_{ij}$ and a shape parameter $\gamma_{j}$.  The exponential is a special
@@ -250,9 +250,21 @@ breaks are fixed during a test phase we will treat it as if it is brand  new and
 this failure has no effect on the reliability of other components such as the
 armor.
 
-\subsubsection{Model Diagnostics}
+\subsubsection{JLTV Reliability}
 So far we have discussed a number of different models and the assumptions that
-accompany them.  We will now discuss the process of choosing a final model.  The
+accompany them.  Using McMC we can fit each of these models to the JLTV dataset.
+Then we can use the posterior distributions of the systems parameters to
+estimate reliability-related quantities of interest.
+
+Plot with expected miles to failure for each of 3 models to show the Weibull and
+exponential give very different results.
+
+
+
+\subsubsection{Model Diagnostics}
+needs new transition into this section
+
+We will now discuss the process of choosing a final model.  The
 decision of which model to use can have a drastic impact on reliability
 assessment and future test planning.  We will use the JLTV dataset to
 demonstrate the process.
@@ -294,10 +306,8 @@ and structure combinations we considered with the JLTV dataset.
 \cline{1-3}
 Distribution    & Structure & DIC \\
 \hline
-Exponential   & Single Rate                       & 23258               \\
-              & Hierarchical Rate                 & 23022               \\
-Weibull       & Single Rate                       & 18750               \\
-              & Hierarchical Rate                 & \textbf{18556}      \\
+Exponential   & Hierarchical Rate                 & 23022               \\
+Weibull       & Hierarchical Rate                 & \textbf{18556}      \\
               & Hierarchical Rate (One shape)     & 18677               \\
 \hline
 \end{tabular}
@@ -341,49 +351,36 @@ of the distributions.
 \label{fig:test}
 \end{figure}
 
-\subsubsection{JLTV Reliability Results}
-*** TODO ***
-Now that we have selected a model for the data we can use the posterior
-distributions  of the systems parameters to estimate reliability-related
-quantities of interest.
-
-Expected miles to failure.
-
-Plot comparing exponential results vs. Weibull.
-
 \subsection{Assurance Test Planning}
-In this section, we use the resulting reliability model from the previous section
-develop a plan for future testing.  Here the objective is to demonstrate that at
-a desired level of confidence, the system will meet or exceed a specified
-requirement. The methods to be employed will be similar to the assurance testing
-as discussed by Hamada et al. ~\cite{ref4}. Bayesian assurance tests are used to
-ensure that the reliability of an item meets or exceeds a specified requirement
-with a desired probability. Although practitioners often use ``assure'' and
-``demonstrate'' synonymously, Meeker and Escobar ~\cite{ME04} distinguish
-between reliability demonstration and reliability assurance testing. A
-\emph{reliability demonstration test} is essentially a classical hypothesis
-test, which uses only the data from the test to assess whether the
-reliability-related quantity of interest meets or exceeds the requirement. A
-\emph{reliability assurance test}, however, uses supplementary data and
-information in order to test as efficient as possible.
+In this section, we use the resulting reliability model from the previous
+section develop a plan for future testing.  Here the objective is to demonstrate
+that at a desired level of confidence, the system will meet or exceed a
+specified requirement. The methods to be employed will be similar to the
+assurance testing as discussed by Hamada et al. ~\cite{ref4}. Bayesian
+\emph{reliability assurance tests} are used to ensure that the reliability of
+an item meets or exceeds a specified requirement with a desired probability.
+Meeker and Escobar ~\cite{ME04} established the difference between this and the
+more traditional  \emph{reliability demonstration test}.  The difference being
+that the assurance test plan incorporates supplementary data and information,
+where the demonstration test only uses test data.
 
-In both classical and Bayesian test planning we are interested in controlling
-error rates while minimizing the resources required for testing.  In the DoD
-acquisition process, the error rates will be referenced in terms of risk.
-\emph{Consumer risk} which considers the event of purchasing a product that does
-not meet reliability requirements.  \emph{Producer risk} which considers the
-event of a product with acceptable reliability failing a given test and not
-being considered for purchase.  Introducing the notation for this section, In
-the JLTV case study, we will be determining how many miles on test $T$, are
-required and how many system failures to allow $c$, before the product is
-considered unacceptable.  We will define $W(t)$ as a random variable that
-represents the total number of system failures after $t$ miles.  Suppose that
-$\pi$ denotes some quantity of interest that is related to system reliability at
-a given time. It is common to base both classical and Bayesian test plans on two
-specified levels of $\pi$: $\pi_0$, an \emph{acceptable reliability level}
-(ARL), and $\pi_1$, a \emph{rejectable reliability level} (RRL), where $\pi_1
-\leq  \pi_0$. Although the precise definition of ARL and RRL differ between the
-classical and Bayesian test criteria, we use them in an equivalent way.
+In both test planning methods we are interested in controlling error rates while
+minimizing the resources required for testing.  In the DoD acquisition process,
+the error rates will be referenced in terms of risk. \emph{Consumer risk} which
+considers the event of purchasing a product that does not meet reliability
+requirements.  \emph{Producer risk} which considers the event of a product with
+acceptable reliability failing a given test and not being considered for
+purchase.  Introducing the notation for this section, In the JLTV case study, we
+will be determining how many miles on test $T$, are required and how many system
+failures to allow $c$, before the product is considered unacceptable.  We will
+define $W(t)$ as a random variable that represents the total number of system
+failures after $t$ miles.  Suppose that $\pi$ denotes some quantity of interest
+that is related to system reliability at a given time. It is common to base both
+classical and Bayesian test plans on two specified levels of $\pi$: $\pi_0$, an
+\emph{acceptable reliability level} (ARL), and $\pi_1$, a \emph{rejectable
+reliability level} (RRL), where $\pi_1 \leq  \pi_0$. Although the precise
+definition of ARL and RRL differ between the classical and Bayesian test
+criteria, we use them in an equivalent way.
 
 \subsubsection{Classical Approach}
 It is quite common to use two criteria in determining classical test plans. The
