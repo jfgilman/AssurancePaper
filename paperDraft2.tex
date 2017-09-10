@@ -122,11 +122,11 @@ improve the planning of furture test.
 
 \subsubsection{Model Structure}
 In the first phase of testing, we assume the vehicle miles at failure, $y$,
-follow a lifetime distribution $Y$ with an unknown set of parameters that include
+follow a lifetime distribution with an unknown set of parameters that include
 a rate parameter $\lambda_{ij}$.
 Introducing notation,
 \begin{equation}
-y_{ijk}\mid\lambda_{ij}\sim Y(\lambda_{ij},...), \quad i = 1,2,...,v \quad
+y_{ijk}\mid\lambda_{ij}\sim f(\lambda_{ij},...), \quad i = 1,2,...,v \quad
 j=1,2,...,s \quad k=1,2,...,n_{ij}
 \end{equation}
 where $y_{ijk}$ are the miles between failure for vehicle $i$ failure mode $j$,
@@ -259,29 +259,32 @@ vehicle types.  We are able to look at a number of different statistics related
 to reliability at both  the component and system level.  In this study our main
 quantity of interest is expected miles to  failure.  In the following figure we
 have box plots showing the posterior distributions of  the expected miles to
-failure for one of the vehicle types for each of the three  phases using each of
-the three models we are considering.
+failure for one of the vehicle types for each of the three phases, first using
+the exponential model and second using the more general Weibull model.
 
+\includegraphics[width=6cm, height=5cm]{Boxplots}
 
-
+The plots show that the posterior distributions from the Weibull model have a
+good amount more spread than the exponential.  This is somewhat expected given
+the Weibull model is estimating two model parameters to the exponentials one,
+but what is concerning is that the center of the distributions is also quite
+different between the two models.  All of the Weibull EMTF posterior means
+are higher than the exponentials.  This is the first sign that the exponential
+model may not be a good fit to the data.
 
 \subsubsection{Model Diagnostics}
-needs new transition into this section
-
-We will now discuss the process of choosing a final model.  The
-decision of which model to use can have a drastic impact on reliability
-assessment and future test planning.  We will use the JLTV dataset to
-demonstrate the process.
-
-The first model selection question we will explore is the parametric form,
-exponential versus Weibull.  In statistical modeling we often face the
-trade-off between fit and interpretability, and this situation is no different.
-Because the Weibull is a more flexible model, it will always, in a sense, fit the
-data better, but this comes at a price.  The exponential's convenient form
-makes both computation and interpretation straightforward.  When the Weibull's
-shape parameter is introduced this advantage is lost.  Thus, when the overall
-fit is close to the same between the exponential and the Weibull we will
-default to using the exponential.
+As seen in the last section with the JLTV data, the decision of which model to
+use can have a drastic impact on reliability assessment and future test
+planning.  We will now look at a few  goodness-of-fit methods that can be used
+to help in this decision.  The first model selection question we will explore is
+the parametric form, exponential versus Weibull.  In statistical modeling we
+often face the trade-off between fit and interpretability, and this situation is
+no different. Because the Weibull is a more flexible model, it will always, in a
+sense, fit the data better, but this comes at a price.  The exponential's
+convenient form makes both computation and interpretation straightforward.  When
+the Weibull's shape parameter is introduced this advantage is lost.  Thus, when
+the overall fit is close to the same between the exponential and the Weibull we
+will default to using the exponential.
 
 The first check we used to decide between the exponential and Weibull models is
 to fit the Weibull model and look at the posterior distributions of the
@@ -310,8 +313,10 @@ and structure combinations we considered with the JLTV dataset.
 \cline{1-3}
 Distribution    & Structure & DIC \\
 \hline
-Exponential   & Hierarchical Rate                 & 23022               \\
-Weibull       & Hierarchical Rate                 & \textbf{18556}      \\
+Exponential   & Single Rate                       & 23258               \\
+              & Hierarchical Rate                 & 23022               \\
+Weibull       & Single Rate                       & 18750               \\
+              & Hierarchical Rate                 & \textbf{18556}      \\
               & Hierarchical Rate (One shape)     & 18677               \\
 \hline
 \end{tabular}
@@ -555,7 +560,32 @@ quickly become  unmanagable as the number of components and/or number of allowed
 failures becomes large.
 
 \subsubsection{JLTV Test Plan Results}
-*** TODO ***
+The first step in applying this method to our JLTV dataset is defining $\pi_0$,
+$\pi_1$, $\alpha$ and $\beta$.  That is the ARL, RRL, acceptable producer risk
+and acceptable consumer risk respectively.  With input from subject matter
+experts  we will define the producer's target or ARL as the expected number of
+failures in the first 140 miles to be less  than 2, and the consumer's minimum
+requirements or RRL as the expected number of failures in  the first 80 miles to
+greater than 2.  We will use traditional values of 0.1 and 0.05 for $\alpha$ and
+$\beta$ respectively, but in practice these values should always be set based on
+the true risk tolerances of the consumer and producers.  This gives us the
+following probability statements to satisfy when designing the test:
+\\
+Consumer Risk : $ P(80^\beta (\lambda_S) \geq 2 \; \vert \text{Test Is Passed}) \leq 0.1 $ \\
+Producer Risk : $ P(140^\beta (\lambda_S) \leq 2 \; \vert \; \text{Test Is Failed}) \leq 0.05 $
+
+\begin{tabular}{|l|l|r|}
+\multicolumn{2}{c}{\textbf{JLTV Test Plan}} \\
+\cline{1-2}
+Failures Allowed    & Test Miles Required \\
+\hline
+1   & 5,300      \\
+2   & 6,500      \\
+3   & 7,800      \\
+4   & 11,100     \\
+5   & 13,100     \\
+\hline
+\end{tabular}
 
 %%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99}

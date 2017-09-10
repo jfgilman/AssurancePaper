@@ -1,5 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1503924224 "paperDraft2.tex" "paperDraft2.pdf" "paperDraft2" 1504544953
+["pdflatex"] 1505055734 "paperDraft2.tex" "paperDraft2.pdf" "paperDraft2" 1505055734
+  "./Boxplots.png" 1505039476 38911 dee1699f57b9629cb58c6be6ebe95175 ""
   "./Rplot1.png" 1500140050 28777 f9dcdf6fbcdc5e1f2fd9dfc6b207e64f ""
   "./Rplot2.png" 1500140088 28431 f511296ad07a6bfc1837a4f907d7908f ""
   "./betaPostPlot.png" 1485300711 90924 b30654162e3282c98a760ba4c75785f9 ""
@@ -83,12 +84,13 @@
   "/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1432479641 1764542 91654ba72bdb667e84ea24f076ae16d8 ""
   "/usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt" 1432479681 3849859 39a7d258195bde2394e244961601fbc5 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
+  "Boxplots.png" 1505039476 38911 dee1699f57b9629cb58c6be6ebe95175 ""
   "Rplot1.png" 1500140050 28777 f9dcdf6fbcdc5e1f2fd9dfc6b207e64f ""
   "Rplot2.png" 1500140088 28431 f511296ad07a6bfc1837a4f907d7908f ""
   "betaPostPlot.png" 1485300711 90924 b30654162e3282c98a760ba4c75785f9 ""
-  "paperDraft2.aux" 1503924224 2073 809cf9da0467531ba7861490b107032d ""
-  "paperDraft2.tex" 1503924223 35354 96aa75f381b092b6d888c380cc49ba09 ""
+  "paperDraft2.aux" 1505055734 2065 3d8e5618bfc38f3ec674ec514d59b40c ""
+  "paperDraft2.tex" 1505055732 37314 22b4367e664b16f87c40a398f971d9d5 ""
   (generated)
-  "paperDraft2.aux"
   "paperDraft2.pdf"
   "paperDraft2.log"
+  "paperDraft2.aux"

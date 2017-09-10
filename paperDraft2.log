@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 AUG 2017 08:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 SEP 2017 11:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -234,70 +234,75 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 89.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2] [3] [4] <betaPostPlot.png, id=26, 745.78625pt x 805.0075pt>
+) [2] [3] [4] <Boxplots.png, id=26, 769.87625pt x 544.0325pt>
+File: Boxplots.png Graphic file (type png)
+ <use Boxplots.png>
+Package pdftex.def Info: Boxplots.png used on input line 265.
+(pdftex.def)             Requested size: 170.7125pt x 142.26694pt.
+ [5 <./Boxplots.png>] <betaPostPlot.png, id=34, 745.78625pt x 805.0075pt>
 File: betaPostPlot.png Graphic file (type png)
  <use betaPostPlot.png>
-Package pdftex.def Info: betaPostPlot.png used on input line 277.
+Package pdftex.def Info: betaPostPlot.png used on input line 296.
 (pdftex.def)             Requested size: 170.70789pt x 142.25417pt.
- [5]
+ [6 <./betaPostPlot.png>]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- <Rplot1.png, id=33, 446.66875pt x 803.0pt>
+ <Rplot1.png, id=39, 446.66875pt x 803.0pt>
 File: Rplot1.png Graphic file (type png)
  <use Rplot1.png>
-Package pdftex.def Info: Rplot1.png used on input line 330.
+Package pdftex.def Info: Rplot1.png used on input line 349.
 (pdftex.def)             Requested size: 93.94955pt x 168.89229pt.
- <Rplot2.png, id=34, 446.66875pt x 803.0pt>
+ <Rplot2.png, id=40, 446.66875pt x 803.0pt>
 File: Rplot2.png Graphic file (type png)
  <use Rplot2.png>
-Package pdftex.def Info: Rplot2.png used on input line 336.
+Package pdftex.def Info: Rplot2.png used on input line 355.
 (pdftex.def)             Requested size: 93.94955pt x 168.89229pt.
- [6 <./betaPostPlot.png>] [7 <./Rplot1.png> <./Rplot2.png>] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 455--460
+ [7 <./Rplot1.png> <./Rplot2.png>] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 461--466
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 489--493
+Underfull \hbox (badness 10000) in paragraph at lines 495--499
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 539--545
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 625--633
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 645--654
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--539
+Underfull \hbox (badness 10000) in paragraph at lines 645--654
 
  []
 
-[10] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 594--602
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 614--623
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 614--623
-
- []
-
-[12] [13] [14] (./paperDraft2.aux) ) 
+[13] [14] (./paperDraft2.aux) ) 
 Here is how much of TeX's memory you used:
- 3725 strings out of 493089
- 54714 string characters out of 6134842
+ 3730 strings out of 493089
+ 54793 string characters out of 6134842
  121339 words of memory out of 5000000
- 7154 multiletter control sequences out of 15000+600000
+ 7158 multiletter control sequences out of 15000+600000
  12457 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,12n,38p,245b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paperDraft2.pdf (14 pages, 328933 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on paperDraft2.pdf (14 pages, 355470 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
+ 115 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

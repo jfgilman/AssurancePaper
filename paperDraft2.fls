@@ -120,6 +120,9 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT Boxplots.png
+INPUT ./Boxplots.png
+INPUT ./Boxplots.png
 INPUT betaPostPlot.png
 INPUT ./betaPostPlot.png
 INPUT ./betaPostPlot.png
