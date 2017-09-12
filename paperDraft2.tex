@@ -559,6 +559,15 @@ interest, accounting for each component failure rate.  The computation can
 quickly become  unmanagable as the number of components and/or number of allowed
 failures becomes large.
 
+It should be noted that in this test planning process you would use the
+posterior distribution of $\lambda_S$ from the final developmental testing
+phase.  It is also common to incorporate a degradation factor to account for an
+expected reduction in reliability from the developmental phase to the
+operational phase.  In the Bayesian framework, this entails adding another
+multiplicative parameter to the rate parameter with an appropriate prior.   A
+10-30 percent reduction from the developmental phase to the operational phase is
+common in many DoD applications.
+
 \subsubsection{JLTV Test Plan Results}
 The first step in applying this method to our JLTV dataset is defining $\pi_0$,
 $\pi_1$, $\alpha$ and $\beta$.  That is the ARL, RRL, acceptable producer risk
@@ -574,6 +583,10 @@ following probability statements to satisfy when designing the test:
 Consumer Risk : $ P(80^\beta (\lambda_S) \geq 2 \; \vert \text{Test Is Passed}) \leq 0.1 $ \\
 Producer Risk : $ P(140^\beta (\lambda_S) \leq 2 \; \vert \; \text{Test Is Failed}) \leq 0.05 $
 
+From here we are able to find combinations of failures allowed and test miles
+required that satisfy both risk requirements.  The table below show the
+resulting combinations for the JLTV data.
+
 \begin{tabular}{|l|l|r|}
 \multicolumn{2}{c}{\textbf{JLTV Test Plan}} \\
 \cline{1-2}
@@ -586,6 +599,18 @@ Failures Allowed    & Test Miles Required \\
 5   & 13,100     \\
 \hline
 \end{tabular}
+
+It should be noted that if $\pi_0$, $\pi_1$, $\alpha$ and $\beta$ are set to
+unrealisitc values there can be situations where no combinations of failures
+allowed and test miles required will satisfy these probability statements.  In
+this paper we have focused on test plans for single units, but this methodology
+can be extended to find test plans that allow for a changing number of testing
+units.  In this case you would find combinations of failures allowed and test
+miles required and number of vehicles tested that satisfy the risk requirements.
+More details and examples of this can be found in the assurance testing section
+of Hamada et al. ~\cite{ref4}
+
+\subsection{Discussion}
 
 %%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99}
