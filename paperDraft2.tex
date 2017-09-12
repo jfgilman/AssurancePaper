@@ -110,15 +110,15 @@ analysis is overly simplistic, relies on correct modeling assumptions
 and ignores valuable information learned about the individual vehicles and their
 failure modes.
 
-In this paper we propose an alternative approach using a Bayesian hierarchical
+In this paper, we propose an alternative approach using a Bayesian hierarchical
 model.  We will begin by introducing a hierarchical structure that models the
-relationships in the data across all test phases and incorporate known
+relationships in the data across all test phases and incorporates known
 similarities between vehicle failure modes.  Next, we will consider different
-distributional assumptions and their implications.  We will aslo
+distributional assumptions and their implications.  We will also
 discuss model diagnostics to consider when choosing a final model. Then we will
 use the JLTV data to illustrate this process and discuss system reliability
 results. This will lead us into the next section on using these results to
-improve the planning of furture test.
+improve the planning of future test.
 
 \subsubsection{Model Structure}
 In the first phase of testing, we assume the vehicle miles at failure, $y$,
@@ -186,14 +186,14 @@ modes and vehicles and obtain an overall estimate of the rate for the family of
 vehicles. Future tests will be planned based on the inferences of Phase 3.
 
 \subsubsection{Distributional Assumption}
-The next modeling choice that must be made is slecting an appropriate
-probability model This includes a slecting a sampling distribution for the data
+The next modeling choice that must be made is selecting an appropriate
+probability model This includes a selecting a sampling distribution for the data
 and prior distributions for each parameter on which the sampling distribution
 depends.  For lifetime data there are a number sampling distribution to choose
 from.  Some common choices are exponential, Weibull, lognormal, gamma, inverse
 Gaussian, and normal failure time models.  Because all of these distributions
 have rate parameter (sometimes called scale = 1/rate) they can be applied to
-the proposed modeling structure.  For this paper we will focus on the
+the proposed modeling structure.  For this paper, we will focus on the
 exponential and Weibull distributions.
 
 First the exponential model, Test Phase 1,
@@ -214,7 +214,7 @@ f(y_{ijk}|\lambda_{ij}\rho1_{j}\rho2_{j})=\lambda_{ij}\rho1_{j}\rho2_{j}
 This is by far the most common parametric distribution used in reliability
 modeling because of its desirable math mathematical properties and simple
 interpretations.  One of these properties is that the failure rate is constant.
-For the JLTV setting this would assume that a given component is equally likely
+For the JLTV, setting this would assume that a given component is equally likely
 to fail in the first mile of testing as it is in the thousandth.  This may be
 reasonable for some reliability settings, but in general we expect vehicle
 components to wear down and become more likely to fail the longer they are
@@ -236,7 +236,7 @@ $\lambda_{ij}$ and a shape parameter $\gamma_{j}$.  The exponential is a special
 case of the Weibull, when $\gamma = 1$.
 
 It should be noted that we are currently indexing both $\rho$ and $\gamma$, only
-by $j$ and not $i$, in other words we are assuming a single shape and between
+by $j$ and not $i$, in other words, we are assuming a single shape and between
 phase adjustment parameter for each failure mode across vehicles.  All of these
 parameters could also be indexed by $i$ and modeled hierarchical or with some
 combination of both.  This is something we will omit for this paper but hope to
@@ -306,7 +306,7 @@ This is a popular method for comparing the goodness of fit of multiple models.
 The DIC method gives a slight penalty for larger numbers of parameters.  The DIC
 value is a unitless measure with lower values indicating a better fit to the
 data.  In the table below we show the DIC results for the different distribution
-and structure combinations we considered with the JLTV dataset.
+and structure combinations, we considered with the JLTV dataset.
 
 \begin{tabular}{|l|l|r|}
 \multicolumn{3}{c}{\textbf{Goodness of Fit}} \\
