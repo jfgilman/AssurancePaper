@@ -126,7 +126,7 @@ follow a lifetime distribution with an unknown set of parameters that include
 a rate parameter $\lambda_{ij}$.
 Introducing notation,
 \begin{equation}
-y_{ijk}\mid\lambda_{ij}\sim f(\lambda_{ij},...), \quad i = 1,2,...,v \quad
+y_{ijk}\mid\lambda_{ij}\sim f(\cdot), \quad i = 1,2,...,v \quad
 j=1,2,...,s \quad k=1,2,...,n_{ij}
 \end{equation}
 where $y_{ijk}$ are the miles between failure for vehicle $i$ failure mode $j$,
@@ -207,8 +207,8 @@ f(y_{ijk}|\lambda_{ij}\rho_{1,j})=\lambda_{ij}\rho_{1,j}
 \end{equation}
 Test Phase 3,
 \begin{equation}
-f(y_{ijk}|\lambda_{ij}\rho1_{j}\rho2_{j})=\lambda_{ij}\rho1_{j}\rho2_{j}
-\exp(-\lambda_{ij}\rho1_{j}\rho2_{j} y_{ijk})
+f(y_{ijk}|\lambda_{ij}\rho_{1,j}\rho_{2,j})=\lambda_{ij}\rho_{1,j}\rho_{2,j}
+\exp(-\lambda_{ij}\rho_{1,j}\rho_{2,j} y_{ijk})
 \end{equation}
 
 This is by far the most common parametric distribution used in reliability
@@ -262,7 +262,12 @@ have box plots showing the posterior distributions of  the expected miles to
 failure for one of the vehicle types for each of the three phases, first using
 the exponential model and second using the more general Weibull model.
 
-\includegraphics[width=6cm, height=5cm]{Boxplots}
+
+\begin{figure}
+  \centering
+      \includegraphics[width=8cm, height=6cm]{Boxplots}
+  \caption{Comparing EMTF for Different Models}
+\end{figure}
 
 The plots show that the posterior distributions from the Weibull model have a
 good amount more spread than the exponential.  This is somewhat expected given
@@ -271,6 +276,8 @@ but what is concerning is that the center of the distributions is also quite
 different between the two models.  All of the Weibull EMTF posterior means
 are higher than the exponentials.  This is the first sign that the exponential
 model may not be a good fit to the data.
+
+\pagebreak
 
 \subsubsection{Model Diagnostics}
 As seen in the last section with the JLTV data, the decision of which model to
@@ -293,7 +300,12 @@ plot below from the JLTV data, we see that for the 26 components it appears
 that the value of one falls in the extreme tails of the distributions.  This is
 our first clue that the exponential model will not be a good fit to this data.
 
-\includegraphics[width=6cm, height=5cm]{betaPostPlot}
+% this plot will be remade without title and smaller xlim
+\begin{figure}
+  \centering
+      \includegraphics[width=6cm, height=5cm]{betaPostPlot}
+  \caption{Posterior Plots of Shape Parameter}
+\end{figure}
 
 This is not a surprising result, because the exponential model assumes constant
 failure rate.  For most vehicle components we would expect the failure rate to
