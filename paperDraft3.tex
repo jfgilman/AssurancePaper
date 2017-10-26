@@ -104,10 +104,10 @@ censored observations, accounting for miles driven without observed failures.
 \subsection{Modeling Reliability}
 A standard reliability analysis employed by the Department of Defense (DoD) test
 community considers each test phase independently and uses the exponential
-distribution to model the miles between failure ~\cite{ref1}. The traditional
-analysis is overly simplistic, relies on correct modeling assumptions
-and ignores valuable information learned about the individual vehicles and their
-failure modes.
+distribution to model the miles between failure for the system ~\cite{ref1}. The
+traditional analysis is overly simplistic, relies on correct modeling
+assumptions and ignores valuable information learned about the individual
+vehicles and their failure modes.
 
 In this paper, we propose an alternative approach using a Bayesian hierarchical
 model.  We will begin by introducing a hierarchical structure that models the
@@ -118,6 +118,15 @@ discuss model diagnostics to consider when choosing a final model. Then we will
 use the JLTV data to illustrate this process and discuss system reliability
 results. This will lead us into the next section on using these results to
 improve the planning of future test.
+
+In this reliability setting we are analysing time to failure data measured in
+miles for a multiple component system with the primary interest in the system
+failure rate and future failure counts.  The most common models used in this
+failure rate analysis are lifetime distributions and the most common for failure
+count analysis is the \emph{Poisson process} counting model.  We will utilize
+both and the relationships between them.
+
+The methodology section is organized as follows... section 3.1...
 
 \subsubsection{Model Structure}
 Introducing notation, for each phase of testing we have failure time data for a
@@ -390,7 +399,7 @@ assurance testing as discussed by Hamada et al. ~\cite{ref4}. Bayesian
 \emph{reliability assurance tests} are used to ensure that the reliability of
 an item meets or exceeds a specified requirement with a desired probability.
 Meeker and Escobar ~\cite{ME04} established the difference between this and the
-more traditional  \emph{reliability demonstration test}.  The difference being
+more traditional \emph{reliability demonstration test}.  The difference being
 that the assurance test plan incorporates supplementary data and information,
 where the demonstration test only uses test data.
 

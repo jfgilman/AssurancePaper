@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1508691108 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1508691109
+["pdflatex"] 1508951591 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1508951592
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -84,9 +84,9 @@
   "Rplot1.png" 1505664350 28777 f9dcdf6fbcdc5e1f2fd9dfc6b207e64f ""
   "Rplot2.png" 1505664350 28431 f511296ad07a6bfc1837a4f907d7908f ""
   "betaPostPlot.png" 1505664350 90924 b30654162e3282c98a760ba4c75785f9 ""
-  "paperDraft3.aux" 1508691109 2469 15c4131c432054165823abea361b5ae4 ""
-  "paperDraft3.tex" 1508691108 39925 e877fbaa717a734c7515b1a56b512c3e ""
+  "paperDraft3.aux" 1508951592 2470 f9b822ae259368b2c3738728c865601e ""
+  "paperDraft3.tex" 1508951591 40440 b73855f7a0ca7094a9008535dcda6e64 ""
   (generated)
   "paperDraft3.log"
-  "paperDraft3.aux"
   "paperDraft3.pdf"
+  "paperDraft3.aux"
