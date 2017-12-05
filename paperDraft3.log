@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 DEC 2017 11:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 DEC 2017 13:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,72 +237,72 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2] [3] [4] <Boxplots.png, id=28, 689.57625pt x 455.7025pt>
 File: Boxplots.png Graphic file (type png)
  <use Boxplots.png>
-Package pdftex.def Info: Boxplots.png used on input line 272.
+Package pdftex.def Info: Boxplots.png used on input line 274.
 (pdftex.def)             Requested size: 227.624pt x 170.72113pt.
- [5] <betaPostPlot.png, id=33, 745.78625pt x 805.0075pt>
+ [5] [6 <./Boxplots.png>] <betaPostPlot.png, id=37, 745.78625pt x 805.0075pt>
 File: betaPostPlot.png Graphic file (type png)
  <use betaPostPlot.png>
-Package pdftex.def Info: betaPostPlot.png used on input line 310.
+Package pdftex.def Info: betaPostPlot.png used on input line 312.
 (pdftex.def)             Requested size: 170.70789pt x 142.25417pt.
- [6 <./Boxplots.png>]
+ [7 <./betaPostPlot.png>]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- <Rplot1.png, id=38, 446.66875pt x 803.0pt>
+ <Rplot1.png, id=43, 446.66875pt x 803.0pt>
 File: Rplot1.png Graphic file (type png)
  <use Rplot1.png>
-Package pdftex.def Info: Rplot1.png used on input line 367.
+Package pdftex.def Info: Rplot1.png used on input line 366.
 (pdftex.def)             Requested size: 93.94955pt x 168.89229pt.
- <Rplot2.png, id=39, 446.66875pt x 803.0pt>
+ <Rplot2.png, id=44, 446.66875pt x 803.0pt>
 File: Rplot2.png Graphic file (type png)
  <use Rplot2.png>
-Package pdftex.def Info: Rplot2.png used on input line 373.
+Package pdftex.def Info: Rplot2.png used on input line 372.
 (pdftex.def)             Requested size: 93.94955pt x 168.89229pt.
- [7 <./betaPostPlot.png>] [8 <./Rplot1.png> <./Rplot2.png>] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 479--484
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 513--517
+ [8 <./Rplot1.png> <./Rplot2.png>] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 478--483
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 557--563
+Underfull \hbox (badness 10000) in paragraph at lines 512--516
 
  []
 
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 670--678
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 559--565
 
  []
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 690--699
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 672--680
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 690--699
+Underfull \hbox (badness 10000) in paragraph at lines 692--701
 
  []
 
-[14] [15] (./paperDraft3.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--701
+
+ []
+
+[14] [15] [16] (./paperDraft3.aux) ) 
 Here is how much of TeX's memory you used:
  3730 strings out of 493089
  54793 string characters out of 6134842
- 120339 words of memory out of 5000000
+ 121339 words of memory out of 5000000
  7158 multiletter control sequences out of 15000+600000
  12457 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,12n,38p,245b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paperDraft3.pdf (15 pages, 350255 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on paperDraft3.pdf (16 pages, 351472 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 121 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

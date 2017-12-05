@@ -129,8 +129,8 @@ both and the relationships between them.
 The methodology section is organized as follows... section 3.1...
 
 \subsubsection{Model Structure}
-Introducing notation, for each phase of testing we have failure time data for a
-given vehicle $i$ and failure mode $j$ denoted as $t_{ij0}, t_{ij1},...,
+Introducing notation, for each phase of testing we have failure mileage data for
+a given vehicle $i$ and failure mode $j$ denoted as $t_{ij0}, t_{ij1},...,
 t_{ijn_{ij}}, t_{ijc}$, where $t_{ij0} = 0$ and $t_{ijc}$ is the end of that
 testing phase. In each phase of testing, we assume the vehicle miles between
 failures, $y_{ijk} = t_{ijk} - t_{ijk-1}$, follow a lifetime distribution with
@@ -227,31 +227,33 @@ Despite its common uses the assumption of a constant failure rate over time is
 rarely justifiable.  It has been well documented the issues that can arise when
 this assumption is violated ~\cite{ref2}.  Thus we will also consider the same
 hierarchical model structure while using the Weibull distribution.  Now we
-assume that the failure times $y_{ijk}$ each follow a $Weibull(\lambda, \gamma)$
+assume that the failure mileage $t_{ijk}$ each follow a $Weibull(\lambda, \gamma)$
 distribution with scale parameter $\lambda$ and shape parameter $\gamma$, with
-probability density function for Test Phase 1,
+probability density function,
 \begin{equation*}
-    f(y_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i}
-    y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} y_{ijk}^{\gamma_{i}}).
+    f(t_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i}
+    t_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} t_{ijk}^{\gamma_{i}}).
 \end{equation*}
 The Weibull distribution is a more flexible model with both a rate parameter
 $\lambda_{ij}$ and a shape parameter $\gamma_{j}$.  The exponential is a special
-case of the Weibull, when $\gamma = 1$.
+case of the Weibull, when $\gamma = 1$.  You should notice here we are now
+modeling the actual failure mileage $t_{ijk}$ instead of the miles between
+failures $y_{ijk}$.  This means we are treating all intra-test repairs as "bad
+as old".  We could have continued with the miles between failures and assumed
+"good as new" repairs, but "bad as old" modeling will be more convenient for
+developing assurance test plans in later sections.  This distinction is
+important in the Weibull case because the failure rate is not constant in time.
+In practice the decision on intra-test repair assumptions should be made based
+on the application.  In many cases repairs should be treated as somewhere
+between "good as new" and "bad as old".  This requires more complex modeling
+that is beyond the scope of this paper.
 
-It should be noted that we are currently indexing both $\rho$ and $\gamma$, only
-by $j$ and not $i$, in other words, we are assuming a single shape and between
-phase adjustment parameter for each failure mode across vehicles.  All of these
-parameters could also be indexed by $i$ and modeled hierarchical or with some
-combination of both.  This is something we will omit for this paper but hope to
-explore in the future.  One special case we will discuss is when a single
-Weibull shape parameter can be assumed across all failure modes.  When this is
-justifiable it can greatly simplify test planning calculations, as we will show
-in the assurance testing section.  In this paper we will also be assuming on
-site repairs return the component to a "good as new" condition and that all
-component failures are independent.  That is, when a component such as the
-breaks are fixed during a test phase we will treat it as if it is brand  new and
-this failure has no effect on the reliability of other components such as the
-armor.
+It should  also be noted that we are currently indexing both $\rho$ and
+$\gamma$, only by $j$ and not $i$, in other words, we are assuming a single
+shape and between phase adjustment parameter for each failure mode across
+vehicles.  All of these parameters could also be indexed by $i$ and modeled
+hierarchical or with some combination of both.  This is something we will omit
+for this paper but hope to explore in the future.
 
 \subsubsection{JLTV Reliability}
 So far we have discussed a number of different models and the assumptions that
@@ -324,39 +326,36 @@ value is a unitless measure with lower values indicating a better fit to the
 data.  In the table below we show the DIC results for the different distribution
 and structure combinations, we considered with the JLTV dataset.
 
+% need to recheck these numbers %
 \begin{tabular}{|l|l|r|}
 \multicolumn{3}{c}{\textbf{Goodness of Fit}} \\
 \cline{1-3}
 Distribution    & Structure & DIC \\
 \hline
-Exponential   & Single Rate                       & 23258               \\
-              & Hierarchical Rate                 & 23022               \\
-Weibull       & Single Rate                       & 18750               \\
-              & Hierarchical Rate                 & \textbf{18556}      \\
-              & Hierarchical Rate (One shape)     & 18677               \\
+Exponential   & All Common Rate                      & 20,778.09             \\
+              & All Hierarchical Rate                & 21,308.72             \\
+              & Mixture Rate                         & 20,606.75             \\
+Weibull       & All Common Rate                      & 20,202.39             \\
+              & All Hierarchical Rate                & 17,984.85             \\
+              & Mixture Rate                         & \textbf{17,710.85}    \\
 \hline
 \end{tabular}
 
-The single rate structure represents the non-hierarchical model, using one rate
-parameter all 8 vehicles for a given failure mode.  The hierarchical rate
-structure uses the common gamma distribution for the failure modes that are
-common across vehicles.  The final entry in the table is the model that uses one
-shape parameter across all 26 failure modes.
-
-While we have shown that the hierarchical Weibull model fits much better than
-the exponential, these test still do not tell us that this model is a good fit
-for the data.  The last method we will present is called posterior predictive
-checking ~\cite{ref3}.  Here we are given important features of the data.
-In the JLTV case we were interested in the total failure counts for each phase
-and the number of time the miles between failures was less than 140.  We then
-used the final model to simulate 5,000 new datasets.  We then plot histograms
-for each of the 8 vehicles for all 3 phases.  In Figure 1 are examples of the
-histograms produced, with the line showing where the value of the true dataset
-fell.  For this method we don’t expect all of the true values to fall in the
-center of the distribution.  Values in the tales are to be expected in a random
-processes like this one.  We will only be concerned if we find true values
-falling in the extreme tails or if we see a common bias to the high or low side
-of the distributions.
+The mixture rate models use a combination of common rate and hierarchical rate
+parameterizations depending on the failure mode.  While we have shown that the
+hierarchical Weibull model fits much better than the exponential, these test
+still do not tell us that this model is a good fit for the data.  The last
+method we will present is called posterior predictive checking ~\cite{ref3}.
+Here we are given important features of the data. In the JLTV case we were
+interested in the total failure counts for each phase and the number of time the
+miles between failures was less than 140.  We then used the final model to
+simulate 5,000 new datasets.  We then plot histograms for each of the 8 vehicles
+for all 3 phases.  In Figure 1 are examples of the histograms produced, with the
+line showing where the value of the true dataset fell.  For this method we don’t
+expect all of the true values to fall in the center of the distribution.  Values
+in the tales are to be expected in a random processes like this one.  We will
+only be concerned if we find true values falling in the extreme tails or if we
+see a common bias to the high or low side of the distributions.
 
 % these plots will be redone and I plan to add a contrasting version of them
 % using the exponential model
@@ -534,7 +533,10 @@ distribution the system failure counts no longer follow a homogeneous Poisson
 process.  Because each component failure rate now varies with time each
 component failure count follows a non-homogeneous Poisson process $w_i(t) \sim
 \text{Poisson}(\gamma_i \lambda_i t^{\gamma_i})$.  In this case we no longer
-have a closed form for the system failure rate $\lambda_S$.  The exception being
+have a closed form for the system failure rate $\lambda_S$.
+
+% need to redo this without the single rate %
+The exception being
 if we can assume a single shape parameter $\gamma$ for all components.  In this
 case, it can be shown [A1] that the system failure count follows a non-homogeneous
 Poisson process $W(t) \sim \text{Poisson}(\gamma \lambda_S t^{\gamma})$.  Now,
