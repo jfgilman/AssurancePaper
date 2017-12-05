@@ -132,29 +132,38 @@ The methodology section is organized as follows... section 3.1...
 Introducing notation, for each phase of testing we have failure time data for a
 given vehicle $i$ and failure mode $j$ denoted as $t_{ij0}, t_{ij1},...,
 t_{ijn_{ij}}, t_{ijc}$, where $t_{ij0} = 0$ and $t_{ijc}$ is the end of that
-testing phase. In the first phase of testing, we assume the vehicle miles
-between failures, $y_{ijk} = t_{ijk} - t_{ijk-1}$, follow a lifetime
-distribution with an unknown set of parameters that include a rate parameter
-$\lambda_{ij}$.
-\begin{equation}
-y_{ijk}\mid\lambda_{ij}\sim f(\cdot), \quad i = 1,2,...,v \quad
-j=1,2,...,s \quad k=1,2,...,n_{ij}
-\end{equation}
-where $v$ is the number of vehicles, $s$ is the number of failure modes, and
-$n_{ij}$ are the number of failures of vehicle $i$ failure mode $j$. The number
-of failure modes is assumed fixed and known \textit{a priori}.
+testing phase. In each phase of testing, we assume the vehicle miles between
+failures, $y_{ijk} = t_{ijk} - t_{ijk-1}$, follow a lifetime distribution with
+an unknown set of parameters that include a rate parameter.  For the first phase
+the rate parameter for vehicle $i$ and failure mode $j$ will be denoted as
+$\lambda_{ij}$.  Then for the next stage we will use the same $\lambda_{ij}$ but
+add a multiplicative correction parameter $\rho_{1,j}$ that represents the
+change in this rate due to the CAP.  This proceedure is then repeated for each
+subsequent stage.  The correction parameter will be discussed more in the next
+section but the general model is as follows,
+\begin{align*}
+\text{Phase 1: }&y_{ijk}\mid\lambda_{ij}\sim f(\cdot), \quad i = 1,2,...,v \quad
+j=1,2,...,s \quad k=1,2,...,n_{ij}\\
+\text{Phase 2: }&y_{ijk}\mid\lambda_{ij}\rho_{j}^{P2}\sim f(\cdot) \\
+\text{Phase 3: }&y_{ijk}\mid\lambda_{ij}\rho_{j}^{P2}\rho_{j}^{P3}\sim f(\cdot)
+\end{align*}
+where $v$ represents the number of vehicles, $s$ is the number of failure modes,
+and $n_{ij}$ are the number of failures of vehicle $i$ failure mode $j$. The
+number of failure modes is assumed fixed and known \textit{a priori}.
 
-The prior distribution on failure rate parameter, $\lambda_{ij}$, depends on
-whether failure mode $j$ is considered to be common across vehicles or related
-but not identical. For the related failure modes, we place a prior distribution
-on the collection of $\lambda_{ij}$; in other words, we assume each vehicle has
-a distinct failure rate in failure mode $j$ but they arise from a common
-distribution.  If failure mode $j$ is considered common across vehicles, the
-collection of failure rates is collapsed to a single parameter, $\lambda_{ij} =
-\lambda_j$. As with the related failure modes, a prior distribution is placed on
-the single failure rate. The prior distributions are independent across failure
-mode, and can potentially have different hyperparameters.
+For this model we will assume a prior distribution on failure rate parameter
+$\lambda_{ij}$.  This distribution depends on whether failure mode $j$ is
+considered to be common across vehicles or related but not identical. For the
+related failure modes, we place a prior distribution on the collection of
+$\lambda_{ij}$; in other words, we assume each vehicle has a distinct failure
+rate in failure mode $j$ but they arise from a common distribution.  If failure
+mode $j$ is considered common across vehicles, the collection of failure rates
+is collapsed to a single parameter, $\lambda_{ij} = \lambda_j$. As with the
+related failure modes, a prior distribution is placed on the single failure
+rate. The prior distributions are independent across failure mode, and can
+potentially have different hyperparameters.
 
+% not sure we need this paragraph %
 The Phase 1 analysis yields an estimate of the failure rate $\lambda_{ij}$ for
 each of the vehicles for failure modes that are related.  We are assuming the
 vehicles are conditionally independent, if we also assume the miles at failure
@@ -175,30 +184,19 @@ repairs improve failure rates, are typically fixed. A common value for FEF is
 0.70. We follow the premise of this type of model, but allow a more flexible and
 data-driven result that is less dependent on hard-coded assumptions.
 
-% This section needs a little work to make it more clear about the different
-% phases having the same lambda.  The notation should work together with the
-% distribution section after it.
 One normal assumption used in reliability growth modeling is nondecreasing
 failure rates; that is either the fixes were effective or had no effect, but did
 not degrade the family of vehicles.  This should generally be the case, but
 because we are dealing with complex systems and testing conditions are rarely
 completely consistent, we will sometimes see decreases in failure rates after
-adjustments are made.  Therefore for the Phase 2 data, we write the rate
-parameters as a function of the rate parameters found in Phase 1. In particular,
-we define $\lambda_{ij}=(\rho_{j}^{P2})\lambda_{ij}$ where $\rho_{j}^{P2}$
-represents the between phase change in failure mode $j$. Given this definition
-of of the rate parameter, we again model the miles to failure for a given
-vehicle and failure mode using the same lifetime distribution from Test Phase 1.
-We will choose a prior distribution for the parameter $\rho_{j}^{P2}$ that has
-positive support.  If $\rho_{j}^{P2}$ is less than one, this represents an
-improvement in reliability.  After Phase 2 we can look again at failure rates
-across failure modes and vehicles and obtain an overall estimate of the rate for
-the family of vehicles.  The analysis of Test Phase 3 failure rate
-$\lambda_{ij}=(\rho_{j}^{P3})\rho_{j}^{P2}\lambda_{ij}$, following the same
-pattern as that shown in Phase 2. At the end of Phase 3, we can look at failure
-rates across failure modes and vehicles and obtain an overall estimate of the
-rate for the family of vehicles. Future tests will be planned based on the
-inferences of Phase 3.
+adjustments are made.  Thus we will choose a prior distribution for the
+correction parameter $\rho_{j}^{P2}$ that has positive support.  If
+$\rho_{j}^{P2}$ is less than one, this represents an improvement in reliability.
+And the same thinking is applied to $\rho_{j}^{P3}$ for the correction period
+between phases two and three.  With this structure we can use the posterior
+distributions of the correction parameters to make infrence on the effectiveness
+of the repairs and the join posterior distributions to evaluate the overall
+system reliability within each phase.
 
 \subsubsection{Distributional Assumption}
 The next modeling choice that must be made is selecting an appropriate
@@ -211,20 +209,10 @@ have rate parameter (sometimes called scale = 1/rate) they can be applied to
 the proposed modeling structure.  For this paper, we will focus on the
 exponential and Weibull distributions.
 
-First the exponential model, Test Phase 1,
-\begin{equation} f(y_{ijk}|\lambda_{ij})=\lambda_{ij} \exp(-\lambda_{ij}
-y_{ijk})
-\end{equation}
-Test Phase 2,
-\begin{equation}
-f(y_{ijk}|\lambda_{ij}\rho_{1,j})=\lambda_{ij}\rho_{j}^{P2}
-\exp(-\lambda_{ij}\rho_{j}^{P2} y_{ijk})
-\end{equation}
-Test Phase 3,
-\begin{equation}
-f(y_{ijk}|\lambda_{ij}\rho_{j}^{P3}\rho_{j}^{P2})=\lambda_{ij}\rho_{1,j}\rho_{2,j}
-\exp(-\lambda_{ij}\rho_{j}^{P3}\rho_{j}^{P2} y_{ijk})
-\end{equation}
+First the exponential model,
+\begin{equation*}
+    f(y_{ijk}|\lambda_{ij})=\lambda_{ij} \exp(-\lambda_{ij}y_{ijk})
+\end{equation*}
 
 This is by far the most common parametric distribution used in reliability
 modeling because of its desirable math mathematical properties and simple
@@ -242,10 +230,10 @@ hierarchical model structure while using the Weibull distribution.  Now we
 assume that the failure times $y_{ijk}$ each follow a $Weibull(\lambda, \gamma)$
 distribution with scale parameter $\lambda$ and shape parameter $\gamma$, with
 probability density function for Test Phase 1,
-\begin{equation}
-f(y_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i}
-y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} y_{ijk}^{\gamma_{i}}).
-\end{equation}
+\begin{equation*}
+    f(y_{ijk}|\lambda_{ij},\gamma_{i})=\lambda_{ij}\gamma_{i}
+    y_{ijk}^{\gamma_{i}-1}\exp(-\lambda_{ij} y_{ijk}^{\gamma_{i}}).
+\end{equation*}
 The Weibull distribution is a more flexible model with both a rate parameter
 $\lambda_{ij}$ and a shape parameter $\gamma_{j}$.  The exponential is a special
 case of the Weibull, when $\gamma = 1$.

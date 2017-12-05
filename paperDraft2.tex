@@ -6,25 +6,24 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\title{Bayesian modeling and test planning for multi-phase reliability assessment}
+\author{Alyson Wilson,  Kassandra Fronczyk, James Gilman}
 
 \begin{document}
-
-\title{Bayesian Hierarchical Models for Common Components across Multiple System
-Configurations}
+\maketitle
 
 \begin{abstract}
-    We use a Bayesian hierarchical model to assess the reliability of the Joint
-    Light Tactical Vehicle (JLTV), which is a family of vehicles. The proposed
-    model effectively combines information across three phases of testing and
-    across common vehicle components. The analysis yields estimates of failure
-    rates for specific failure modes and vehicles as well as an overall estimate
-    of the failure rate for the family of vehicles. We are also able to obtain
-    estimates of how well vehicle modifications between test phases improve
-    failure rates. In addition to using all data to improve on current
-    assessments of reliability and reliability growth, we illustrate how to
-    leverage the information learned from the three phases to determine
-    appropriate specifications for subsequent testing that will demonstrate if
-    the reliability meets a given reliability threshold.
+We use a Bayesian hierarchical model to assess the reliability of a family of
+vehicles. The proposed model effectively combines information across three
+phases of testing and across common vehicle components. The analysis yields
+estimates of failure rates across failure modes and vehicles as well as an overall
+estimate of the failure rate for the family of vehicles. We are also able to
+obtain estimates of the Fix Effectiveness Factor (FEF), a measure of how well
+repairs between test phases improve failure rates. In addition to using all data
+to improve on current assessments of reliability and reliability growth, we
+illustrate how to leverage the information learned from the three developmental
+test phases to determine the length of testing needed to demonstrate a given
+reliability threshold in the next testing phase.
 \end{abstract}
 
 \section{Introduction}
@@ -165,6 +164,9 @@ repairs improve failure rates, are typically fixed. A common value for FEF is
 0.70. We follow the premise of this type of model, but allow a more flexible and
 data-driven result that is less dependent on hard-coded assumptions.
 
+% This section needs a little work to make it more clear about the different
+% phases having the same lambda.  The notation should work together with the
+% distribution section after it.
 One normal assumption used in reliability growth modeling is nondecreasing
 failure rates; that is either the fixes were effective or had no effect, but did
 not degrade the family of vehicles.  This should generally be the case, but
@@ -262,14 +264,15 @@ have box plots showing the posterior distributions of  the expected miles to
 failure for one of the vehicle types for each of the three phases, first using
 the exponential model and second using the more general Weibull model.
 
-
+% going to add a table that will have the posterior means and 90% credible
+% interval limits
 \begin{figure}
   \centering
       \includegraphics[width=8cm, height=6cm]{Boxplots}
   \caption{Comparing EMTF for Different Models}
 \end{figure}
 
-The plots show that the posterior distributions from the Weibull model have a
+Figure 1 show that the posterior distributions from the Weibull model have a
 good amount more spread than the exponential.  This is somewhat expected given
 the Weibull model is estimating two model parameters to the exponentials one,
 but what is concerning is that the center of the distributions is also quite
@@ -300,7 +303,7 @@ plot below from the JLTV data, we see that for the 26 components it appears
 that the value of one falls in the extreme tails of the distributions.  This is
 our first clue that the exponential model will not be a good fit to this data.
 
-% this plot will be remade without title and smaller xlim
+% this plot will be remade without title and smaller xlim %
 \begin{figure}
   \centering
       \includegraphics[width=6cm, height=5cm]{betaPostPlot}
@@ -354,6 +357,8 @@ processes like this one.  We will only be concerned if we find true values
 falling in the extreme tails or if we see a common bias to the high or low side
 of the distributions.
 
+% these plots will be redone and I plan to add a contrasting version of them
+% using the exponential model
 \begin{figure}
 \centering
 \begin{subfigure}{.5\textwidth}
@@ -465,9 +470,9 @@ $$
     \geq \lambda_0 \; \vert \; W > c) \\ &= \int_{\lambda_0}^{\infty}
     p(\lambda_S \; \vert W > c) d\lambda_S \\ &= \int_{\lambda_0}^{\infty}
     \frac{f(W > c \vert \lambda_S)}{\int_{0}^{\infty} f(W > c \vert \lambda_S)
-    d\lambda_S} d\lambda_S \\ &= \frac{\int_{\lambda_0}^{\infty} [ \sum_{W=0}^c
+    d\lambda_S} d\lambda_S \\ &= \frac{\int_{\lambda_0}^{\infty} 1 - [ \sum_{W=0}^c
     \frac{(\lambda_S T)^W exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S}
-    {\int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S
+    {\int_{0}^{\infty} 1 - [ \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S
     T)}{W!}]p(\lambda_S)d\lambda_S} \leq \alpha
 \end{aligned}
 $$
@@ -478,10 +483,10 @@ using N posterior draws $ \lambda_S^{(j)} $
 $$
 \begin{aligned}
 	 P(\lambda_S \geq \lambda_0 \; \vert \; W = 0) &=
-	 \frac{\int_{\lambda_0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S}
-	 {\int_{0}^{\infty} exp(-\lambda_S T)p(\lambda_S)d\lambda_S} \\ &\approx
-	 \frac{\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)I(\lambda_S^{(j)} \geq
-	 \lambda_0)} {\sum_{j = 1}^{N} exp(-\lambda_S^{(j)} T)} \end{aligned}
+	 \frac{\int_{\lambda_0}^{\infty} 1 - exp(-\lambda_S T)p(\lambda_S)d\lambda_S}
+	 {\int_{0}^{\infty} 1 - exp(-\lambda_S T)p(\lambda_S)d\lambda_S} \\ &\approx
+	 \frac{\sum_{j = 1}^{N} 1 - exp(-\lambda_S^{(j)} T)I(\lambda_S^{(j)} \geq
+	 \lambda_0)} {\sum_{j = 1}^{N} 1 - exp(-\lambda_S^{(j)} T)} \end{aligned}
 $$
 
 Similarly, given that the test is passed, the \emph{posterior consumer's risk}
@@ -498,7 +503,7 @@ $$
     P(\lambda_S \leq \lambda_1 \; \vert \; \text{Test Is Passed)} &= P(\lambda_S
     \leq \lambda_1 \; \vert \; W \leq c) \\ &= \int_{0}^{\lambda_1} p(\lambda_S \;
     \vert W > c) d\lambda_S \\ &= \int_{0}^{\lambda_1} \frac{f(W > c \vert
-    \lambda_S)}{\int_{0}{\infty} f(W > c \vert \lambda_S) d\lambda_S} d\lambda_S \\ &=
+    \lambda_S)}{\int_{0}^{\infty} f(W > c \vert \lambda_S) d\lambda_S} d\lambda_S \\ &=
     \frac{\int_{0}^{\lambda_1} [ \sum_{W=0}^c \frac{(\lambda_S T)^W
     exp(-\lambda_S T)}{W!}]p(\lambda_S)d\lambda_S} {\int_{0}^{\infty} [
     \sum_{W=0}^c \frac{(\lambda_S T)^W exp(-\lambda_S
@@ -541,10 +546,10 @@ $$
     p(\lambda_S \; \vert W > c) d\lambda_S \\ &= \int_{0}^{\infty}
     \int_{\lambda_0}^{\infty} \frac{f(W > c \vert \lambda_S)}{\int_{0}^{\infty}
     \int_{0}^{\infty} f(W > c \vert \lambda_S) d\lambda_S d\gamma} d\lambda_S
-    d\gamma \\ &= \frac{\int_{0}^{\infty} \int_{\lambda_0}^{\infty}
+    d\gamma \\ &= \frac{\int_{0}^{\infty} \int_{\lambda_0}^{\infty} 1 -
     [\sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W exp(-\gamma \lambda_S
     T^{\gamma})}{W!}]p(\lambda_S)p(\gamma)d\lambda_S d\gamma} {\int_{0}^{\infty}
-    \int_{0}^{\infty} [ \sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W
+    \int_{0}^{\infty} 1 - [ \sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W
     exp(-\gamma \lambda_S T^{\gamma})} {W!}]p(\lambda_S) p(\gamma)
     d\lambda_Sd\gamma} \leq \alpha
 \end{aligned}
@@ -557,11 +562,11 @@ $\gamma^{(j)}$
 $$
 \begin{aligned}
 	 P(\lambda_S \geq \lambda_0 \; \vert \; W = 0) &= \frac{\int_{0}^{\infty}
-	 \int_{\lambda_0}^{\infty} exp(- \gamma \lambda_S T^{\gamma})p(\lambda_S)
-	 p(\gamma) d\lambda_S d\gamma} {\int_{0}^{\infty} \int_{0}^{\infty} exp(-
+	 \int_{\lambda_0}^{\infty} 1 - exp(- \gamma \lambda_S T^{\gamma})p(\lambda_S)
+	 p(\gamma) d\lambda_S d\gamma} {\int_{0}^{\infty} \int_{0}^{\infty} 1 - exp(-
 	 \gamma \lambda_S T^{\gamma})p(\lambda_S) p(\gamma) d\lambda_S d\gamma} \\
-	 &\approx \frac{\sum_{j = 1}^{N} exp(-\gamma^{(j)} \lambda_S^{(j)}
-	 T^{\gamma^{(j)}}) I(\lambda_S^{(j)} \geq \lambda_0)} {\sum_{j = 1}^{N}
+	 &\approx \frac{\sum_{j = 1}^{N} 1 - exp(-\gamma^{(j)} \lambda_S^{(j)}
+	 T^{\gamma^{(j)}}) I(\lambda_S^{(j)} \geq \lambda_0)} {\sum_{j = 1}^{N} 1 -
 	 exp(- \gamma^{(j)} \lambda_S^{(j)} T^{\gamma^{(j)}})} \end{aligned}
 $$
 
@@ -612,6 +617,8 @@ Failures Allowed    & Test Miles Required \\
 \hline
 \end{tabular}
 
+% This part should be expanded quite a bit and will extend into the discussion
+% section.
 It should be noted that if $\pi_0$, $\pi_1$, $\alpha$ and $\beta$ are set to
 unrealisitc values there can be situations where no combinations of failures
 allowed and test miles required will satisfy these probability statements.  In
@@ -708,5 +715,10 @@ $$
 $$
 
 This gives us: $N(t) \sim \text{Poisson}(t^\beta \sum_{i = 1}^N \gamma_i)$
+
+
+\subsection{Notes}
+Need to say somewhere we are assuming "bad-a-old" for the Weibull model.
+
 
 \end{document}
