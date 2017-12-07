@@ -523,7 +523,10 @@ $\lambda_S$.  This distributional assumption gave us a convenient distributional
 form for our system failure counts with $W(t) \sim \text{Poisson}(\lambda_S t)$
 When we assume the miles to failure for each system component follows a Weibull
 distribution the system failure counts no longer follow a homogeneous Poisson
-process.  Because each component failure rate now varies with time each
+process.
+
+% something about how using bad as old makes this work... 
+Because each component failure rate now varies with time each
 component failure count follows a non-homogeneous Poisson process $w_i(t) \sim
 \text{Poisson}(\gamma_i \lambda_i t^{\gamma_i})$.  In this case we no longer
 have a closed form for the system failure rate $\lambda_S$.
