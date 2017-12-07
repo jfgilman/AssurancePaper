@@ -50,16 +50,9 @@ The JLTV has been through a series of test events as it has been developed.
 Engineering and Manufacturing Development (EMD) included three phases of
 testing, where fixes occurred only during a set Corrective Action Period (CAP)
 between each phase. For every vehicle, each failure encountered during testing
-was recorded and attributed to a specific failure mode. Failures discovered
-during mission execution that result in an abort or termination of a mission in
-progress are scored as Operational Mission Failures (OMF), and failures of
-mission essential components are scored as Essential Function Failures (EFF).
-The EFFs tend to include a large portion of the failure modes that drive
-maintenance costs and reduce system availability. While requirements are
-typically written in terms of OMFs, because OMFs are by definition EFFs that
-occurred at critical times, combining the failures provides a more robust
-reliability estimate. Since fixes were delayed to CAPs, analysis generally shows
-a distinct jump in the system reliability between test phases.
+was recorded and attributed to a specific failure mode.  Since fixes were
+delayed to CAPs, analysis generally shows a distinct jump in the system
+reliability between test phases.
 
 We propose a model that can effectively combine information across the three
 phases of testing and across common vehicle components. We use a Bayesian
@@ -93,7 +86,7 @@ vehicles have over 80\% common parts. Consequently, some failure modes, such as
 brakes and radios, will be common to all eight vehicles. Other failure modes
 will be related, but not identical, as with hydraulics, frame, and body.
 
-There are 91 OMFs and 1321 EFFs attributed to 26 failure modes recorded across
+There are 1412 observed failures attributed to 26 failure modes recorded across
 all eight vehicles and all three test phases. In any given phase of test, every
 vehicle is not guaranteed to have a failure of all 26 failure modes, and each
 test phase does not necessarily end with a failure. Therefore, we have 624 right
