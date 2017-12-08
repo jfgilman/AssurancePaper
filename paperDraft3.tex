@@ -209,14 +209,15 @@ First the exponential model,
 
 This is by far the most common parametric distribution used in reliability
 modeling because of its desirable math mathematical properties and simple
-interpretations.  One of these properties is that the failure rate is constant.
+interpretations.  One of these properties is that the hazard rate is constant.
 For the JLTV, setting this would assume that a given component is equally likely
 to fail in the first mile of testing as it is in the thousandth.  This may be
-reasonable for some reliability settings, but in general we expect vehicle
-components to wear down and become more likely to fail the longer they are
-driven.
+reasonable for some reliability settings, but in most setting we observe either
+a decreasing hazard rate where failures are likely to occur early in testing
+but less likely as the test goes on, or increasing hazard rate where we see the
+system wear down as the test goes on.
 
-Despite its common uses the assumption of a constant failure rate over time is
+Despite its common uses the assumption of a constant hazard rate over time is
 rarely justifiable.  It has been well documented the issues that can arise when
 this assumption is violated ~\cite{ref2}.  Thus we will also consider the same
 hierarchical model structure while using the Weibull distribution.  Now we
@@ -525,7 +526,7 @@ When we assume the miles to failure for each system component follows a Weibull
 distribution the system failure counts no longer follow a homogeneous Poisson
 process.
 
-% something about how using bad as old makes this work... 
+% something about how using bad as old makes this work...
 Because each component failure rate now varies with time each
 component failure count follows a non-homogeneous Poisson process $w_i(t) \sim
 \text{Poisson}(\gamma_i \lambda_i t^{\gamma_i})$.  In this case we no longer
