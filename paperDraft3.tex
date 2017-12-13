@@ -326,30 +326,28 @@ and structure combinations, we considered with the JLTV dataset.
 \cline{1-3}
 Distribution    & Structure & DIC \\
 \hline
-Exponential   & All Common Rate                      & 20,778.09             \\
-              & All Hierarchical Rate                & 21,308.72             \\
-              & Mixture Rate                         & 20,606.75             \\
-Weibull       & All Common Rate                      & 20,202.39             \\
-              & All Hierarchical Rate                & 17,984.85             \\
-              & Mixture Rate                         & \textbf{17,710.85}    \\
+Exponential   & Common Rate Model                     & 21,264.19             \\
+              & Hierarchical Rate Model               & 21,244.47             \\
+Weibull       & Common Rate Model                     & 20,658.25             \\
+              & Hierarchical Rate Model               & \textbf{17,908.06}    \\
 \hline
 \end{tabular}
 
-The mixture rate models use a combination of common rate and hierarchical rate
-parameterizations depending on the failure mode.  While we have shown that the
-hierarchical Weibull model fits much better than the exponential, these test
-still do not tell us that this model is a good fit for the data.  The last
-method we will present is called posterior predictive checking ~\cite{ref3}.
-Here we are given important features of the data. In the JLTV case we were
-interested in the total failure counts for each phase and the number of time the
-miles between failures was less than 140.  We then used the final model to
-simulate 5,000 new datasets.  We then plot histograms for each of the 8 vehicles
-for all 3 phases.  In Figure 1 are examples of the histograms produced, with the
-line showing where the value of the true dataset fell.  For this method we don’t
-expect all of the true values to fall in the center of the distribution.  Values
-in the tales are to be expected in a random processes like this one.  We will
-only be concerned if we find true values falling in the extreme tails or if we
-see a common bias to the high or low side of the distributions.
+Here we have shown that the hierarchical Weibull model fits the data much better
+than the exponential, but in general information criteria comparisons do not
+tell us if the model is truely a good representation of the underlying process.
+The last method we will present is called posterior predictive checking
+~\cite{ref3}. Here we are given important features of the data. In the JLTV case
+we were interested in the total failure counts for each phase and the number of
+time the miles between failures was less than 140.  We then used the final model
+to simulate 5,000 new datasets. We then plot histograms for each of the 8
+vehicles for all 3 phases.  In Figure 1 are examples of the histograms produced,
+with the line showing where the value of the true dataset fell.  For this method
+we don’t expect all of the true values to fall in the center of the
+distribution.  Values in the tales are to be expected in a random processes like
+this one.  We will only be concerned if we find true values falling in the
+extreme tails or if we see a common bias to the high or low side of the
+distributions.
 
 % these plots will be redone and I plan to add a contrasting version of them
 % using the exponential model
@@ -372,17 +370,17 @@ see a common bias to the high or low side of the distributions.
 \end{figure}
 
 \subsection{Assurance Test Planning}
-In this section, we use the resulting reliability model from the previous
-section develop a plan for future testing.  Here the objective is to demonstrate
-that at a desired level of confidence, the system will meet or exceed a
-specified requirement. The methods to be employed will be similar to the
-assurance testing as discussed by Hamada et al. ~\cite{ref4}. Bayesian
-\emph{reliability assurance tests} are used to ensure that the reliability of
-an item meets or exceeds a specified requirement with a desired probability.
-Meeker and Escobar ~\cite{ME04} established the difference between this and the
-more traditional \emph{reliability demonstration test}.  The difference being
-that the assurance test plan incorporates supplementary data and information,
-where the demonstration test only uses test data.
+In this section, we will use the reliability models fit in section two section
+to develop a plan for future testing.  Here the objective is to demonstrate that
+at a desired level of confidence, the system will meet or exceed a specified
+requirement. The methods to be employed will be similar to the assurance testing
+as discussed by Hamada et al. ~\cite{ref4}. Bayesian \emph{reliability assurance
+tests} are used to ensure that the reliability of an item meets or exceeds a
+specified requirement with a desired probability. Meeker and Escobar
+~\cite{ME04} established the difference between this and the more traditional
+\emph{reliability demonstration test}.  The difference being that the assurance
+test plan incorporates supplementary data and information, where the
+demonstration test only uses test data.
 
 In both test planning methods we are interested in controlling error rates while
 minimizing the resources required for testing.  In the DoD acquisition process,
@@ -390,11 +388,11 @@ the error rates will be referenced in terms of risk. \emph{Consumer risk} which
 considers the event of purchasing a product that does not meet reliability
 requirements.  \emph{Producer risk} which considers the event of a product with
 acceptable reliability failing a given test and not being considered for
-purchase.  Introducing the notation for this section, In the JLTV case study, we
+purchase.  Introducing the notation for this section, in the JLTV case study, we
 will be determining how many miles on test $T$, are required and how many system
 failures to allow $c$, before the product is considered unacceptable.  We will
 define $W(t)$ as a random variable that represents the total number of system
-failures after $t$ miles.  Suppose that $\pi$ denotes some quantity of interest
+failures after $t$ miles.  We will let $\pi$ denote some quantity of interest
 that is related to system reliability at a given time. It is common to base both
 classical and Bayesian test plans on two specified levels of $\pi$: $\pi_0$, an
 \emph{acceptable reliability level} (ARL), and $\pi_1$, a \emph{rejectable
@@ -403,12 +401,12 @@ definition of ARL and RRL differ between the classical and Bayesian test
 criteria, we use them in an equivalent way.
 
 \subsubsection{Classical Approach}
-It is quite common to use two criteria in determining classical test plans. The
-\emph{producer's risk}, defined as the probability of failing the test when $\pi =
-\pi_0$, and the \emph{consumer's risk}, defined as the probability of passing
-the test when $\pi = \pi_1$.  Suppose that we specify a maximum value, $\alpha$,
-of the producer's risk and a maximum value, $\beta$, of the consumer's risk. For
-test planning, these criteria become
+In the frequentist (classical) version we will use two criteria in determining
+the test plans. The \emph{producer's risk}, defined as the probability of
+failing the test when $\pi = \pi_0$, and the \emph{consumer's risk}, defined as
+the probability of passing the test when $\pi = \pi_1$.  Suppose that we specify
+a maximum value, $\alpha$, of the producer's risk and a maximum value, $\beta$,
+of the consumer's risk. For test planning, these criteria become
 $$
 \begin{aligned}
 	\text{Producer's Risk} &= P \text{(Test Is Failed } \vert \pi_0 \text{)} \\ &=
@@ -524,41 +522,14 @@ $\lambda_S$.  This distributional assumption gave us a convenient distributional
 form for our system failure counts with $W(t) \sim \text{Poisson}(\lambda_S t)$
 When we assume the miles to failure for each system component follows a Weibull
 distribution the system failure counts no longer follow a homogeneous Poisson
-process.
-
-% something about how using bad as old makes this work...
-Because each component failure rate now varies with time each
-component failure count follows a non-homogeneous Poisson process $w_i(t) \sim
-\text{Poisson}(\gamma_i \lambda_i t^{\gamma_i})$.  In this case we no longer
-have a closed form for the system failure rate $\lambda_S$.
-
-% need to redo this without the single rate %
-The exception being
-if we can assume a single shape parameter $\gamma$ for all components.  In this
-case, it can be shown [A1] that the system failure count follows a non-homogeneous
-Poisson process $W(t) \sim \text{Poisson}(\gamma \lambda_S t^{\gamma})$.  Now,
-we can use the same approach as with the exponential distribution. An expression
-for the posterior producer's risk for the exponential test plan $(T,c)$ is
-$$
-\begin{aligned}
-    P(\lambda_S \geq \lambda_0 \; \vert \; \text{Test Is Failed)} &= P(\lambda_S
-    \geq \lambda_0 \; \vert \; W > c) \\ &= \int_{\lambda_0}^{\infty}
-    p(\lambda_S \; \vert W > c) d\lambda_S \\ &= \int_{0}^{\infty}
-    \int_{\lambda_0}^{\infty} \frac{f(W > c \vert \lambda_S)}{\int_{0}^{\infty}
-    \int_{0}^{\infty} f(W > c \vert \lambda_S) d\lambda_S d\gamma} d\lambda_S
-    d\gamma \\ &= \frac{\int_{0}^{\infty} \int_{\lambda_0}^{\infty} 1 -
-    [\sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W exp(-\gamma \lambda_S
-    T^{\gamma})}{W!}]p(\lambda_S)p(\gamma)d\lambda_S d\gamma} {\int_{0}^{\infty}
-    \int_{0}^{\infty} 1 - [ \sum_{W=0}^c \frac{(\gamma \lambda_S T^{\gamma})^W
-    exp(-\gamma \lambda_S T^{\gamma})} {W!}]p(\lambda_S) p(\gamma)
-    d\lambda_Sd\gamma} \leq \alpha
-\end{aligned}
-$$
-\\
-\\
-Once again we can simplify by setting c to be zero and then perform Monte Carlo
-integration using N posterior draws for both $\lambda_S^{(j)}$ and
-$\gamma^{(j)}$
+process.  When assuming "bad as old" intra-test repairs we do find that the
+failure count for a given failure mode does follow a nonhomogeneous Poisson
+process, $w(t)_i \sim \text{Poisson}( (\lambda_i t)^{\gamma_i} )$.  In this case
+we no longer have a closed form for the system failure rate $\lambda_S = \sum_i
+(\lambda_i t)^{\gamma_i}$.  Because of this, using our previous approach leads to
+an unpleasant series of integals with parameters in the bounds.  Thankfully we
+can once again lean on Monte Carlo integration and the expression for the
+posterior producer's risk for the Weibull test plan $(T,c)$ simplifies to
 $$
 \begin{aligned}
 	 P(\lambda_S \geq \lambda_0 \; \vert \; W = 0) &= \frac{\int_{0}^{\infty}
@@ -567,14 +538,12 @@ $$
 	 \gamma \lambda_S T^{\gamma})p(\lambda_S) p(\gamma) d\lambda_S d\gamma} \\
 	 &\approx \frac{\sum_{j = 1}^{N} 1 - exp(-\gamma^{(j)} \lambda_S^{(j)}
 	 T^{\gamma^{(j)}}) I(\lambda_S^{(j)} \geq \lambda_0)} {\sum_{j = 1}^{N} 1 -
-	 exp(- \gamma^{(j)} \lambda_S^{(j)} T^{\gamma^{(j)}})} \end{aligned}
+	 exp(- \gamma^{(j)} \lambda_S^{(j)} T^{\gamma^{(j)}})}
+\end{aligned}
 $$
-
-In the case of multiple shape parameters, these calculations can still be done.
-The practitioner must be careful in defining the system reliability quantity of
-interest, accounting for each component failure rate.  The computation can
-quickly become  unmanagable as the number of components and/or number of allowed
-failures becomes large.
+\\
+Once again set c to be zero and used N posterior draws for both
+$\lambda_S^{(j)}$ and $\gamma^{(j)}$
 
 It should be noted that in this test planning process you would use the
 posterior distribution of $\lambda_S$ from the final developmental testing
@@ -664,62 +633,76 @@ the Annual Reliability and Maintainability Symposium} (2006).
 \end{thebibliography}
 
 \section{Appendix A1}
-\subsection{Series System Failure Rate}
+\textbf{Exponential Model:}
+\begin{equation*}
+L(\lambda_1, ..., \lambda_8, \rho^{P2}, \rho^{P3}, \vert Y) = \prod_{i = 1}^8
+  \Bigg[\prod_{j = 1}^{n_j}(\lambda_i p^*e^{-\lambda_i p^* y_{ij}})\prod_{j =
+  1}^R(e^{-\lambda_i p^*
+  y_{ij}})\Big(\frac{\beta^\alpha}{\Gamma(\alpha)}\lambda_i^{\alpha -
+  1}e^{-\beta\lambda_i}\Big)\Bigg]
+\end{equation*}
+\[p^* =   \left\{
+\begin{array}{ll}
+      1 & y_{ij}\in \text{Phase 1} \\
+      \rho_{j}^{P2} & y_{ij} \in \text{Phase 2} \\
+      \rho_{j}^{P2} \rho_{j}^{P3} & y_{ij} \in \text{Phase }
+\end{array}
+\right. \]
+$R$ is the number of right-censored observations, and n is the number of
+non-censored observations.
 
-\textbf{Definitions:} \\
-\noindent
-Reliability: $R(t) = 1 - F(t)$ \\
-Hazard or failure rate function: $\lambda(t) = \frac{f(t)}{R(t)}$ \\
-Series system reliability: $R_S(t) = \prod_{i = 1}^N R_i(t)$
-\\
-\\
-\textbf{Result:}
-$$
-\begin{aligned}
-	R_S(t) &= \prod_{i = 1}^N R_i(t) \\
-	\frac{dR_S(t)}{dt} &= \frac{d}{dt} \prod_{i = 1}^N R_i(t) \; \; \text{(derivative of both sides)} \\
-	\frac{dR_S(t)}{dt} &= \sum_{i=1}^N \left[ \frac{dR_i(t)}{dt} \frac{dR_S(t)}{dR_i(t)} \right] \; \; \text{(product rule)} \\
-    \frac{-\frac{dR_S(t)}{dt}}{R_S(t)} &= \sum_{i=1}^N \left[  \frac{-\frac{d}{dt}R_i(t)}{dR_i(t)} \right] \; \; \text{(divide both sides by $-R_S(t)$)} \\
-    \lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \; \; \text{(because $\lambda(t) = \frac{f(t)}{R(t)} = \frac{-\frac{dR(t)}{dt}}{R(t)}$ )}
-\end{aligned}
-$$
+\begin{equation*}
+\pi(\alpha, \beta, \rho^{P2}, \rho^{P3}) \propto (\alpha^{a_1-1}e^{-\alpha
+  a_2})(\beta^{b_1 - 1}e^{-\beta b_2})(\rho^{P2*c_1 - 1}e^{-\rho^{P2}
+  c_2})(\rho^{P3*d_1 - 1}e^{-\rho^{P3} d_2})
+\end{equation*}
 
-\subsection{Non-Homogeneous Poisson Process}
+\begin{align*}
+\lambda_i|\cdot &\sim \text{Gamma}(n_i + \alpha, \sum_{j=1}^{n_i}y_{ij}p^* + \beta) \\
+\beta|\cdot &\sim \text{Gamma}(8\alpha + b_1, \sum{\lambda_i} + b_2) \\
+\rho^{P2}|\cdot &\sim \text{Gamma}(N_{1,2} + c_1, \sum{y_{ij}\lambda_i} + c_2) \\
+\rho^{P3}|\cdot &\sim \text{Gamma}(N_{2} + d_1, \sum{y_{ij}\lambda_i} + d_2) \\
+\alpha|\cdot &\sim \text{Unknown form.  Used Metropolis-Hastings.}
+\end{align*}
 
-\textbf{Definitions:} \\
-\noindent
-Number of failures before time t: $N(t) \sim \text{Poisson}(m(t))$ \\
-Mean function: $m(t) = \int_0^t \lambda(s)ds$ (represents the expected number of failures before time t) \\
-Weibull($\gamma, \beta $) failure rate: $\lambda(t) = \gamma\beta t^{\beta - 1}$
-\\
-\\
-\textbf{Result:}\\
-If we assume a constant shape parameter $\beta$ then,\\
-$$
-\begin{aligned}
-	\lambda_S(t) &= \sum_{i = 1}^N \lambda_i(t) \\
-    &= \sum_{i = 1}^N \gamma_i\beta t^{\beta - 1} \\
-    &= \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i
-\end{aligned}
-$$
-\newpage
-Then Solving for the mean function of the system,
+$N_1$ and $N_2$ are the total non-censored observations for phases two and three
+and phase three, respectively.
 
-$$
-\begin{aligned}
-	m_S(t) &= \int_0^t \lambda_S(s)ds \\
-    &= \int_0^t \beta t^{\beta -1} \sum_{i = 1}^N \gamma_i \\
-    &= \sum_{i = 1}^N \gamma_i \int_0^t \beta t^{\beta -1} \\
-    &= t^\beta \sum_{i = 1}^N \gamma_i
-\end{aligned}
-$$
+\textbf{Weibull Model (Bad as Old):}
+\begin{equation*}
+  L(\lambda_1, ..., \lambda_8, \gamma, \rho^{P2}, \rho^{P3}, \vert T) = \prod_{i =
+    1}^8 \Bigg[\prod_{j = 1}^{n_j}(\lambda_i p^*t_{ij}^{\gamma_i-1} e^{-\lambda_i
+    p^* t_{ij}^{\gamma_i}})\prod_{j = 1}^R(e^{-\lambda_i p^*
+    t_{ij}^{\gamma_i}})\Big(\frac{\beta^\alpha}{\Gamma(\alpha)}\lambda_i^{\alpha -
+    1}e^{-\beta\lambda_i}\Big)\Bigg]
+\end{equation*}
+\[p^* =   \left\{
+\begin{array}{ll}
+      1 & t_{ij}\in \text{Phase 1} \\
+      \rho^{P2^\gamma} & t_{ij} \in \text{Phase 2} \\
+      \rho^{P2^\gamma} \rho^{P3^\gamma} & t_{ij} \in \text{Phase }
+\end{array}
+\right. \]
+$R$ is the number of right-censored observations, and n is the number of
+non-censored observations.
 
-This gives us: $N(t) \sim \text{Poisson}(t^\beta \sum_{i = 1}^N \gamma_i)$
+\begin{equation*}
+\pi(\alpha, \beta, \rho^{P2}, \rho^{P3}) \propto (\alpha^{a_1-1}e^{-\alpha
+  a_2})(\beta^{b_1 - 1}e^{-\beta b_2})(\rho^{P2*c_1 - 1}e^{-\rho^{P2}
+  c_2})(\rho^{P3 * d_1 - 1}e^{-\rho^{P3} d_2})(\gamma^{g_1 - 1}e^{-\gamma g_2})
+\end{equation*}
 
+\begin{align*}
+\lambda_i|\cdot &\sim \text{Gamma}(n_i + \alpha, \sum_{j=1}^{n_i}t_{ij}^{\gamma_i} p^* + \beta) \\
+\beta|\cdot &\sim \text{Gamma}(8\alpha + b_1, \sum{\lambda_i} + b_2) \\
+\rho^{P2}|\cdot &\sim \text{Gamma}(N_{1,2} + c_1, \sum{t_{ij}^{\gamma_i} \lambda_i} + c_2) \\
+\rho^{P3}|\cdot &\sim \text{Gamma}(N_{2} + d_1, \sum{t_{ij}^{\gamma_i} \lambda_i} + d_2) \\
+\alpha|\cdot &\sim \text{Unknown form.  Used Metropolis-Hastings.}\\
+\gamma|\cdot &\sim \text{Unknown form.  Used Metropolis-Hastings.}
+\end{align*}
 
-\subsection{Notes}
-Need to say somewhere we are assuming "bad-a-old" for the Weibull model.
-
+$N_1$ and $N_2$ are the total non-censored observations for phases two and three
+and phase three, respectively.
 
 
 
