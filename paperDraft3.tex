@@ -5,26 +5,73 @@
 \usepackage{enumerate}
 \usepackage{caption}
 \usepackage{subcaption}
+%\usepackage{natbib}
+\usepackage{url} % not crucial - just used below for the URL
+
+%\pdfminorversion=4
+% NOTE: To produce unblinded version, replace "0" with "1" below.
+\newcommand{\blind}{1}
+
+% DON'T change margins - should be 1 inch all around.
+\addtolength{\oddsidemargin}{-.5in}%
+\addtolength{\evensidemargin}{-.5in}%
+\addtolength{\textwidth}{1in}%
+\addtolength{\textheight}{-.3in}%
+\addtolength{\topmargin}{-.8in}%
 
 \begin{document}
 
-\title{Bayesian Hierarchical Models for Common Components across Multiple System
-Configurations}
+%\bibliographystyle{natbib}
+
+\def\spacingset#1{\renewcommand{\baselinestretch}%
+{#1}\small\normalsize} \spacingset{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if1\blind
+{
+\title{Bayesian Modeling and Test Planning for Multi-phase Reliability Assessment}
+
+\author{Kassandra M.\ Fronczyk\\Institute for Defense Analyses\\Alexandria, VA\\\texttt{kfronczy@ida.org} \and
+Alyson G.\ Wilson\\North Carolina State University\\Raleigh, NC\\\texttt{agwilso2@ncsu.edu} \and
+James F.\ Gilman\\North Carolina State University\\Raleigh, NC\\\texttt{jfgilman@ncsu.edu}
+}
+\maketitle} \fi
+
+\if0\blind
+{
+  \bigskip
+  \bigskip
+  \bigskip
+  \begin{center}
+    {\LARGE\bf Bayesian Modeling and Test Planning for Multi-phase Reliability Assessment}
+\end{center}
+  \medskip
+} \fi
+
+\bigskip
 
 \begin{abstract}
-    We use a Bayesian hierarchical model to assess the reliability of a family
-    of vehicles. The proposed model effectively combines information across
-    three phases of testing and across common vehicle components. The analysis
-    yields estimates of failure rates across failure modes and vehicles as well
-    as an overall estimate of the failure rate for the family of vehicles. We
-    are also able to obtain estimates of the Fix Effectiveness Factor (FEF), a
-    measure of how well repairs between test phases improve failure rates. In
-    addition to using all data to improve on current assessments of reliability
-    and reliability growth, we illustrate how to leverage the information
-    learned from the three developmental test phases to determine the length of
-    testing needed to demonstrate a given reliability threshold in the next
-    testing phase.
+    We use a Bayesian hierarchical model to assess the reliability of the Joint
+    Light Tactical Vehicle (JLTV), which is a family of vehicles. The proposed
+    model effectively combines information across three phases of testing and
+    across common vehicle components. The analysis yields estimates of failure
+    rates for specific failure modes and vehicles as well as an overall estimate
+    of the failure rate for the family of vehicles. We are also able to obtain
+    estimates of how well vehicle modifications between test phases improve
+    failure rates. In addition to using all data to improve on current
+    assessments of reliability and reliability growth, we illustrate how to
+    leverage the information learned from the three phases to determine
+    appropriate specifications for subsequent testing that will demonstrate if
+    the reliability meets a given reliability threshold.
 \end{abstract}
+
+\noindent%
+{\it Keywords:}  Assurance Testing, Combining Information, Defense Acquisition, Reliability, Reliability Growth
+\vfill
+
+\newpage
 
 \section{Introduction}
 Reliability is a high priority in the testing of military systems. A common
@@ -263,9 +310,9 @@ the exponential model and second using the more general Weibull model.
 
 % going to add a table that will have the posterior means and 90% credible
 % interval limits
-\begin{figure}
+\begin{figure}[h]
   \centering
-      \includegraphics[width=8cm, height=6cm]{Boxplots}
+      \includegraphics[width=9cm, height=7cm]{Boxplots}
   \caption{Comparing EMTF for Different Models}
 \end{figure}
 
@@ -276,8 +323,6 @@ but what is concerning is that the center of the distributions is also quite
 different between the two models.  All of the Weibull EMTF posterior means
 are higher than the exponentials.  This is the first sign that the exponential
 model may not be a good fit to the data.
-
-\pagebreak
 
 \subsubsection{Model Diagnostics}
 As seen in the last section with the JLTV data, the decision of which model to
@@ -294,21 +339,20 @@ the overall fit is close to the same between the exponential and the Weibull we
 will default to using the exponential.
 
 The first check we used to decide between the exponential and Weibull models is
-to fit the Weibull model and look at the posterior distributions of the
-shape parameters and determine if one is a reasonable value.  Looking at the
-plot below from the JLTV data, we see that for the 26 components it appears
-that the value of one falls in the extreme tails of the distributions.  This is
-our first clue that the exponential model will not be a good fit to this data.
+to fit the Weibull model and look at the posterior distributions of the shape
+parameters and determine if one is a reasonable value.  Looking at the plot in
+figure 2 below from the Weibull model fit with the JLTV data, we see that one is
+not a reasonable value for any of the 20 failure modes.  This is our first clue
+that the exponential model will not be a good fit to this data.
 
-% this plot will be remade without title and smaller xlim
-\begin{figure}
+\begin{figure}[h]
   \centering
-      \includegraphics[width=6cm, height=5cm]{betaPostPlot}
+      \includegraphics[width=8cm, height=7cm]{shapePostPlot}
   \caption{Posterior Plots of Shape Parameter}
 \end{figure}
 
 This is not a surprising result, because the exponential model assumes constant
-failure rate.  For most vehicle components we would expect the failure rate to
+failure rate.  For most vehicle failure modes we would expect the failure rate to
 increase as the distance driven grows larger, and this corresponds with a shape
 parameter between zero and one.  On the other hand, when the shape parameter is
 larger than 1, the failure rate will decrease with time/distance.
@@ -316,11 +360,13 @@ larger than 1, the failure rate will decrease with time/distance.
 Now a more formal diagnostic tool, the Deviance information criterion (DIC).
 This is a popular method for comparing the goodness of fit of multiple models.
 The DIC method gives a slight penalty for larger numbers of parameters.  The DIC
-value is a unitless measure with lower values indicating a better fit to the
+value is a unit-less measure with lower values indicating a better fit to the
 data.  In the table below we show the DIC results for the different distribution
 and structure combinations, we considered with the JLTV dataset.
 
 % need to recheck these numbers %
+\begin{table}[h]
+\centering
 \begin{tabular}{|l|l|r|}
 \multicolumn{3}{c}{\textbf{Goodness of Fit}} \\
 \cline{1-3}
@@ -332,40 +378,41 @@ Weibull       & Common Rate Model                     & 20,658.25             \\
               & Hierarchical Rate Model               & \textbf{17,908.06}    \\
 \hline
 \end{tabular}
+\end{table}
 
 Here we have shown that the hierarchical Weibull model fits the data much better
 than the exponential, but in general information criteria comparisons do not
-tell us if the model is truely a good representation of the underlying process.
-The last method we will present is called posterior predictive checking
-~\cite{ref3}. Here we are given important features of the data. In the JLTV case
-we were interested in the total failure counts for each phase and the number of
-time the miles between failures was less than 140.  We then used the final model
-to simulate 5,000 new datasets. We then plot histograms for each of the 8
-vehicles for all 3 phases.  In Figure 1 are examples of the histograms produced,
-with the line showing where the value of the true dataset fell.  For this method
-we don’t expect all of the true values to fall in the center of the
-distribution.  Values in the tales are to be expected in a random processes like
-this one.  We will only be concerned if we find true values falling in the
-extreme tails or if we see a common bias to the high or low side of the
-distributions.
+tell us if the model is truly a good representation of the underlying process.
+The last method we present is called posterior predictive checking ~\cite{ref3}.
+Here we are given important features of the data that we would expect to see if
+the experiment was repeted.  In the JLTV case one feature we were interested in
+was the number of miles between failure observations that were less than 140
+miles.  We then used the final models to simulate 5,000 new datasets for
+vehicles tested over the same number of miles for each of the three phases. We
+then plot the resulting distributions for each of the 8 vehicles for all 3
+phases.  In Figure 3 are two examples of the boxplots produced, one from the
+exponential model (left) and one from the Weibull model (right), with the dashed
+line showing where the value from the observed dataset fell.  For this method we
+don’t expect all of the true values to fall in the center of the distribution.
+Some values in the tales are to be expected in a random processes like this one,
+but when we see many observations in the tails, as we do with the exponential,
+we should consider other modeling options.
 
-% these plots will be redone and I plan to add a contrasting version of them
-% using the exponential model
-\begin{figure}
+\begin{figure}[h!]
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.4\linewidth]{Rplot1}
-  \caption{Plot 1}
+  \includegraphics[width=.8\linewidth]{PPExpo}
+  %\caption{}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.4\linewidth]{Rplot2}
-  \caption{Plot 2}
+  \includegraphics[width=.8\linewidth]{PPWeibull}
+  %\caption{}
   \label{fig:sub2}
 \end{subfigure}
-\caption{Posterior Predictive Plots}
+\caption{Posterior Predictive Plots \\ Exponential vs. Weibull}
 \label{fig:test}
 \end{figure}
 
@@ -401,7 +448,7 @@ definition of ARL and RRL differ between the classical and Bayesian test
 criteria, we use them in an equivalent way.
 
 \subsubsection{Classical Approach}
-In the frequentist (classical) version we will use two criteria in determining
+In the frequentest (classical) version we will use two criteria in determining
 the test plans. The \emph{producer's risk}, defined as the probability of
 failing the test when $\pi = \pi_0$, and the \emph{consumer's risk}, defined as
 the probability of passing the test when $\pi = \pi_1$.  Suppose that we specify
@@ -422,7 +469,7 @@ $$
 $$
 To choose a test plan for specified values of $(\alpha, \pi_0, \beta, \pi_1)$,
 we assume a distributional form that defines the relationship between the number
-of system failyres $W(t)$ and the reliability $\pi$.  Then we can simply find
+of system failures $W(t)$ and the reliability $\pi$.  Then we can simply find
 the combinations of these probabilities by simultaneously solving these two
 equations.  In the case where the component failure times are assumed to be
 exponentially distributed with rate parameter $\lambda_i$ the failure counts for
@@ -527,7 +574,7 @@ failure count for a given failure mode does follow a nonhomogeneous Poisson
 process, $w(t)_i \sim \text{Poisson}( (\lambda_i t)^{\gamma_i} )$.  In this case
 we no longer have a closed form for the system failure rate $\lambda_S = \sum_i
 (\lambda_i t)^{\gamma_i}$.  Because of this, using our previous approach leads to
-an unpleasant series of integals with parameters in the bounds.  Thankfully we
+an unpleasant series of integrals with parameters in the bounds.  Thankfully we
 can once again lean on Monte Carlo integration and the expression for the
 posterior producer's risk for the Weibull test plan $(T,c)$ simplifies to
 $$
@@ -559,32 +606,35 @@ The first step in applying this method to our JLTV dataset is defining $\pi_0$,
 $\pi_1$, $\alpha$ and $\beta$.  That is the ARL, RRL, acceptable producer risk
 and acceptable consumer risk respectively.  With input from subject matter
 experts  we will define the producer's target or ARL as the expected number of
-failures in the first 140 miles to be less  than 2, and the consumer's minimum
+failures in the first 140 miles to be less  than 3, and the consumer's minimum
 requirements or RRL as the expected number of failures in  the first 80 miles to
-greater than 2.  We will use traditional values of 0.1 and 0.05 for $\alpha$ and
+greater than 3.  We will use traditional values of 0.1 and 0.05 for $\alpha$ and
 $\beta$ respectively, but in practice these values should always be set based on
 the true risk tolerances of the consumer and producers.  This gives us the
 following probability statements to satisfy when designing the test:
 \\
-Consumer Risk : $ P(80^\beta (\lambda_S) \geq 2 \; \vert \text{Test Is Passed}) \leq 0.1 $ \\
-Producer Risk : $ P(140^\beta (\lambda_S) \leq 2 \; \vert \; \text{Test Is Failed}) \leq 0.05 $
+Consumer Risk : $ P(80^\beta (\lambda_S) \geq 3 \; \vert \text{Test Is Passed}) \leq 0.1 $ \\
+Producer Risk : $ P(140^\beta (\lambda_S) \leq 3 \; \vert \; \text{Test Is Failed}) \leq 0.05 $
 
 From here we are able to find combinations of failures allowed and test miles
 required that satisfy both risk requirements.  The table below show the
 resulting combinations for the JLTV data.
 
+\begin{table}[h]
+\center
 \begin{tabular}{|l|l|r|}
 \multicolumn{2}{c}{\textbf{JLTV Test Plan}} \\
 \cline{1-2}
 Failures Allowed    & Test Miles Required \\
 \hline
-1   & 5,300      \\
-2   & 6,500      \\
-3   & 7,800      \\
-4   & 11,100     \\
-5   & 13,100     \\
+0   & 5,500      \\
+1   & 10,100      \\
+2   & 17,900      \\
+3   & 30,800     \\
+4   & 51,200     \\
 \hline
 \end{tabular}
+\end{table}
 
 % This part should be expanded quite a bit and will extend into the discussion
 % section.
@@ -703,7 +753,5 @@ non-censored observations.
 
 $N_1$ and $N_2$ are the total non-censored observations for phases two and three
 and phase three, respectively.
-
-
 
 \end{document}
