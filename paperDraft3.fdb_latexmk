@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1513272362 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1513272363
+["pdflatex"] 1513285415 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1513285416
   "./Boxplots.png" 1505825638 28909 6e84f0fab45fdd4e1f84fd46c5c3021a ""
   "./PPExpo.png" 1513266554 38098 9ed90dbfb362e79d8a2ccce4128a24ea ""
   "./PPWeibull.png" 1513266541 46213 2409b3130b78c0fb2b5b4254367f0748 ""
@@ -92,10 +92,10 @@
   "Boxplots.png" 1505825638 28909 6e84f0fab45fdd4e1f84fd46c5c3021a ""
   "PPExpo.png" 1513266554 38098 9ed90dbfb362e79d8a2ccce4128a24ea ""
   "PPWeibull.png" 1513266541 46213 2409b3130b78c0fb2b5b4254367f0748 ""
-  "paperDraft3.aux" 1513272363 2311 dc17bb7d4e56d06cf802923d0f7369ea ""
-  "paperDraft3.tex" 1513272362 40623 c06229558230d32f9df0b06adaaac5fb ""
+  "paperDraft3.aux" 1513285416 2045 63e28ed83697afcd45756f529d3d834f ""
+  "paperDraft3.tex" 1513285415 43371 767cbb4d6cb180d02d07753c6af2b71e ""
   "shapePostPlot.png" 1513268708 85752 fd2555de34acc6c41ea8165d491d6242 ""
   (generated)
+  "paperDraft3.aux"
   "paperDraft3.log"
   "paperDraft3.pdf"
-  "paperDraft3.aux"

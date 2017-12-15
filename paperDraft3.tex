@@ -33,7 +33,7 @@
 {
 \title{Bayesian Modeling and Test Planning for Multi-phase Reliability Assessment}
 
-\author{Kassandra M.\ Fronczyk\\Institute for Defense Analyses\\Alexandria, VA\\\texttt{kfronczy@ida.org} \and
+\author{Kassandra M.\ Fronczyk\\Lawrence Livermore National Laboratory\\Livermore, CA\\\texttt{fronczyk1@llnl.gov} \and
 Alyson G.\ Wilson\\North Carolina State University\\Raleigh, NC\\\texttt{agwilso2@ncsu.edu} \and
 James F.\ Gilman\\North Carolina State University\\Raleigh, NC\\\texttt{jfgilman@ncsu.edu}
 }
@@ -166,7 +166,16 @@ failure rate analysis are lifetime distributions and the most common for failure
 count analysis is the \emph{Poisson process} counting model.  We will utilize
 both and the relationships between them.
 
-The methodology section is organized as follows... section 3.1...
+The methodology section is organized as follows.  Section 3.1 describes the
+reliability modeling process, breaking it down into five subsections.  First, we
+introduce the general structure we will be using along and how to account for
+the correction period between phases.  Then we move onto distributional
+assumptions and model diagnostics which we illistrate with the JLTV case study
+data.  In section 3.2 we discuss methods of designing next stage test plans.
+First we outline the traditional approaches, then we walk through a Bayesian
+approach that allows the practitioner to incorperating the models developed from
+section 3.1 with the hopes of reducing testing resources required while still
+minimizing producer and consumer risks.
 
 \subsubsection{Model Structure}
 Introducing notation, for each phase of testing we have failure mileage data for
@@ -208,14 +217,14 @@ The Phase 1 analysis yields an estimate of the failure rate $\lambda_{ij}$ for
 each of the vehicles for failure modes that are related.  We are assuming the
 vehicles are conditionally independent, if we also assume the miles at failure
 come from an exponential distribution the overall failure rate across all
-failure modes can be easily calculated by $\sum_{j}\lambda_{j}$.  The
-exponential distribution is commonly used in reliability analysis because of its
-convenience, but as we will discuss in later sections it can be unrealistic in
-many real-world situations.
+failure modes can be easily calculated by $\sum_{j}\lambda_{j}$ to give us the
+system failure rate.  The exponential distribution is commonly used in
+reliability analysis because of its convenience, but as we will discuss in later
+sections it can be unrealistic in many real-world situations.
 
 \subsubsection{Fix Effectiveness}
 After the first CAP, Test Phase 2 begins with the repaired vehicles. To capture
-these revisions, the PM2 reliability growth model \cite{EH06} is often used.
+these revisions, the PM2 reliability growth model \cite{ref2} is often used.
 This model explicitly captures testing phases, choices about which failure modes
 to correct, and the potential of not completely eliminating a failure upon
 repair. One of the downsides of PM2 is that many parameters of potential
@@ -266,7 +275,7 @@ system wear down as the test goes on.
 
 Despite its common uses the assumption of a constant hazard rate over time is
 rarely justifiable.  It has been well documented the issues that can arise when
-this assumption is violated ~\cite{ref2}.  Thus we will also consider the same
+this assumption is violated ~\cite{ref3}.  Thus we will also consider the same
 hierarchical model structure while using the Weibull distribution.  Now we
 assume that the failure mileage $t_{ijk}$ each follow a $Weibull(\lambda, \gamma)$
 distribution with scale parameter $\lambda$ and shape parameter $\gamma$, with
@@ -302,27 +311,49 @@ accompany them.  Using McMC we can fit each of these models to the JLTV dataset.
 Then we can use the posterior distributions of the systems parameters to
 estimate reliability-related quantities of interest for each of the eight
 vehicle types.  We are able to look at a number of different statistics related
-to reliability at both  the component and system level.  In this study our main
-quantity of interest is expected miles to  failure.  In the following figure we
-have box plots showing the posterior distributions of  the expected miles to
-failure for one of the vehicle types for each of the three phases, first using
-the exponential model and second using the more general Weibull model.
+to reliability at both the component and system level.  In this study our main
+quantity of interest is expected miles to  failure.  In figure 1 we have box
+plots and summary statistics from the posterior distributions of the expected
+miles to failure for one of the vehicle types for each of the three phases,
+first using the exponential model and second using the more general Weibull
+model.
 
-% going to add a table that will have the posterior means and 90% credible
-% interval limits
-\begin{figure}[h]
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{.5\textwidth}
   \centering
       \includegraphics[width=9cm, height=7cm]{Boxplots}
-  \caption{Comparing EMTF for Different Models}
+  % \caption{Comparing EMTF for Different Models}
+  %\label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \center
+  \begin{tabular}{|c|c|c|c|c|}
+  \multicolumn{5}{c}{\textbf{Summary Statistics}} \\
+  \cline{1-5}
+  Model & Phase & Mean & 90\% CI Low & 90\% CI Up \\
+  \hline
+  Expo & P1   & 129.98   & 110.22 &  152.23 \\
+  Expo & P2   & 98.44  & 89.00 &  108.38  \\
+  Expo & P3   & 135.89   & 117.78 &  155.45 \\
+  Weibull & P1   & 169.96  & 116.95 & 236.16 \\
+  Weibull & P2   & 135.24   & 104.89 & 167.48 \\
+  Weibull & P3   & 175.51   & 138.87 & 214.23 \\
+  \hline
+  \end{tabular}
+  %\label{fig:sub2}
+\end{subfigure}
+\caption{Comparing EMTF for Different Models}
+\label{fig:test}
 \end{figure}
 
-Figure 1 show that the posterior distributions from the Weibull model have a
-good amount more spread than the exponential.  This is somewhat expected given
-the Weibull model is estimating two model parameters to the exponentials one,
-but what is concerning is that the center of the distributions is also quite
-different between the two models.  All of the Weibull EMTF posterior means
-are higher than the exponentials.  This is the first sign that the exponential
-model may not be a good fit to the data.
+You can see the posterior distributions from the Weibull model have a good
+amount more spread than the exponential.  This is somewhat expected given the
+Weibull model is estimating two model parameters to the exponentials one, but
+what is concerning is that the center of the distributions is also quite
+different between the two models.  All of the Weibull EMTF posterior means are
+higher than the exponentials.  This is the first sign that the exponential model
+may not be a good fit to the data.
 
 \subsubsection{Model Diagnostics}
 As seen in the last section with the JLTV data, the decision of which model to
@@ -383,7 +414,7 @@ Weibull       & Common Rate Model                     & 20,658.25             \\
 Here we have shown that the hierarchical Weibull model fits the data much better
 than the exponential, but in general information criteria comparisons do not
 tell us if the model is truly a good representation of the underlying process.
-The last method we present is called posterior predictive checking ~\cite{ref3}.
+The last method we present is called posterior predictive checking ~\cite{ref4}.
 Here we are given important features of the data that we would expect to see if
 the experiment was repeted.  In the JLTV case one feature we were interested in
 was the number of miles between failure observations that were less than 140
@@ -404,16 +435,16 @@ we should consider other modeling options.
   \centering
   \includegraphics[width=.8\linewidth]{PPExpo}
   %\caption{}
-  \label{fig:sub1}
+  %\label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.8\linewidth]{PPWeibull}
   %\caption{}
-  \label{fig:sub2}
+  %\label{fig:sub2}
 \end{subfigure}
 \caption{Posterior Predictive Plots \\ Exponential vs. Weibull}
-\label{fig:test}
+%\label{fig:test}
 \end{figure}
 
 \subsection{Assurance Test Planning}
@@ -421,10 +452,10 @@ In this section, we will use the reliability models fit in section two section
 to develop a plan for future testing.  Here the objective is to demonstrate that
 at a desired level of confidence, the system will meet or exceed a specified
 requirement. The methods to be employed will be similar to the assurance testing
-as discussed by Hamada et al. ~\cite{ref4}. Bayesian \emph{reliability assurance
+as discussed by Hamada et al. ~\cite{ref5}. Bayesian \emph{reliability assurance
 tests} are used to ensure that the reliability of an item meets or exceeds a
 specified requirement with a desired probability. Meeker and Escobar
-~\cite{ME04} established the difference between this and the more traditional
+~\cite{ref6} established the difference between this and the more traditional
 \emph{reliability demonstration test}.  The difference being that the assurance
 test plan incorporates supplementary data and information, where the
 demonstration test only uses test data.
@@ -450,10 +481,11 @@ criteria, we use them in an equivalent way.
 \subsubsection{Classical Approach}
 In the frequentest (classical) version we will use two criteria in determining
 the test plans. The \emph{producer's risk}, defined as the probability of
-failing the test when $\pi = \pi_0$, and the \emph{consumer's risk}, defined as
-the probability of passing the test when $\pi = \pi_1$.  Suppose that we specify
-a maximum value, $\alpha$, of the producer's risk and a maximum value, $\beta$,
-of the consumer's risk. For test planning, these criteria become
+failing the test under the null hypothesis $\pi = \pi_0$, and the
+\emph{consumer's risk}, defined as the probability of passing the test under an
+alternative hypothesis $\pi = \pi_1$.  Suppose that we specify a maximum value,
+$\alpha$, of the producer's risk and a maximum value, $\beta$, of the consumer's
+risk. For test planning, these criteria become
 $$
 \begin{aligned}
 	\text{Producer's Risk} &= P \text{(Test Is Failed } \vert \pi_0 \text{)} \\ &=
@@ -622,64 +654,82 @@ resulting combinations for the JLTV data.
 
 \begin{table}[h]
 \center
-\begin{tabular}{|l|l|r|}
+\begin{tabular}{|c|c|}
 \multicolumn{2}{c}{\textbf{JLTV Test Plan}} \\
 \cline{1-2}
 Failures Allowed    & Test Miles Required \\
 \hline
-0   & 5,500      \\
-1   & 10,100      \\
-2   & 17,900      \\
-3   & 30,800     \\
-4   & 51,200     \\
+0   & 5,500     \\
+1   & 10,100    \\
+2   & 17,900    \\
+3   & 30,800    \\
+4   & 51,200    \\
 \hline
 \end{tabular}
 \end{table}
 
-% This part should be expanded quite a bit and will extend into the discussion
-% section.
-It should be noted that if $\pi_0$, $\pi_1$, $\alpha$ and $\beta$ are set to
-unrealisitc values there can be situations where no combinations of failures
-allowed and test miles required will satisfy these probability statements.  In
-this paper we have focused on test plans for single units, but this methodology
-can be extended to find test plans that allow for a changing number of testing
-units.  In this case you would find combinations of failures allowed and test
-miles required and number of vehicles tested that satisfy the risk requirements.
-More details and examples of this can be found in the assurance testing section
-of Hamada et al. ~\cite{ref4}
+These results alone do not provide much insite into how well the method is
+performing. A natural comparison would be with the frequentest test plan in this
+setting.  In general  we warn against this comparison because the test plan
+probability constrants for each  method are asking different questions.  The
+frequentest plan controls the error rates  under two different assumed settings.
+On the other hand, the Bayesian plan puts constrants  on the error when the test
+is passed and failed.  We would argue that in most settings  the Bayesian plan
+controls for the error the practitioner cares about.  In this case there are no
+reasonable combinations of allowed failures and required test miles  that
+satisfy both producer's and consumer's risk probability statements in the
+frequentest test plan.
+Both test planning approaches rely heavily on setting reasonable values for
+$\pi_0$, $\pi_1$, $\alpha$ and $\beta$.   When these are set to unrealisitc
+values both proceedures can can result in no plan that satisfies the probability
+statements.  In this paper we have focused on test plans for single units, but
+th the assurance testing methodology can be extended to find test plans that
+allow for a changing number of testing units.  In this case you would find
+combinations of failures allowed and test miles required and number of vehicles
+tested that satisfy the risk requirements. More details and examples of this can
+be found in the assurance testing section of Hamada et al. ~\cite{ref5}
 
 \subsection{Discussion}
+The JLTV case study results provide indications that our model is successfully
+capturing the failure rates across failure modes, inferring logical fix
+effectiveness factor distributions, and providing reliability estimates that can
+be leveraged for future test planning. In the traditional analysis, we do not
+typically look at failure rates of the failure modes, nor would we be able to
+leverage the commonalities across vehicles. The proposed modeling framework
+overcomes these limitations and allows for more realistic reliability estimates
+for vehicles with no observed failures. Additionally, our data-driven approach
+for reliability growth improves on the current growth models being used in the
+DoD, which are based solely on fixed quantities set by management.
+
+While our basic approach provides reasonable initial inferences, there are
+several extensions to incorporate. For example, reliability estimates for
+vehicles with no observed failures are sensible; however, we should leverage
+more information across vehicles. Because the correlations induced by our
+current model are fairly low, potential methods for inducing more correlation
+between the vehicles in the related failure modes are being investigated. We
+also need to look more closely at the intra-phase repair assumptions.  Appling
+repairable system  methodology in the modeling and reliability assesment stage
+could be a good approach, but this could  add a great deal of complexity to the
+assurance planning stage.
+
 
 %%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99}
-\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of
-system reliability availability maintainability - A primer; Third Edition
-(1982).
-\bibitem{ref2} National Research Council. Statistics, Testing, and Defense
+\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of system reliability availability maintainability - A primer; Third Edition (1982).
+\bibitem{ref2} P.\ M.\ Ellner and J.\ B.\ Hall, An approach to reliability
+growth planning based on failure mode discovery and correction using AMSAA
+projection methodology. \textit{IEEE Proceedings of the Annual Reliability and
+Maintainability Symposium} (2006).
+\bibitem{ref3} National Research Council. Statistics, Testing, and Defense
 Acquisition: Background Papers. \textit{National Academies Press} (1999).
-\bibitem{ref3} Gelman, Andrew, Xiao-Li Meng, and Hal Stern. "Posterior
+\bibitem{ref4} Gelman, Andrew, Xiao-Li Meng, and Hal Stern. "Posterior
 predictive assessment of model fitness via realized discrepancies."
 \textit{Statistica sinica} 733-760 (1996).
-\bibitem{ref4} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
+\bibitem{ref5} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
 Bayesian Reliability. Springer (2008).
-\bibitem{ME04} W.\ Q.\ Meeker and L.\ A.\
-Escobar. Reliability: the other dimension of quailty. \textit{Quality Technology
-and Quantitative Management} 1, 1-25 (2004). \bibitem{HWWGM13} M.\ S.\ Hamada,
-A.\ G.\ Wilson, B.\ P.\ Weaver, R.\ W.\ Griffiths and H.\ F.\ Martz. Bayesian
-binomial assurance tests for system reliability using component data.
-\textit{Journal of Quality Technology} 46, 24-32 (2014). \bibitem{JGHR03} V.\
-E.\ Johnson, T.\ L.\ Graves, M.\ S.\ Hamada, and C.\ S.\ Reese. A hierarchical
-model for estimating the reliability of complex systems. In Bayesian Statistics,
-Vol. 7,\ J.\ M.\ Bernardo, M.\ J.\ Bayerri, J.\ O.\ Berger, A.\ P.\ Dawid, D.\
-Heckerman, A.\ F.\ M.\ Smith, and M.\ West eds., Oxford, UK: Oxford University
-Press (2003). \bibitem{HMRGJW04} M.\ S.\ Hamada, H.\ F.\ Martz, C.\ S.\ Reese,
-T.\ L.\ Graves, V.\ E.\ Johnson, and A.\ G.\ Wilson. A fully Bayesian approach
-for combining multilevel failure information in fault tree quantification and
-optimal follow-on resource allocation. \textit{Reliability Engineering and
-System Safety} 86, 397-405 (2004). \bibitem{EH06} P.\ M.\ Ellner and J.\ B.\
-Hall, An approach to reliability growth planning based on failure mode discovery
-and correction using AMSAA projection methodology. \textit{IEEE Proceedings of
-the Annual Reliability and Maintainability Symposium} (2006).
+\bibitem{ref6} W.\ Q.\ Meeker and L.\ A.\ Escobar. Reliability: the other
+dimension of quailty. \textit{Quality Technology and Quantitative Management} 1,
+1-25 (2004).
 \end{thebibliography}
 
 \section{Appendix A1}
@@ -707,6 +757,7 @@ non-censored observations.
   c_2})(\rho^{P3*d_1 - 1}e^{-\rho^{P3} d_2})
 \end{equation*}
 
+Full conditionals for Gibbs sampling:
 \begin{align*}
 \lambda_i|\cdot &\sim \text{Gamma}(n_i + \alpha, \sum_{j=1}^{n_i}y_{ij}p^* + \beta) \\
 \beta|\cdot &\sim \text{Gamma}(8\alpha + b_1, \sum{\lambda_i} + b_2) \\
@@ -742,6 +793,7 @@ non-censored observations.
   c_2})(\rho^{P3 * d_1 - 1}e^{-\rho^{P3} d_2})(\gamma^{g_1 - 1}e^{-\gamma g_2})
 \end{equation*}
 
+Full conditionals for Gibbs sampling:
 \begin{align*}
 \lambda_i|\cdot &\sim \text{Gamma}(n_i + \alpha, \sum_{j=1}^{n_i}t_{ij}^{\gamma_i} p^* + \beta) \\
 \beta|\cdot &\sim \text{Gamma}(8\alpha + b_1, \sum{\lambda_i} + b_2) \\
