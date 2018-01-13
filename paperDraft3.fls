@@ -149,6 +149,12 @@ INPUT ./PPWeibull.png
 INPUT Boxplots.png
 INPUT ./Boxplots.png
 INPUT ./Boxplots.png
+INPUT CAP2.png
+INPUT ./CAP2.png
+INPUT ./CAP2.png
+INPUT CAP3.png
+INPUT ./CAP3.png
+INPUT ./CAP3.png
 INPUT paperDraft3.aux
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
