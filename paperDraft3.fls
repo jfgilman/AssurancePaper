@@ -26,6 +26,8 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preprint/fullpage.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preprint/fullpage.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/bbm-macros/bbm.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/bbm-macros/bbm.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -56,6 +58,12 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/setspace/setspace.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/setspace/setspace.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 INPUT paperDraft3.aux
@@ -129,9 +137,6 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT Boxplots.png
-INPUT ./Boxplots.png
-INPUT ./Boxplots.png
 INPUT shapePostPlot.png
 INPUT ./shapePostPlot.png
 INPUT ./shapePostPlot.png
@@ -141,6 +146,9 @@ INPUT ./PPExpo.png
 INPUT PPWeibull.png
 INPUT ./PPWeibull.png
 INPUT ./PPWeibull.png
+INPUT Boxplots.png
+INPUT ./Boxplots.png
+INPUT ./Boxplots.png
 INPUT paperDraft3.aux
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
