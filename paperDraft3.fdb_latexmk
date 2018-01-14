@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1515877458 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1515877458
+["pdflatex"] 1515877458 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1515948198
   "./Boxplots.png" 1505825638 28909 6e84f0fab45fdd4e1f84fd46c5c3021a ""
   "./CAP2.png" 1515895316 71764 cdae5e2b52819a98cf388b1f30f330a3 ""
   "./CAP3.png" 1515895316 72892 28afcf0320534b0e9022e2590d87d6c0 ""
@@ -104,6 +104,6 @@
   "paperDraft3.tex" 1515877458 47431 07f209124bb6d3f1ace01eae73c3a14e ""
   "shapePostPlot.png" 1513268708 85752 fd2555de34acc6c41ea8165d491d6242 ""
   (generated)
+  "paperDraft3.aux"
   "paperDraft3.log"
   "paperDraft3.pdf"
-  "paperDraft3.aux"
