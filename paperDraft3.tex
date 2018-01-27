@@ -374,7 +374,7 @@ In this study, one quantity of interest is mean miles to failure (MMTF). This is
 
 Figure~\ref{fig:MMTF Results} shows that the posterior MMTF distributions from the Weibull model consistently have wider uncertainty intervals and larger means and medians than the exponential.  We saw this across all eight vehicle types.  This is a good illustration of how the choice of model can impact the final inference.
 
-Figure~\ref{fig:CAP} shows the posterior distributions for each of the FEF parameters $\rho_{j}^{P2}$ and $\rho_{j}^{P3}$ for the hierarchical Weibull model.  These parameters were introduced in Section~\ref{FEF}.  They are multiplicative parameters added in between phases to capture the change in failure rate due to improvements by the producer.  Values less than one indicate a decrease in failure rate.  The distributions look reasonable with most of the mass close to one.  We notice a trend of more improvement in the second CAP between phase two and three compared to the first CAP between phase one and two.
+Figure~\ref{fig:CAP} shows the posterior distributions for each of the CAP parameters $\rho_{j}^{P2}$ and $\rho_{j}^{P3}$ for the hierarchical Weibull model.  These parameters were introduced in Section~\ref{FEF}.  They are multiplicative parameters added in between phases to capture the change in failure rate due to improvements by the producer.  Values less than one indicate a decrease in failure rate.  The distributions look reasonable with most of the mass close to the commonly used FEF value of 0.70.  We notice a trend of more improvement in the second CAP between phase two and three compared to the first CAP between phase one and two.
 
 \begin{figure}[ht]
 \centering
@@ -456,9 +456,9 @@ different interpretation from the corresponding classical risks.  While the clas
 provides assurance that satisfactory devices will pass the test and that
 unsatisfactory devices will fail it, posterior risks provide precisely the
 assurance that practitioners often desire: if the test is passed, then the
-consumer desires a maximum probability $\beta_b$ that \textcolor{blue}{the true reliability is less than the rejectable level,} $\pi \leq \pi_1$. On the
+consumer desires a maximum probability $\beta_b$ that the true reliability is less than the rejectable level, $\pi \leq \pi_1$. On the
 other hand, if the test is failed, then the producer desires a maximum
-probability $\alpha_b$ \textcolor{blue}{the true reliability is greater than the acceptable level,} that $\pi \geq \pi_0$. Notice these posterior risks are fully Bayesian in the sense that they are probability statements about $\pi$.
+probability $\alpha_b$ the true reliability is greater than the acceptable level, that $\pi \geq \pi_0$. Notice these posterior risks are fully Bayesian in the sense that they are probability statements about $\pi$.
 
 For a test that fails, the \emph{posterior producer's risk} is the probability
 that $\pi \geq \pi_{0}$, or $P \text{(}\pi \ge \pi_0 \vert \text{Test Is
@@ -610,14 +610,14 @@ Allowed & Miles Required & Miles Required \\
 \label{table:ta}
 \end{table}
 
-\textcolor{blue}{Table 2 compares the resulting test plans of our proposed method to the classical method.  In the classical case we only controlled for the consumer's risk, because with the proposed values of  $\pi_0$, $\pi_1$, $\alpha_c$ and allowed failures there was no test mileage that would satisfy both risk criteria.  In general, we warn against making this comparison of test plans, because each method makes different assumptions and the test plan probability constraints are asking different questions.  The classical plan assumes product is either acceptable or unacceptable and then controls the probability of error in each of those cases.  On the other hand, the Bayesian plan puts constraints on the probability of error when the test is passed and failed.}
+Table 2 compares the resulting test plans of our proposed method to the classical method.  In the classical case we only controlled for the consumer's risk, because with the proposed values of  $\pi_0$, $\pi_1$, $\alpha_c$ and allowed failures there was no test mileage that would satisfy both risk criteria.  Notice this leads to extremely high levels of producer risk under the classical plan.  In general, we warn against making this comparison of test plans, because each method makes different assumptions and the test plan probability constraints are asking different questions.  The classical plan assumes product is either acceptable or unacceptable and then controls the probability of error in each of those cases.  On the other hand, the Bayesian plan puts constraints on the probability of error when the test is passed and failed.
 
 We have provided one example where there was no solution that satisfied all of the constraints using the classical method.
 This problem does not only come up using the classical method.  Both test planning approaches rely heavily on setting reasonable values for $\pi_0$, $\pi_1$, $\alpha$ and $\beta$.   When these are set to unrealistic values both procedures can result in no plan that satisfies the probability statements. ~\cite{ref9}
 
 In this paper we have focused on test plans for single units, but the assurance testing methodology can be extended to find test plans that
 allow for a changing number of testing units.  In this case you would find
-9combinations of failures allowed and test miles required and number of vehicles
+combinations of failures allowed and test miles required and number of vehicles
 tested that satisfy the risk requirements. More details and examples of this can
 be found in Hamada et al. ~\cite{ref4}
 
@@ -647,25 +647,22 @@ assurance planning stage.
 
 %%%%% ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99}
-\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of system reliability availability maintainability - A primer; Third Edition (1982).
-\bibitem{ref2} P.\ M.\ Ellner and J.\ B.\ Hall, An approach to reliability
+\bibitem{ref1} Director, Defense Test and Evaluation. Test and evaluation of system reliability availability maintainability - A primer; Third Edition 1982.
+\bibitem{ref2} P.\ M.\ Ellner, J.\ B.\ Hall. An approach to reliability
 growth planning based on failure mode discovery and correction using AMSAA
 projection methodology. \textit{IEEE Proceedings of the Annual Reliability and
-Maintainability Symposium} (2006).
+Maintainability Symposium} 2006.
 \bibitem{ref3} National Research Council. Statistics, Testing, and Defense
-Acquisition: Background Papers. \textit{National Academies Press} (1999).
-\bibitem{ref4} M.\ S.\ Hamada, A.\ G.\ Wilson, C.\ S.\ Reese and H.\ F.\ Martz.
-Bayesian Reliability. Springer (2008).
-\bibitem{ref5} D.\ J.\ Spiegelhalter, N.\ Best, B.\ Carlin, and A.\ Van der
+Acquisition: Background Papers. \textit{National Academies Press} 1999.
+\bibitem{ref4} M.\ Hamada, A.\  Wilson, C.\ Reese, H.\ Martz. Bayesian Reliability. Springer 2008.
+\bibitem{ref5} D.\  Spiegelhalter, N.\ Best, B.\ Carlin, A.\ Van der
 Linde Bayesian measures of model complexity and fit. \textit{Royal Statistical
-Society}, Series B, 64: 583–640 (2002).
-\bibitem{ref6} Gelman, Andrew, Xiao-Li Meng, and Hal Stern. Posterior
-predictive assessment of model fitness via realized discrepancies. (1996)
-\bibitem{ref7} W.\ Q.\ Meeker and L.\ A.\ Escobar. Reliability: the other
-dimension of quailty. \textit{Quality Technology and Quantitative Management} 1,
-1-25 (2004).
-\bibitem{ref8} \textcolor{red}{Need to find}
-\bibitem{ref9} B. Weaver, M. Hamada, A. Wilson, J. Bakerman (2017). Bayesian Assurance Tests for Degradation Data. Quality and Reliability Engineering International 33(8): 2699-2709.
+Society}, Series B, 64: 583-640 2002.
+\bibitem{ref6} A. Gelman, M. Xiao-Li, H. Stern. Posterior predictive assessment of model fitness via realized discrepancies (with discussion). \textit{Statist. Sin.} 6, 733-807 1996.
+\bibitem{ref7} W.\ Meeker, L.\ Escobar. Reliability: the other
+dimension of quailty. \textit{Quality Technology and Quantitative Management} 1, 1-25 2004.
+\bibitem{ref8} J.\ F.\ Lawless. Statistical Models and Methods for Lifetime Data, 2nd Edition. John Wiley \& Sons 2011.
+\bibitem{ref9} B.\ Weaver, M.\ Hamada, A.\ Wilson, J.\ Bakerman. Bayesian Assurance Tests for Degradation Data. \textit{Quality and Reliability Engineering International} 33(8): 2699-2709  2017.
 \end{thebibliography}
 
 \section{Appendix}
@@ -699,7 +696,8 @@ Full conditionals for Gibbs sampling:
 \beta|\cdot &\sim \text{Gamma}(8\alpha + b_1, \sum{\lambda_i} + b_2) \\
 \rho^{P2}|\cdot &\sim \text{Gamma}(N_{1,2} + c_1, \sum{y_{ij}\lambda_i} + c_2) \\
 \rho^{P3}|\cdot &\sim \text{Gamma}(N_{2} + d_1, \sum{y_{ij}\lambda_i} + d_2) \\
-\alpha|\cdot &\sim \text{Unknown form.  Used Metropolis-Hastings.}
+\alpha|\cdot &\sim \prod_{i = 1}^8 \Bigg[\prod_{j =1}^R \frac{\beta^\alpha}{\Gamma(\alpha)}\lambda_i^{\alpha -
+  1}\Bigg] (\alpha^{a_1-1}e^{-\alpha a_2}) \text{(Metropolis-Hastings used for sampling)}
 \end{align*}
 
 $N_1$ and $N_2$ are the total non-censored observations for phases two and three
@@ -735,8 +733,9 @@ Full conditionals for Gibbs sampling:
 \beta|\cdot &\sim \text{Gamma}(8\alpha + b_1, \sum{\lambda_i} + b_2) \\
 \rho^{P2}|\cdot &\sim \text{Gamma}(N_{1,2} + c_1, \sum{t_{ij}^{\gamma_i} \lambda_i} + c_2) \\
 \rho^{P3}|\cdot &\sim \text{Gamma}(N_{2} + d_1, \sum{t_{ij}^{\gamma_i} \lambda_i} + d_2) \\
-\alpha|\cdot &\sim \text{Unknown form.  Used Metropolis-Hastings.}\\
-\gamma|\cdot &\sim \text{Unknown form.  Used Metropolis-Hastings.}
+\alpha|\cdot &\sim \prod_{i = 1}^8 \Bigg[\prod_{j =1}^R \frac{\beta^\alpha}{\Gamma(\alpha)}\lambda_i^{\alpha -
+  1}\Bigg] (\alpha^{a_1-1}e^{-\alpha a_2}) \text{(Metropolis-Hastings used for sampling)}\\
+\gamma|\cdot &\sim \prod_{i = 1}^8 \Bigg[ \prod_{j = 1}^{n_j}(t_{ij}^{\gamma_i-1} e^{-t_{ij}^{\gamma_i}})\prod_{j = 1}^R(e^{-t_{ij}^{\gamma_i}}) \Bigg] (\gamma^{g_1 - 1}e^{-\gamma g_2}) \text{(Metropolis-Hastings used for sampling)}
 \end{align*}
 
 $N_1$ and $N_2$ are the total non-censored observations for phases two and three
