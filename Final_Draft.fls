@@ -2,8 +2,8 @@ PWD /Users/jfgilman/AssurancePaper
 INPUT /usr/local/texlive/2015/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT paperDraft3.tex
-OUTPUT paperDraft3.log
+INPUT Final_Draft.tex
+OUTPUT Final_Draft.log
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/size12.clo
@@ -28,6 +28,8 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preprint/fullpage.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/preprint/fullpage.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/bbm-macros/bbm.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/bbm-macros/bbm.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -66,9 +68,9 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
-INPUT paperDraft3.aux
-INPUT paperDraft3.aux
-OUTPUT paperDraft3.aux
+INPUT Final_Draft.aux
+INPUT Final_Draft.aux
+OUTPUT Final_Draft.aux
 INPUT /usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 INPUT /usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
@@ -91,7 +93,6 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -109,9 +110,10 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm1
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-OUTPUT paperDraft3.pdf
+OUTPUT Final_Draft.pdf
 INPUT /usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -134,6 +136,9 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
 INPUT shapePostPlot.png
 INPUT ./shapePostPlot.png
 INPUT ./shapePostPlot.png
@@ -152,10 +157,7 @@ INPUT ./CAP2.png
 INPUT CAP3.png
 INPUT ./CAP3.png
 INPUT ./CAP3.png
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
-INPUT paperDraft3.aux
+INPUT Final_Draft.aux
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

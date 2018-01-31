@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1517419650 "paperDraft3.tex" "paperDraft3.pdf" "paperDraft3" 1517420947
+["pdflatex"] 1517420813 "Final_Draft.tex" "Final_Draft.pdf" "Final_Draft" 1517426648
   "./Boxplots.png" 1505825638 28909 6e84f0fab45fdd4e1f84fd46c5c3021a ""
   "./CAP2.png" 1515895316 71764 cdae5e2b52819a98cf388b1f30f330a3 ""
   "./CAP3.png" 1515895316 72892 28afcf0320534b0e9022e2590d87d6c0 ""
@@ -72,6 +72,7 @@
   "/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty" 1368312746 65148 c61accbd2b9a5316d9be0887ec48d722 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty" 1368312746 62748 b02c0dc118f5f35146d37cec569e83b1 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty" 1360019375 4351 ee16013c18d101f9ecb20e53efde17b4 ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty" 1428932888 6777 4e6ac734a1f5a404eb7af74528dda46f ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty" 1428932888 14285 20d80486c4ae98139889d8789596c967 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty" 1428932888 8125 557ab9f1bfa80d369fb45a914aa8a3b4 ""
@@ -97,12 +98,12 @@
   "Boxplots.png" 1505825638 28909 6e84f0fab45fdd4e1f84fd46c5c3021a ""
   "CAP2.png" 1515895316 71764 cdae5e2b52819a98cf388b1f30f330a3 ""
   "CAP3.png" 1515895316 72892 28afcf0320534b0e9022e2590d87d6c0 ""
+  "Final_Draft.aux" 1517420814 2991 fb01fc10c11128f8cd677f23d8e74b5a ""
+  "Final_Draft.tex" 1517420812 48717 6ee80a982e6a38c1238d506c9433934c ""
   "PPExpo.png" 1513266554 38098 9ed90dbfb362e79d8a2ccce4128a24ea ""
   "PPWeibull.png" 1513266541 46213 2409b3130b78c0fb2b5b4254367f0748 ""
-  "paperDraft3.aux" 1517419651 2852 9145436c1bcebaa86a1570eb16388645 ""
-  "paperDraft3.tex" 1517419649 48742 10ad0ffce53457a044a1c17528f8f7ee ""
   "shapePostPlot.png" 1513268708 85752 fd2555de34acc6c41ea8165d491d6242 ""
   (generated)
-  "paperDraft3.log"
-  "paperDraft3.aux"
-  "paperDraft3.pdf"
+  "Final_Draft.aux"
+  "Final_Draft.pdf"
+  "Final_Draft.log"
